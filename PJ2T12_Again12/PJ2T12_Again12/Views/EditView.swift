@@ -49,7 +49,7 @@ struct EditView: View {
                 if image.size != CGSize.zero {
                     Image(uiImage: image)
                         .resizable()
-                        .frame(width: 320)
+                        .frame(width: 320, height: 320)
                         .scaledToFit()
                 }
                 
