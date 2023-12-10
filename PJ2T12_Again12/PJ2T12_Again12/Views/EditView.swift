@@ -15,6 +15,7 @@ struct EditView: View {
     
     var body: some View {
         NavigationView {
+                        ScrollView {
             VStack {
                 HStack(spacing: 20) {
                     Image(systemName: "airplane")
@@ -25,9 +26,8 @@ struct EditView: View {
                 }
                 .frame(width: 340, height: 60)
                 HStack() {
-                    //                    ZStack() {
                     Button(action: {
-                        
+                        self.openPhoto = true
                     }) {
                         ZStack() {
                             RoundedRectangle(cornerRadius: 12)
@@ -39,7 +39,18 @@ struct EditView: View {
                         }
                         .padding()
                     }
+                    .sheet(isPresented: $openPhoto) {
+                        ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                    }
                     Spacer()
+                }
+                .padding()
+                
+                if image.size != CGSize.zero {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 320)
+                        .scaledToFit()
                 }
                 
                 TextEditor(text: $userText)
@@ -48,9 +59,6 @@ struct EditView: View {
                     .keyboardType(.default)
                     .border(Color.gray)
                     .onTapGesture {
-                        if userText == "할 일을 마치며 느낀점을 적어주세요" {
-                            userText = ""
-                        }
                     }
                     .overlay(
                         Text("할 일을 마치며 느낀점을 적어주세요")
@@ -60,7 +68,6 @@ struct EditView: View {
                     )
                 Spacer()
                 Button(action: {
-                    
                 }) {
                     Text("달성 완료")
                         .font(.headline)
@@ -73,7 +80,53 @@ struct EditView: View {
             }
             .padding()
             .onTapGesture {
+                hideKeyboard()
             }
+        }
+    }
+    }
+}
+
+struct ImagePicker: UIViewControllerRepresentable {
+    
+    var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    
+    @Binding var selectedImage: UIImage
+    @Environment(\.presentationMode) private var presentationMode
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = context.coordinator
+        
+        return imagePicker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
+        
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        
+        var parent: ImagePicker
+        
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                parent.selectedImage = image
+            }
+            
+            parent.presentationMode.wrappedValue.dismiss()
         }
     }
 }

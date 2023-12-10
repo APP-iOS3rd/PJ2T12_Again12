@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E36BA7E2B22F41E003EA141 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BA7D2B22F41E003EA141 /* EditView.swift */; };
+		0E36BA9A2B25D192003EA141 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BA992B25D192003EA141 /* Extention.swift */; };
 		CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */; };
 		CEB9F5822B219944005A338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5812B219944005A338E /* Assets.xcassets */; };
 		CEB9F5852B219944005A338E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5842B219944005A338E /* Preview Assets.xcassets */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		0E36BA7D2B22F41E003EA141 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		0E36BA992B25D192003EA141 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJ2T12_Again12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PJ2T12_Again12App.swift; sourceTree = "<group>"; };
 		CEB9F5812B219944005A338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		CEB9F58D2B219A66005A338E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0E36BA992B25D192003EA141 /* Extention.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				0E36BA7E2B22F41E003EA141 /* EditView.swift in Sources */,
 				CEB9F5972B21A966005A338E /* StatusView.swift in Sources */,
 				CEB9F5932B21A937005A338E /* HomeView.swift in Sources */,
+				0E36BA9A2B25D192003EA141 /* Extention.swift in Sources */,
 				CEB9F5912B21A925005A338E /* TodoriTapView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +332,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PJ2T12_Again12/Preview Content\"";
+				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -356,6 +361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PJ2T12_Again12/Preview Content\"";
+				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
