@@ -11,4 +11,5 @@ import Foundation
 class HomeViewModel: ObservableObject {
     @Published var showingAlert = false
     @Published var showingModalAlert = false
+    @Published var todo = ""
 }

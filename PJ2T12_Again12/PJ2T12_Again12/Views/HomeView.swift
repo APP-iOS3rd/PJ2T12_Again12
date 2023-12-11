@@ -63,6 +63,9 @@ struct HomeView: View {
                                             )
                                             .padding(.top, 32)
                                     }
+                                    .alert("", isPresented: $homeVM.showingModalAlert) {
+                                        HomeModalView(todo: $homeVM.todo)
+                                    }
                                 }
                             }
                             .padding()
