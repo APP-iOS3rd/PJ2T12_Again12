@@ -65,8 +65,9 @@ struct HistoryView: View {
                     .padding()
                 
                 Picker("Select Segment", selection: $selectedSegment) {
-                    Text("해야 하는 일").tag(0)
-                    Text("하고 싶은 일").tag(1)
+                    Text("모두").tag(0)
+                    Text("해야 하는 일").tag(1)
+                    Text("하고 싶은 일").tag(2)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
@@ -74,6 +75,16 @@ struct HistoryView: View {
             
             NavigationView {
                 if selectedSegment == 0 {
+                    List {
+                        ForEach(itemodd) { item in
+                            Text(item.nameodd)
+                        }
+                        ForEach(itemeven) { item in
+                            Text(item.nameeven)
+                        }
+                    }
+                    .searchable(text: $searchTitle)
+                } else if selectedSegment == 1 {
                     List(itemodd) { item in
                         Text(item.nameodd)
                     }
