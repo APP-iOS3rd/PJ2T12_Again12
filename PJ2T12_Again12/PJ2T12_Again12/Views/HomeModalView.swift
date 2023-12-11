@@ -64,6 +64,7 @@ struct HomeModalView: View {
                     .background(.white)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
+                    .shadow(radius: 1, x: 1, y: 1)
                 
                 Spacer()
                 Divider()
