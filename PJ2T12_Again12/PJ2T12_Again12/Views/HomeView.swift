@@ -114,7 +114,7 @@ struct HomeView: View {
                 .padding()
                 
                 if homeVM.showingModalAlert {
-                    HomeModalView(shown: $homeVM.showingModalAlert, title: .constant("해야 하는 투두"))
+                    HomeModalView(homeVM: homeVM, shown: $homeVM.showingModalAlert, title: .constant("해야 하는 투두"))
                 }
             }
             .alert("일정을 달성 하셨나요?" ,isPresented: $homeVM.showingAlert) {

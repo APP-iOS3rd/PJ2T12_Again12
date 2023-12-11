@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct HomeModalView: View {
-    @StateObject private var homeVM = HomeViewModel()
+    @ObservedObject var homeVM: HomeViewModel
     @Binding var shown: Bool //for real usage
+    @Binding var title: String //for real usage
 //    @State var shown: Bool = true //for test
-    @Binding var title: String
-    @State private var todoTemp: String = ""
-    @State private var selectedImageTemp = ""
+//    @State var title: String = "해야 하는 투두" //for test
     var circleSize: CGFloat = 60
     var imageSize: CGFloat = 30
     
@@ -27,10 +26,10 @@ struct HomeModalView: View {
                 HStack {
                     ForEach(homeVM.images, id: \.self) { image in
                         Button {
-                            selectedImageTemp = image
+                            homeVM.selectedImage = image
                         } label: {
                             ZStack {
-                                if selectedImageTemp == image {
+                                if homeVM.selectedImage == image {
                                     Circle()
                                         .frame(width: circleSize, height: circleSize)
                                         .foregroundStyle(.yellow)
@@ -60,7 +59,7 @@ struct HomeModalView: View {
                 .padding(.top)
                 .padding(.horizontal)
                 
-                TextField("", text: $todoTemp)
+                TextField("", text: $homeVM.todo)
                     .background(.white)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
@@ -72,8 +71,8 @@ struct HomeModalView: View {
                 
                 HStack {
                     Button {
-                        todoTemp = ""
-                        selectedImageTemp = ""
+                        homeVM.todo = ""
+                        homeVM.selectedImage = ""
                         shown = false
                     } label: {
                         Text("취소")
@@ -85,10 +84,6 @@ struct HomeModalView: View {
                         .frame(height: 45)
                     
                     Button {
-                        homeVM.todo = todoTemp
-                        homeVM.selectedImage = selectedImageTemp
-                        todoTemp = ""
-                        selectedImageTemp = ""
                         shown = false
                     } label: {
                         Text("저장")
