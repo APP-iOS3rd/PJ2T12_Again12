@@ -104,6 +104,9 @@ struct HomeView: View {
                                             )
                                             .padding(.top, 32)
                                     }
+                                    .alert("새로운 투두를 추가해보세요", isPresented: $homeVM.showingModalAlert) {
+                                        HomeModalView()
+                                    }
                                 }
                             }
                             .padding()
