@@ -22,18 +22,18 @@ struct HomeModalView: View {
                         Button {
                             homeVM.selectedImage = image
                             print(homeVM.selectedImage)
-                            } label: {
-                                ZStack {
+                        } label: {
+                            ZStack {
                                 Circle()
                                     .frame(width: circleSize, height: circleSize)
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(homeVM.selectedImage == image ? .yellow : .white)
                                 Image(systemName: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .foregroundStyle(.black)
                                     .frame(width: imageSize, height: imageSize)
                             }
-                                .padding(.horizontal, 8)
+                            .padding(.horizontal, 8)
                         }
                     }
                 }
