@@ -41,7 +41,6 @@ struct HomeModalView: View {
                                         .frame(width: circleSize, height: circleSize)
                                         .foregroundStyle(.white)
                                 }
-                                
                                 Image(systemName: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -52,11 +51,19 @@ struct HomeModalView: View {
                         }
                     }
                 }
+                HStack {
+                    Text("어떤 투두를 하고 싶은가요?")
+                        .font(.system(size: 15, weight: .medium))
+                    
+                    Spacer()
+                }
+                .padding(.top)
+                .padding(.horizontal)
                 
                 TextField("", text: $todoTemp)
                     .background(.white)
                     .textFieldStyle(.roundedBorder)
-                    .padding()
+                    .padding(.horizontal)
                 
                 Spacer()
                 Divider()
