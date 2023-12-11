@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct HomeModalView: View {
-    @Binding var todo: String
+    @State private var todoTemp: String = ""
+    @State private var todo: String = ""
     
     var body: some View {
-        TextField(todo, text: $todo)
-        Button("OK", action: {})
+        VStack {
+            HStack {
+                
+            }
+            TextField("", text: $todoTemp)
+            HStack {
+                Button("취소", action: {
+                    todoTemp = ""
+//                    print("todo: \(todo), todoTemp:\(todoTemp)")
+                })
+                Button("저장", action: {
+                    todo = todoTemp
+                    todoTemp = ""
+//                    print("todo: \(todo), todoTemp:\(todoTemp)")
+                })
+            }
+        }
     }
 }
 
