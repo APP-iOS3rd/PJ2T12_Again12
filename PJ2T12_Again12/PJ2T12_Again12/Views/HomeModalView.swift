@@ -9,7 +9,9 @@ import SwiftUI
 
 struct HomeModalView: View {
     @StateObject private var homeVM = HomeViewModel()
-    @Binding var shown: Bool
+    @Binding var shown: Bool //for real usage
+//    @State var shown: Bool = true //for test
+    @Binding var title: String
     @State private var todoTemp: String = ""
     @State private var selectedImageTemp = ""
     var circleSize: CGFloat = 60
@@ -18,6 +20,10 @@ struct HomeModalView: View {
     var body: some View {
         VStack {
             VStack {
+                Text(title)
+                    .font(.system(size: 21, weight: .bold))
+                    .padding(.top, 25)
+                
                 HStack {
                     ForEach(homeVM.images, id: \.self) { image in
                         Button {
