@@ -67,6 +67,7 @@ struct HomeModalView: View {
                     .shadow(radius: 1, x: 1, y: 1)
                 
                 Spacer()
+                
                 Divider()
                 
                 HStack {
@@ -78,9 +79,10 @@ struct HomeModalView: View {
                         Text("취소")
                             .frame(width: UIScreen.main.bounds.width / 2 - 40)
                     }
+                    .padding(.bottom, 5)
                     
                     Divider()
-                        .frame(height: 40)
+                        .frame(height: 45)
                     
                     Button {
                         homeVM.todo = todoTemp
@@ -94,8 +96,8 @@ struct HomeModalView: View {
                     }
                 }
             }
-            .frame(width: UIScreen.main.bounds.width - 50, height: 220)
-            .background(.gray)
+            .frame(width: UIScreen.main.bounds.width - 50, height: 300)
+            .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
