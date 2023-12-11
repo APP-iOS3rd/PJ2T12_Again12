@@ -5,11 +5,18 @@
 //  Created by KHJ on 2023/12/07.
 //
 
-/* >> 똥싼 코드 */
-
 import SwiftUI
 
 struct HistoryView: View {
+
+init() {
+    UISegmentedControl.appearance().selectedSegmentTintColor = .brown
+    UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+    UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.brown], for: .normal)
+    
+    UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
+}
+
 @State private var searchTitle: String = ""
 @State private var selectedSegment = 0
 @StateObject private var homeVM = HomeViewModel()
@@ -78,7 +85,7 @@ struct HistoryView: View {
                 }
                 .searchable(text: $searchTitle)
             }
-            .navigationTitle("전체일정보기")
+            .navigationBarTitle("전체 일정 보기")
         }
     }
 }
