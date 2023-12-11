@@ -30,9 +30,18 @@ struct HomeModalView: View {
                             selectedImageTemp = image
                         } label: {
                             ZStack {
-                                Circle()
-                                    .frame(width: circleSize, height: circleSize)
-                                    .foregroundStyle(selectedImageTemp == image ? .yellow : .white)
+                                if selectedImageTemp == image {
+                                    Circle()
+                                        .frame(width: circleSize, height: circleSize)
+                                        .foregroundStyle(.yellow)
+                                        .shadow(radius: 8, x: 5, y: 5)
+                                } else {
+                                    Circle()
+                                        .stroke(.black, lineWidth: 1.5)
+                                        .frame(width: circleSize, height: circleSize)
+                                        .foregroundStyle(.white)
+                                }
+                                
                                 Image(systemName: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -43,7 +52,6 @@ struct HomeModalView: View {
                         }
                     }
                 }
-                .padding(.top, 25)
                 
                 TextField("", text: $todoTemp)
                     .background(.white)
