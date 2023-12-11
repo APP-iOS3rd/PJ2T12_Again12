@@ -39,12 +39,14 @@ init() {
                         ScrollView {
                             ForEach(toDoList) { todo in
                                 NavigationLink(destination: DetailView(), label: {
-                                    Text("🍞 " + todo.title + "\n 2023.12")                               .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                    Text("🍞 " + todo.title + "\n yyyy.MM".stringFromDate(now: todo.date))
+                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                 })
                             }
                             ForEach(haveToList) { todo in
                                 NavigationLink(destination: DetailView(), label: {
-                                    Text("🍁 " + todo.title + "\n 2023.12")                 .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                    Text("🍁 " + todo.title + "\n yyyy.MM".stringFromDate(now: todo.date))
+                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
                                 })
                             }
                         }
@@ -53,7 +55,8 @@ init() {
                         ScrollView {
                             ForEach(toDoList) { todo in
                                 NavigationLink(destination: DetailView(), label: {
-                                    Text("🍞 " + todo.title + "\n 2023.12")                               .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                    Text("🍞 " + todo.title + "\n yyyy.MM".stringFromDate(now: todo.date))
+                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                 })
                             }
                         }
@@ -62,7 +65,8 @@ init() {
                         ScrollView {
                             ForEach(haveToList) { todo in
                                 NavigationLink(destination: DetailView(), label: {
-                                    Text("🍁 " + todo.title + "\n 2023.12")                 .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                    Text("🍁 " + todo.title + "\n yyyy.MM".stringFromDate(now: todo.date))
+                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
                                 })
                             }
                         }
