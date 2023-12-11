@@ -5,7 +5,7 @@
 //  Created by GUK on 2023/12/07.
 //
 
-// >> 똥싼 코드
+/* >> 똥싼 코드 */
 
 import SwiftUI
 
@@ -41,20 +41,20 @@ struct HistoryView: View {
         Iteme(nameeven: "항목 12")
     ]
     
-//    var toDoList: [Todo] = [
-//            Todo(date: Date(), title: "일찍일어나기", image: "airplane", review: "했다", status: true),
-//            Todo(date: Date(), title: "크리스마스 쿠키 만들기", review: "", status: false),
-//            Todo(date: Date(), title: "열심히 공부하기", review: "", status: false)
-//    ]
-//
-//    var haveToList: [WantTodo] = [
-//        WantTodo(date: Date(), title: "네트워크 공부", review: "", status: false),
-//        WantTodo(date: Date(), title: "수업 복습", image: "airplane", review: "무진장 많았는데 결국 난 해냈다", status: true),
-//        WantTodo(date: Date(), title: "수영하기", image: "airplane", review: "드디어 신청", status: true)
-//    ]
+/*    var toDoList: [Todo] = [
+            Todo(date: Date(), title: "일찍일어나기", image: "airplane", review: "했다", status: true),
+            Todo(date: Date(), title: "크리스마스 쿠키 만들기", review: "", status: false),
+            Todo(date: Date(), title: "열심히 공부하기", review: "", status: false)
+    ]
+
+    var haveToList: [WantTodo] = [
+        WantTodo(date: Date(), title: "네트워크 공부", review: "", status: false),
+        WantTodo(date: Date(), title: "수업 복습", image: "airplane", review: "무진장 많았는데 결국 난 해냈다", status: true),
+        WantTodo(date: Date(), title: "수영하기", image: "airplane", review: "드디어 신청", status: true)
+    ]
     
-//    let todoList: [Todo]
-//    let haveToList: [WantTodo]
+    let todoList: [Todo]
+    let haveToList: [WantTodo] */
     
     var body: some View {
         VStack {
@@ -95,28 +95,28 @@ struct HistoryView: View {
                     }
                     .searchable(text: $searchTitle)
                 }
-//                ListContent(items: toDoList.map { $0 as ListItem } + haveToList.map { $0 as ListItem })
+/*                ListContent(items: toDoList.map { $0 as ListItem } + haveToList.map { $0 as ListItem }) */
             }
         }
     }
 }
 
-//struct ListContent<T: ListItem> : View {
-//    let items: [T]
-//
-//    var body: some View {
-//        List(items) { item in
-//            Text(item.title)
-//        }
-//    }
-//}
-//
-//protocol ListItem: Identifiable {
-//    var title: String { get }
-//}
-//
-//extension Todo: ListItem {}
-//extension WantTodo: ListItem {}
+/* struct ListContent<T: ListItem> : View {
+    let items: [T]
+
+    var body: some View {
+        List(items) { item in
+            Text(item.title)
+        }
+    }
+}
+
+protocol ListItem: Identifiable {
+    var title: String { get }
+}
+
+extension Todo: ListItem {}
+extension WantTodo: ListItem {} */
 
 extension Color {
     init(hex: UInt, alpha: Double = 1) {
