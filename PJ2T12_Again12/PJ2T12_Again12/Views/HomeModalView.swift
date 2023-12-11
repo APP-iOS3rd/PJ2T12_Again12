@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HomeModalView: View {
+    @StateObject private var homeVM = HomeViewModel()
     @State private var todoTemp: String = ""
-    @State private var todo: String = ""
     
     var body: some View {
         VStack {
@@ -23,7 +23,7 @@ struct HomeModalView: View {
 //                    print("todo: \(todo), todoTemp:\(todoTemp)")
                 })
                 Button("저장", action: {
-                    todo = todoTemp
+                    homeVM.todo = todoTemp
                     todoTemp = ""
 //                    print("todo: \(todo), todoTemp:\(todoTemp)")
                 })
