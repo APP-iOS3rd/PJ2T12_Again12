@@ -41,6 +41,7 @@ struct HomeModalView: View {
             HStack {
                 Button("취소", action: {
                     todoTemp = ""
+                    homeVM.showingModalAlert = false
                 })
                 .frame(width: UIScreen.main.bounds.width / 2 - 40)
                 
@@ -50,6 +51,7 @@ struct HomeModalView: View {
                 Button("저장", action: {
                     homeVM.todo = todoTemp
                     todoTemp = ""
+                    homeVM.showingModalAlert = false
                 })
                 .frame(width: UIScreen.main.bounds.width / 2 - 40)
             }
