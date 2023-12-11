@@ -39,14 +39,26 @@ init() {
                         ScrollView {
                             ForEach(toDoList) { todo in
                                 NavigationLink(destination: DetailView(), label: {
-                                    Text("🍞 " + todo.title + "\n yyyy.MM".stringFromDate(now: todo.date))
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                    HStack {
+                                        Text(" 🍞 ")
+                                        VStack(alignment: .leading) {
+                                            Text(todo.title)
+                                            Text("yyyy.MM".stringFromDate(now: todo.date))
+                                        }
+                                    }
+                                    .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                 })
                             }
                             ForEach(haveToList) { todo in
                                 NavigationLink(destination: DetailView(), label: {
-                                    Text("🍁 " + todo.title + "\n yyyy.MM".stringFromDate(now: todo.date))
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                    HStack {
+                                        Text(" 🍁 ")
+                                        VStack(alignment: .leading) {
+                                            Text(todo.title)
+                                            Text("yyyy.MM".stringFromDate(now: todo.date))
+                                        }
+                                    }
+                                    .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
                                 })
                             }
                         }
@@ -55,8 +67,14 @@ init() {
                         ScrollView {
                             ForEach(toDoList) { todo in
                                 NavigationLink(destination: DetailView(), label: {
-                                    Text("🍞 " + todo.title + "\n yyyy.MM".stringFromDate(now: todo.date))
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                    HStack {
+                                        Text(" 🍞 ")
+                                        VStack(alignment: .leading) {
+                                            Text(todo.title)
+                                            Text("yyyy.MM".stringFromDate(now: todo.date))
+                                        }
+                                    }
+                                    .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                 })
                             }
                         }
@@ -65,8 +83,14 @@ init() {
                         ScrollView {
                             ForEach(haveToList) { todo in
                                 NavigationLink(destination: DetailView(), label: {
-                                    Text("🍁 " + todo.title + "\n yyyy.MM".stringFromDate(now: todo.date))
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                    HStack {
+                                        Text(" 🍁 ")
+                                        VStack(alignment: .leading) {
+                                            Text(todo.title)
+                                            Text("yyyy.MM".stringFromDate(now: todo.date))
+                                        }
+                                    }
+                                    .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
                                 })
                             }
                         }
