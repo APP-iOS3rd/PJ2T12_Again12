@@ -102,9 +102,6 @@ struct HomeView: View {
                                                 )
                                                 .padding(.top, 32)
                                         }
-                                        .alert("새로운 투두를 추가해보세요", isPresented: $homeVM.showingModalAlert) {
-                                            HomeModalView()
-                                        }
                                     }
                                 }
                                 .padding()
@@ -117,10 +114,9 @@ struct HomeView: View {
                     }
                     .padding()
                 }
-                .blur(radius: homeVM.showingModalAlert ? 30 : 0)
                 
                 if homeVM.showingModalAlert {
-                    HomeModalView()
+                    HomeModalView(shown: $homeVM.showingModalAlert)
                 }
             }
             .alert("일정을 달성 하셨나요?" ,isPresented: $homeVM.showingAlert) {
