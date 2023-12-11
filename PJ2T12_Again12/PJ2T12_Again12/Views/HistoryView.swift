@@ -35,52 +35,38 @@ init() {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                     
-                    
                     if selectedSegment == 0 {
                         ScrollView {
                             ForEach(toDoList) { todo in
-                                Button() {
-                                    homeVM.showingAlert = true
-                                } label: {
-                                    Text("🍞 " + todo.title)
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
-                                }
+                                NavigationLink(destination: DetailView(), label: {
+                                    Text("🍞 " + todo.title + "\n 2023.12")                               .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                })
                             }
                             ForEach(haveToList) { todo in
-                                Button() {
-                                    homeVM.showingAlert = true
-                                } label: {
-                                    Text("🍁 " + todo.title)
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
-                                }
+                                NavigationLink(destination: DetailView(), label: {
+                                    Text("🍁 " + todo.title + "\n 2023.12")                 .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                })
                             }
                         }
                         .padding()
                     } else if selectedSegment == 1 {
                         ScrollView {
                             ForEach(toDoList) { todo in
-                                Button() {
-                                    homeVM.showingAlert = true
-                                } label: {
-                                    Text("🍞 " + todo.title)
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
-                                }
+                                NavigationLink(destination: DetailView(), label: {
+                                    Text("🍞 " + todo.title + "\n 2023.12")                               .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                })
                             }
                         }
                         .padding()
                     } else {
                         ScrollView {
                             ForEach(haveToList) { todo in
-                                Button() {
-                                    homeVM.showingAlert = true
-                                } label: {
-                                    Text("🍁 " + todo.title)
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
-                                }
+                                NavigationLink(destination: DetailView(), label: {
+                                    Text("🍁 " + todo.title + "\n 2023.12")                 .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                })
                             }
                         }
                         .padding()
-                        
                     }
                 }
                 .searchable(text: $searchTitle)
