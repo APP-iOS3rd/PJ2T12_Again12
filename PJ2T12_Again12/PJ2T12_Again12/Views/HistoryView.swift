@@ -107,6 +107,35 @@ struct HistoryView: View {
 //extension Todo: ListItem {}
 //extension WantTodo: ListItem {}
 
+extension Color {
+    init(hex: UInt, alpha: Double = 1) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xff) / 255,
+            green: Double((hex >> 08) & 0xff) / 255,
+            blue: Double((hex >> 00) & 0xff) / 255,
+            opacity: alpha
+        )
+    }
+}
+
+// TODO: ViewModifiers Folder 생성
+struct TodoCellModifier: ViewModifier {
+    let status: Bool
+    let hexCode: UInt
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .bold()
+            .foregroundColor(status ? .white : Color(hex: hexCode))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(status ? Color(hex: hexCode, alpha: 0.4) : .white)
+            )
+    }
+}
+
 #Preview {
     HistoryView()
 }
