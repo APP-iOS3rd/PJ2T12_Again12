@@ -2,7 +2,7 @@
 //  HistoryView.swift
 //  PJ2T12_Again12
 //
-//  Created by GUK on 2023/12/07.
+//  Created by KHJ on 2023/12/07.
 //
 
 /* >> 똥싼 코드 */
