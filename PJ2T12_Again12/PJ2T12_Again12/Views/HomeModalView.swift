@@ -19,14 +19,21 @@ struct HomeModalView: View {
             VStack {
                 HStack {
                     ForEach(homeVM.images, id: \.self) { image in
-                        ZStack {
-                            Circle()
-                                .frame(width: circleSize, height: circleSize)
-                                .foregroundStyle(.blue)
-                            Image(systemName: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: imageSize, height: imageSize)
+                        Button {
+                            homeVM.selectedImage = image
+                            print(homeVM.selectedImage)
+                            } label: {
+                                ZStack {
+                                Circle()
+                                    .frame(width: circleSize, height: circleSize)
+                                    .foregroundStyle(.white)
+                                Image(systemName: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundStyle(.black)
+                                    .frame(width: imageSize, height: imageSize)
+                            }
+                                .padding(.horizontal, 8)
                         }
                     }
                 }
@@ -41,21 +48,25 @@ struct HomeModalView: View {
                 Divider()
                 
                 HStack {
-                    Button("취소", action: {
+                    Button {
                         todoTemp = ""
                         shown = false
-                    })
-                    .frame(width: UIScreen.main.bounds.width / 2 - 40)
+                    } label: {
+                        Text("취소")
+                            .frame(width: UIScreen.main.bounds.width / 2 - 40)
+                    }
                     
                     Divider()
                         .frame(height: 40)
                     
-                    Button("저장", action: {
+                    Button {
                         homeVM.todo = todoTemp
                         todoTemp = ""
                         shown = false
-                    })
-                    .frame(width: UIScreen.main.bounds.width / 2 - 40)
+                    } label: {
+                        Text("저장")
+                            .frame(width: UIScreen.main.bounds.width / 2 - 40)
+                    }
                 }
             }
             .frame(width: UIScreen.main.bounds.width - 50, height: 220)
