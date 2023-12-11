@@ -11,6 +11,7 @@ struct HomeModalView: View {
     @StateObject private var homeVM = HomeViewModel()
     @Binding var shown: Bool
     @State private var todoTemp: String = ""
+    @State private var selectedImageTemp = ""
     var circleSize: CGFloat = 60
     var imageSize: CGFloat = 30
     
@@ -20,13 +21,12 @@ struct HomeModalView: View {
                 HStack {
                     ForEach(homeVM.images, id: \.self) { image in
                         Button {
-                            homeVM.selectedImage = image
-                            print(homeVM.selectedImage)
+                            selectedImageTemp = image
                         } label: {
                             ZStack {
                                 Circle()
                                     .frame(width: circleSize, height: circleSize)
-                                    .foregroundStyle(homeVM.selectedImage == image ? .yellow : .white)
+                                    .foregroundStyle(selectedImageTemp == image ? .yellow : .white)
                                 Image(systemName: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -50,6 +50,7 @@ struct HomeModalView: View {
                 HStack {
                     Button {
                         todoTemp = ""
+                        selectedImageTemp = ""
                         shown = false
                     } label: {
                         Text("취소")
@@ -61,7 +62,9 @@ struct HomeModalView: View {
                     
                     Button {
                         homeVM.todo = todoTemp
+                        homeVM.selectedImage = selectedImageTemp
                         todoTemp = ""
+                        selectedImageTemp = ""
                         shown = false
                     } label: {
                         Text("저장")
