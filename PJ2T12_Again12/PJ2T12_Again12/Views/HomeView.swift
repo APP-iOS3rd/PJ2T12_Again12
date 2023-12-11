@@ -10,6 +10,9 @@ import SwiftUI
 // TODO: 이모티콘에 대한 고민 나눠보기
 struct HomeView: View {
     @StateObject private var homeVM = HomeViewModel()
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var todoList: FetchedResults<Todo>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var wantTodoList: FetchedResults<WantTodo>
     var body: some View {
         NavigationStack {
             ZStack {
@@ -41,16 +44,20 @@ struct HomeView: View {
                                 Spacer()
                             }
                             VStack {
-                                ForEach(toDoList) { todo in
+                                ForEach(todoList, id: \.self) { todo in
                                     Button() {
                                         homeVM.showingAlert = true
                                     } label: {
-                                        Text("🍞 " + todo.title)
+                                        Text(todo.title ?? "Unknown")
                                             .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                     }
                                 }
-                                if toDoList.count < 3 {
+                                if todoList.count < 3 {
                                     Button {
+                                        let todo = Todo(context: moc)
+                                        todo.title = "투두!"
+                                        todo.review = ""
+                                        todo.status = false
                                         homeVM.showingModalAlert = true
                                     } label: {
                                         Text("새로운 투두를 추가해보세요")
@@ -79,16 +86,20 @@ struct HomeView: View {
                                 Spacer()
                             }
                             VStack {
-                                ForEach(haveToList) { todo in
+                                ForEach(wantTodoList, id: \.self) { todo in
                                     Button() {
                                         homeVM.showingAlert = true
                                     } label: {
-                                        Text("🍁 " + todo.title)
+                                        Text(todo.title ?? "Unknown")
                                             .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
                                     }
                                 }
-                                if haveToList.count < 3 {
+                                if wantTodoList.count < 3 {
                                     Button {
+                                        let wantTodo = WantTodo(context: moc)
+                                        wantTodo.title = "원투두!"
+                                        wantTodo.review = ""
+                                        wantTodo.status = false
                                         homeVM.showingModalAlert = true
                                     } label: {
                                         Text("새로운 투두를 추가해보세요")
