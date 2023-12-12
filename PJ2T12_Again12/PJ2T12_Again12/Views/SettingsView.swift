@@ -251,7 +251,7 @@ struct ProfileEditView: View {
 }
 
 func login() {
-    print("logout")
+    print("login")
 }
 
 func logout() {
