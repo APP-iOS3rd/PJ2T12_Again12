@@ -19,24 +19,55 @@ class SocialViewModel: ObservableObject {
         return "\(year)-\(month)"
     }
     
-    func countDone(_ user: User) -> Int {
-        var count = 0
+    ///어떤 유저의 가장 최신의 TodoByMonth 데이터가 이번 달인지 판별한다.
+    func isThisMonth(_ user: User) -> Bool {
+        var isThisMonth = false
         
         if let recentTodoDate = user.todoByMonthList.last?.date {
             if setDateFormat(recentTodoDate) == setDateFormat(Date.now) {
-                let totalTodo = user.todoByMonthList.last?.todoList ?? []
-                let totalWantTodo = user.todoByMonthList.last?.wantTodoList ?? []
-                
-                for todo in totalTodo {
-                    if todo.status {
-                        count += 1
-                    }
+                isThisMonth = true
+            }}
+        return isThisMonth
+    }
+    
+    ///어떤 유저가 TodoByMonth 데이터가 있다면 가장 최신 데이터인 todoList를 가지고 온다.
+    func getTodoList(_ user: User) -> [Todo] {
+        var result: [Todo] = []
+        
+        if let todoList = user.todoByMonthList.last?.todoList {
+            result = todoList
+        }
+        
+        return result
+    }
+    
+    ///어떤 유저가 TodoByMonth 데이터가 있다면 가장 최신 데이터인 wantTodoList를 가지고 온다.
+    func getWantTodoList(_ user: User) -> [WantTodo] {
+        var result: [WantTodo] = []
+        
+        if let wantTodoList = user.todoByMonthList.last?.wantTodoList {
+            result = wantTodoList
+        }
+        
+        return result
+    }
+    
+    func countDone(_ user: User) -> Int {
+        var count = 0
+        
+        if isThisMonth(user) {
+            let totalTodo = getTodoList(user)
+            let totalWantTodo = getWantTodoList(user)
+            
+            for todo in totalTodo {
+                if todo.status {
+                    count += 1
                 }
-                
-                for wantTodo in totalWantTodo {
-                    if wantTodo.status {
-                        count += 1
-                    }
+            }
+            
+            for wantTodo in totalWantTodo {
+                if wantTodo.status {
+                    count += 1
                 }
             }
         }
@@ -47,10 +78,8 @@ class SocialViewModel: ObservableObject {
     func countTotal(_ user: User) -> Int {
         var totalCount = 0
         
-        if let recentTodoDate = user.todoByMonthList.last?.date {
-            if setDateFormat(recentTodoDate) == setDateFormat(Date.now) {
-                totalCount = (user.todoByMonthList.last?.todoList.count ?? 0) + (user.todoByMonthList.last?.wantTodoList.count ?? 0)
-            }
+        if isThisMonth(user) {
+            totalCount = getTodoList(user).count + getWantTodoList(user).count
         }
         
         return totalCount
