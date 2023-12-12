@@ -79,7 +79,110 @@ struct SocialViewIfLogin: View {
     @ObservedObject var socialVM: SocialViewModel
     
     var body: some View {
-        Text("로그인되었습니다")
+        NavigationView {
+            VStack {
+                GeometryReader { geo in
+                    VStack {
+                        //뷰 제목과 친구 추가 버튼
+                        HStack {
+                            Text("친구")
+                                .font(.system(size: 25, weight: .heavy))
+                                .padding(.leading, 20)
+                            
+                            Spacer()
+                            
+                            Button {
+                                //동작없음
+                            } label: {
+                                Image(systemName: "plus")
+                                    .foregroundStyle(.black)
+                                    .font(.system(size: 25, weight: .medium))
+                                    .padding(.trailing, 20)
+                            } //Button
+                        } //HStack
+                        
+                        //친구 리스트
+                        List {
+                            ForEach(socialVM.myFriendsList) { friend in
+                                myFriendCell(socialVM: socialVM, friend: friend)
+                            }
+                        } //List
+                        .listStyle(.plain)
+                        .scrollContentBackground(.hidden)
+                        
+                        Spacer()
+                    } //VStack
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .background(.yellow)
+                } //GeometryReader
+            } //VStack
+        } //NavigationView
+    }
+}
+
+struct myFriendCell: View {
+    @ObservedObject var socialVM: SocialViewModel
+    @State var friend: User
+    
+    //Sizes
+    let circleSize: CGFloat = 64
+    let profileIconSize: CGFloat = 25
+    let verticalStackWidth: CGFloat = 22
+    let verticalStackHeight: CGFloat = 15
+    
+    //Colors
+    let profileBorderColor: Color = .black
+    let profileBackgroundColor: Color = .white
+    let todoTotalColor: Color = .gray
+    let todoDoneColor: Color = .orange
+    
+    var body: some View {
+        NavigationLink(destination: SocialDetailView()) {
+            HStack {
+                //프로필이미지
+                ZStack {
+                    Circle()
+                        .stroke(profileBorderColor, lineWidth: 1.0)
+                        .frame(width: circleSize, height: circleSize)
+                        .background(profileBackgroundColor)
+                        .clipShape(Circle())
+                    
+                    Image(systemName: friend.profileImage ?? "person")
+                        .font(.system(size: profileIconSize))
+                } //ZStack
+                .padding(.trailing, 10)
+                
+                //친구이름 + 가로그래프 + 투두 개수
+                VStack(alignment: .leading) {
+                    Text(friend.name ?? "Error")
+                    //가로그래프 + 투두 개수
+                    HStack {
+                        let todoTotal = socialVM.countTotal(friend)
+                        let todoDone = socialVM.countDone(friend)
+                        
+                        //가로그래프
+                        HStack {
+                            ZStack(alignment: .leading) {
+                                Rectangle()
+                                    .frame(width: verticalStackWidth * CGFloat(todoTotal), height: verticalStackHeight)
+                                    .foregroundStyle(todoTotalColor)
+                                Rectangle()
+                                    .frame(width: verticalStackWidth * CGFloat(todoDone), height: verticalStackHeight)
+                                    .foregroundStyle(todoDoneColor)
+                            }//ZStack
+                            
+                            Spacer()
+                        } //HStack
+                        .frame(width: verticalStackWidth * 6)
+                        
+                        Text("\(todoDone) / \(todoTotal)")
+                    }
+                } //VStack
+            } //HStack
+        } //NavigationLink
+        .listRowBackground(Color.yellow)
+        .listRowSeparator(.hidden)
+        
     }
 }
 
