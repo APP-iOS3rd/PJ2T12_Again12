@@ -33,12 +33,14 @@ struct SettingsView: View {
                         }
                     }
                 }
+                .listRowBackground(Color(hex: 0xFFFEF6))
                 
                 Section(header: Text("알림 설정")) {
                     TotalAlarmRow(totalToggle: $totalToggle)
                     MyAlarmRow(totalToggle: $totalToggle)
                     FriendsAlarmRow(totalToggle: $totalToggle)
                 }
+                .listRowBackground(Color(hex: 0xFFFEF6))
                 
                 Section(header: Text("테마")) {
                     if !isLogin {
@@ -52,6 +54,7 @@ struct SettingsView: View {
                         }
                     }
                 }
+                .listRowBackground(Color(hex: 0xFFFEF6))
                 
                 Section(header: Text("설정")) {
                     NavigationLink {
@@ -65,11 +68,14 @@ struct SettingsView: View {
                         Text("정보")
                     }
                     NavigationLink {
+                        // QnAView() 가 맞음
+                        // EditView() 확인용
                         EditView()
                     } label: {
                         Text("문의사항")
                     }
                 }
+                .listRowBackground(Color(hex: 0xFFFEF6))
                 
                 Section(header: Text("계정 관리")) {
                     NavigationLink {
@@ -83,6 +89,7 @@ struct SettingsView: View {
                         Text("회원 탈퇴")
                     }
                 }
+                .listRowBackground(Color(hex: 0xFFFEF6))
             }
             .listStyle(.grouped)
             .background(Color(hex: 0xFFFAE1))
@@ -133,12 +140,6 @@ struct ProfileView: View {
     
     var body: some View {
         HStack {
-//            Image(systemName: "hare.fill")
-//                .resizable()
-//                .foregroundStyle(Color.pink)
-//                .frame(width: 100, height: 100)
-//                .clipShape(Circle())
-//                .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
             if profileImage.size.width != 0 && profileImage.size.height != 0 {
                 Image(uiImage: profileImage)
                     .resizable()
@@ -152,7 +153,7 @@ struct ProfileView: View {
                     .frame(width: 100, height: 100)
                     .foregroundColor(.pink)
                     .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+                    .overlay(Circle().stroke(Color(hex: 0xE5F5FF), lineWidth: 1))
             }
             VStack (alignment: .leading) {
                 Text("닉네임: \(nickname)")
@@ -198,18 +199,18 @@ struct ProfileEditView: View {
                                             .frame(width: 100, height: 100)
                                             .scaledToFit()
                                             .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+                                            .overlay(Circle().stroke(Color(hex: 0xE5F5FF), lineWidth: 1))
                                     } else {
                                         Image(systemName: "hare.fill")
                                             .resizable()
                                             .frame(width: 100, height: 100)
                                             .foregroundColor(.pink)
                                             .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+                                            .overlay(Circle().stroke(Color(hex: 0xE5F5FF), lineWidth: 1))
                                     }
                                 }
                                 Image(systemName: "camera.circle")
-                                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                    .font(.title)
                                     .foregroundColor(.gray)
                                     .offset(x: 40, y: 40)
                             }
@@ -249,7 +250,9 @@ struct TotalAlarmRow: View {
                 Text("전체 알림")
                 Text("전체 알림을 조절할 수 있습니다.")
             })
+            .tint(Color(hex: 0xFFCD7B))
         }
+        
     }
 }
 
@@ -265,6 +268,7 @@ struct MyAlarmRow: View {
                 Text("나의 일정 알림을 조절할 수 있습니다.")
             })
             .disabled(!totalToggle)
+            .tint(Color(hex: 0xFFCD7B))
         }
     }
 }
@@ -281,6 +285,7 @@ struct FriendsAlarmRow: View {
                 Text("친구들이 보내는 알림을 조절할 수 있습니다.")
             })
             .disabled(!totalToggle)
+            .tint(Color(hex: 0xFFCD7B))
         }
     }
 }
