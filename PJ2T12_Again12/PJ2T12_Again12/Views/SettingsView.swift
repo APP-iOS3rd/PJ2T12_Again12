@@ -80,22 +80,6 @@ struct SettingsView: View {
                     }
                 }
                 .listRowBackground(Color(hex: 0xFFFEF6))
-                
-                Section(header: Text("계정 관리")) {
-                    NavigationLink {
-                        LogoutView()
-                    } label: {
-                        Text("로그아웃")
-                            .foregroundStyle(Color(hex: 0x432D00))
-                    }
-                    NavigationLink {
-                        WithDrawView()
-                    } label: {
-                        Text("회원 탈퇴")
-                            .foregroundStyle(Color(hex: 0x432D00))
-                    }
-                }
-                .listRowBackground(Color(hex: 0xFFFEF6))
             }
             .listStyle(.grouped)
             .background(Color(hex: 0xFFFAE1))
@@ -186,17 +170,8 @@ struct ProfileEditView: View {
     @Binding var profileImage: UIImage
     
     var body: some View {
-        ZStack {
-            Color(hex: 0xFFFAE1)
-                .ignoresSafeArea()
-            VStack {
-                HStack {
-                    Spacer()
-                    Button("저장", action: profileSave)
-                        .foregroundStyle(Color(hex: 0x432D00))
-                        .padding()
-                }
-                Spacer()
+        List {
+            Section(header: Text("나의 정보")) {
                 HStack {
                     HStack {
                         Button(action: {
@@ -234,7 +209,7 @@ struct ProfileEditView: View {
                         }
                         .padding()
                         Spacer()
-                            
+                        
                     }
                     VStack (alignment: .leading) {
                         Text(" 닉네임")
@@ -245,14 +220,32 @@ struct ProfileEditView: View {
                     .padding()
                 }
                 .background(Color.white)
-                Spacer()
-                Spacer()
             }
+            .listRowBackground(Color(hex: 0xFFFEF6))
+            
+            Section(header: Text("계정 관리")) {
+                Button("로그아웃", action: logout)
+                
+                NavigationLink {
+                    WithDrawView()
+                } label: {
+                    Text("회원 탈퇴")
+                        .foregroundStyle(Color(hex: 0x432D00))
+                }
+            }
+            .listRowBackground(Color(hex: 0xFFFEF6))
+            
         }
+        .listStyle(.grouped)
+        .background(Color(hex: 0xFFFAE1))
+        .scrollContentBackground(.hidden)
     }
 }
-
+func logout() {
+    print("logout")
+}
 func profileSave() {
+    print("profile saved")
 }
 
 // 전체 알림 Row
@@ -353,18 +346,6 @@ struct QnAView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("문의사항 뷰")
-            }
-        }
-    }
-}
-
-struct LogoutView: View {
-    var body: some View {
-        ZStack {
-            Color(hex: 0xFFFAE1)
-                .ignoresSafeArea()
-            VStack {
-                Text("로그아웃 뷰")
             }
         }
     }
