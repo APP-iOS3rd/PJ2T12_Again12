@@ -112,6 +112,10 @@ struct HomeView: View {
                     }
                 }
                 .padding()
+                
+                if homeVM.showingModalAlert {
+                    HomeModalView(shown: $homeVM.showingModalAlert)
+                }
             }
             .alert("일정을 달성 하셨나요?" ,isPresented: $homeVM.showingAlert) {
                 NavigationLink("일정 수정") { DetailView() }
