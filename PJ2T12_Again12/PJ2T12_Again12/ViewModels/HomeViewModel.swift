@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class HomeViewModel: ObservableObject {
@@ -14,4 +15,5 @@ class HomeViewModel: ObservableObject {
     @Published var todo = ""
     @Published var images: [String] = ["paperplane", "book.closed", "moon", "dumbbell"]
     @Published var selectedImage = ""
+    @Published var isTodo = false
 }

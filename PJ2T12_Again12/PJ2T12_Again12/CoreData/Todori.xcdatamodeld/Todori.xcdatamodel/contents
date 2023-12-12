@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="22G313" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Todo" representedClassName="Todo" syncable="YES" codeGenerationType="class">
+    <entity name="Todo" representedClassName="Todo" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="review" optional="YES" attributeType="String"/>
-        <attribute name="status" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="WantTodo" representedClassName="WantTodo" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isTodo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="review" optional="YES" attributeType="String"/>
         <attribute name="status" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>

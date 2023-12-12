@@ -25,6 +25,8 @@
 		CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F59C2B21A9CE005A338E /* SettingsView.swift */; };
 		CEE940FA2B26D85700AE52CB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE940F92B26D85700AE52CB /* DataController.swift */; };
 		CEE940FD2B26D99A00AE52CB /* Todori.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEE940FB2B26D99A00AE52CB /* Todori.xcdatamodeld */; };
+		CEE941032B26FBEB00AE52CB /* Todo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */; };
+		CEE941042B26FBEB00AE52CB /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		CEB9F59C2B21A9CE005A338E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CEE940F92B26D85700AE52CB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		CEE940FC2B26D99A00AE52CB /* Todori.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todori.xcdatamodel; sourceTree = "<group>"; };
+		CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 		CEB9F57C2B219941005A338E /* PJ2T12_Again12 */ = {
 			isa = PBXGroup;
 			children = (
+				CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */,
+				CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */,
 				CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */,
 				CEE941002B26EA3100AE52CB /* CoreData */,
 				0E36BAA42B26B6BF003EA141 /* Extensions */,
@@ -235,6 +241,8 @@
 				0E36BA9A2B25D192003EA141 /* Extention.swift in Sources */,
 				CEB9F5912B21A925005A338E /* TodoriTapView.swift in Sources */,
 				9E9A102B2B26CF6600A2A73E /* HomeModalView.swift in Sources */,
+				CEE941032B26FBEB00AE52CB /* Todo+CoreDataClass.swift in Sources */,
+				CEE941042B26FBEB00AE52CB /* Todo+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
