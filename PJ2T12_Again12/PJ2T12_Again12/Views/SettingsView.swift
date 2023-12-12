@@ -9,8 +9,44 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ZStack {
+                Color(hex: 0xFFFAE1)
+                    .ignoresSafeArea()
+                List {
+                    Section(header: Text("알림 설정")) {
+                        TaskRow()
+                        TaskRow()
+                        TaskRow()
+                        TaskRow()
+                    }
+                    Section(header: Text("테마")) {
+                        TaskRow()
+                    }
+                    Section(header: Text("설정")) {
+                        TaskRow()
+                        TaskRow()
+                        TaskRow()
+                    }
+                    Section(header: Text("계정 관리")) {
+                        TaskRow()
+                        TaskRow()
+                    }
+                }
+                .listStyle(.grouped)
+                
+            }
+            .navigationBarTitle("설정")
+        }
     }
+}
+
+struct TaskRow: View {
+  var body: some View {
+      HStack {
+          Text("Test")
+      }
+  }
 }
 
 #Preview {
