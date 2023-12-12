@@ -23,13 +23,30 @@ struct SocialViewIfNotLogin: View {
     @ObservedObject var socialVM: SocialViewModel
     @State private var alertIsPresented: Bool = false
     
+    //Font
+    let titleFontSize: CGFloat = 25
+    let titleFontWeight: Font.Weight = .heavy
+    let buttonTextStyle: Font.TextStyle = .body
+    let buttonFontWeight: Font.Weight = .bold
+    
+    //Size
+    let buttonWidth: CGFloat = 173
+    let buttonHeight: CGFloat = 52
+    let buttonCornerRadius: CGFloat = 10
+    
+    //Color
+    let loginGuideTextColor: Color = .gray
+    let loginButtonTextColor: Color = .white
+    let loginButtonColor: Color = .orange
+    let viewBackground: Color = .yellow
+    
     var body: some View {
         VStack {
             GeometryReader { geo in
                 VStack {
                     HStack {
                         Text("친구")
-                            .font(.system(size: 25, weight: .heavy))
+                            .font(.system(size: titleFontSize, weight: titleFontWeight))
                             .padding(.leading, 20)
                         
                         Spacer()
@@ -38,7 +55,7 @@ struct SocialViewIfNotLogin: View {
                     Spacer()
                     
                     Text("로그인 해서\n친구들의 투두리를 살펴보세요")
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(loginGuideTextColor)
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 100)
                     
@@ -46,11 +63,11 @@ struct SocialViewIfNotLogin: View {
                         alertIsPresented = true
                     } label: {
                         Text("카카오 로그인하기")
-                            .foregroundStyle(.white)
-                            .font(.system(.body, weight: .bold))
-                            .frame(width: 173, height: 52)
-                            .background(.orange)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .foregroundStyle(loginButtonTextColor)
+                            .font(.system(buttonTextStyle, weight: buttonFontWeight))
+                            .frame(width: buttonWidth, height: buttonHeight)
+                            .background(loginButtonColor)
+                            .clipShape(RoundedRectangle(cornerRadius: buttonCornerRadius))
                     } //Button
                     .alert(isPresented: $alertIsPresented) {
                         let leftButton = Alert.Button.default(Text("로그인")) {
@@ -69,7 +86,7 @@ struct SocialViewIfNotLogin: View {
                     Spacer()
                 } //VStack
                 .frame(width: geo.size.width, height: geo.size.height)
-                .background(.yellow)
+                .background(viewBackground)
             }
         } //VStack
     }
@@ -77,6 +94,15 @@ struct SocialViewIfNotLogin: View {
 
 struct SocialViewIfLogin: View {
     @ObservedObject var socialVM: SocialViewModel
+    
+    //Font
+    let titleFontSize: CGFloat = 25
+    let titleFontWeight: Font.Weight = .heavy
+    let buttonWeight: Font.Weight = .medium
+    
+    //Color
+    let addFriendButtonColor: Color = .black
+    let viewBackground: Color = .yellow
     
     var body: some View {
         NavigationView {
@@ -86,7 +112,7 @@ struct SocialViewIfLogin: View {
                         //뷰 제목과 친구 추가 버튼
                         HStack {
                             Text("친구")
-                                .font(.system(size: 25, weight: .heavy))
+                                .font(.system(size: titleFontSize, weight: titleFontWeight))
                                 .padding(.leading, 20)
                             
                             Spacer()
@@ -95,8 +121,8 @@ struct SocialViewIfLogin: View {
                                 //동작없음
                             } label: {
                                 Image(systemName: "plus")
-                                    .foregroundStyle(.black)
-                                    .font(.system(size: 25, weight: .medium))
+                                    .foregroundStyle(addFriendButtonColor)
+                                    .font(.system(size: titleFontSize, weight: buttonWeight))
                                     .padding(.trailing, 20)
                             } //Button
                         } //HStack
@@ -113,7 +139,7 @@ struct SocialViewIfLogin: View {
                         Spacer()
                     } //VStack
                     .frame(width: geo.size.width, height: geo.size.height)
-                    .background(.yellow)
+                    .background(viewBackground)
                 } //GeometryReader
             } //VStack
         } //NavigationView
