@@ -51,6 +51,7 @@ struct SettingsView: View {
                             ThemeView()
                         } label: {
                             Text("커스텀 테마를 골라보세요.")
+                                .foregroundStyle(Color(hex: 0x432D00))
                         }
                     }
                 }
@@ -61,11 +62,13 @@ struct SettingsView: View {
                         NoticeView()
                     } label: {
                         Text("공지사항")
+                            .foregroundStyle(Color(hex: 0x432D00))
                     }
                     NavigationLink {
                         SettingDetailView()
                     } label: {
                         Text("정보")
+                            .foregroundStyle(Color(hex: 0x432D00))
                     }
                     NavigationLink {
                         // QnAView() 가 맞음
@@ -73,6 +76,7 @@ struct SettingsView: View {
                         EditView()
                     } label: {
                         Text("문의사항")
+                            .foregroundStyle(Color(hex: 0x432D00))
                     }
                 }
                 .listRowBackground(Color(hex: 0xFFFEF6))
@@ -82,11 +86,13 @@ struct SettingsView: View {
                         LogoutView()
                     } label: {
                         Text("로그아웃")
+                            .foregroundStyle(Color(hex: 0x432D00))
                     }
                     NavigationLink {
                         WithDrawView()
                     } label: {
                         Text("회원 탈퇴")
+                            .foregroundStyle(Color(hex: 0x432D00))
                     }
                 }
                 .listRowBackground(Color(hex: 0xFFFEF6))
@@ -94,11 +100,11 @@ struct SettingsView: View {
             .listStyle(.grouped)
             .background(Color(hex: 0xFFFAE1))
             .scrollContentBackground(.hidden)
-            
             .navigationTitle("설정")
         } detail: {
             Text("")
         }
+        .accentColor(Color(hex: 0x432D00))
     }
 }
 
@@ -159,6 +165,7 @@ struct ProfileView: View {
                 Text("닉네임: \(nickname)")
                 Text("")
             }
+            .foregroundStyle(Color(hex: 0x432D00))
             .padding()
         }
         .padding()
@@ -180,6 +187,7 @@ struct ProfileEditView: View {
                 HStack {
                     Spacer()
                     Button("저장", action: profileSave)
+                        .foregroundStyle(Color(hex: 0x432D00))
                         .padding()
                 }
                 Spacer()
@@ -223,10 +231,11 @@ struct ProfileEditView: View {
                             
                     }
                     VStack (alignment: .leading) {
-                        Text("닉네임")
+                        Text(" 닉네임")
                         TextField("닉네임을 설정해주세요.", text: $nickname)
                             .textFieldStyle(.roundedBorder)
                     }
+                    .foregroundStyle(Color(hex: 0x432D00))
                     .padding()
                 }
                 .background(Color.white)
@@ -248,6 +257,7 @@ struct TotalAlarmRow: View {
         HStack {
             Toggle(isOn: $totalToggle, label: {
                 Text("전체 알림")
+                    .foregroundStyle(Color(hex: 0x432D00))
                 Text("전체 알림을 조절할 수 있습니다.")
             })
             .tint(Color(hex: 0xFFCD7B))
@@ -265,6 +275,7 @@ struct MyAlarmRow: View {
         HStack {
             Toggle(isOn: $myToggle, label: {
                 Text("나의 알림")
+                    .foregroundStyle(Color(hex: 0x432D00))
                 Text("나의 일정 알림을 조절할 수 있습니다.")
             })
             .disabled(!totalToggle)
@@ -282,6 +293,7 @@ struct FriendsAlarmRow: View {
         HStack {
             Toggle(isOn: $friendsToggle, label: {
                 Text("친구 알림")
+                    .foregroundStyle(Color(hex: 0x432D00))
                 Text("친구들이 보내는 알림을 조절할 수 있습니다.")
             })
             .disabled(!totalToggle)
