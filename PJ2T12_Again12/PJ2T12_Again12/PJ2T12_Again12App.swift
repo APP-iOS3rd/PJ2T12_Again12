@@ -11,7 +11,7 @@ import SwiftUI
 struct PJ2T12_Again12App: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            TodoriTapView()
         }
     }
 }
