@@ -16,7 +16,7 @@ class SocialViewModel: ObservableObject {
         let year = date.formatted(Date.FormatStyle().year(.defaultDigits))
         let month = date.formatted(Date.FormatStyle().month(.twoDigits))
         
-        return "\(year)-\(month)"
+        return "\(year).\(month)"
     }
     
     ///어떤 유저의 가장 최신의 TodoByMonth 데이터가 이번 달인지 판별한다.
