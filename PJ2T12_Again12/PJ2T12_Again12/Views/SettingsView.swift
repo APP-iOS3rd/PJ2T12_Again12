@@ -64,7 +64,7 @@ struct SettingsView: View {
                         Text("정보")
                     }
                     NavigationLink {
-                        QnAView()
+                        EditView()
                     } label: {
                         Text("문의사항")
                     }
@@ -130,12 +130,20 @@ struct ProfileView: View {
     @Binding var nickname: String
     var body: some View {
         HStack {
-            Image(systemName: "airplane")
-                .frame(width: 100)
+            Image(systemName: "hare.fill")
+                .resizable()
+                .foregroundStyle(Color.pink)
+                .frame(width: 100, height: 100)
+                .clipShape(Circle())
+                .overlay(
+                    Circle()
+                        .stroke(Color.yellow, lineWidth: 1)
+                )
             VStack (alignment: .leading) {
                 Text("닉네임: \(nickname)")
                 Text("")
             }
+            .padding()
         }
         .padding()
     }
@@ -143,25 +151,40 @@ struct ProfileView: View {
 
 struct ProfileEditView: View {
     @Binding var nickname: String
+    
     var body: some View {
         ZStack {
             Color(hex: 0xFFFAE1)
                 .ignoresSafeArea()
             VStack {
                 HStack {
-                    Image(systemName: "airplane")
-                        .frame(width: 100)
+                    Spacer()
+                    Button("저장", action: profileSave)
+                        .padding()
+                }
+                Spacer()
+                HStack {
+                    Image(systemName: "hare.fill")
+                        .resizable()
+                        .foregroundStyle(Color.pink)
+                        .frame(width: 100, height: 100)
+                        .padding()
                     VStack (alignment: .leading) {
                         Text("닉네임")
                         TextField("닉네임을 설정해주세요.", text: $nickname)
                             .textFieldStyle(.roundedBorder)
                     }
+                    .padding()
                 }
-                
+                .background(Color.white)
+                Spacer()
+                Spacer()
             }
-            .padding()
         }
     }
+}
+
+func profileSave() {
 }
 
 // 전체 알림 Row
@@ -283,7 +306,6 @@ struct WithDrawView: View {
         }
     }
 }
-
 
 #Preview {
     SettingsView()
