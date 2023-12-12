@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 class SocialViewModel: ObservableObject {
     @Published var isLogin = true
-    @Published var myFriendsList: [User] = [SampleUsers().userOne, SampleUsers().userTwo, SampleUsers().userThree]
+    @Published var myFriendsList: [User] = [SampleUsers().userOne, SampleUsers().userTwo, SampleUsers().userThree, SampleUsers().userFour]
     
     func setDateFormat(_ date: Date) -> String {
         let year = date.formatted(Date.FormatStyle().year(.defaultDigits))
@@ -108,5 +108,16 @@ struct SampleUsers {
                                      )],
         friendList: nil,
         medalList: [SampleMedal().medalTwo, SampleMedal().medalFour, SampleMedal().medalThree]
+    )
+    
+    var userFour: User = User(
+        name: "친구4",
+        profileImage: "cat",
+        todoByMonthList: [TodoByMonth(date: Calendar.current.date(from: DateComponents(year: 2023, month: 08, day: 30))!,
+                                      todoList: [SampleTodo().toDoOne, SampleTodo().toDoThree],
+                                      wantTodoList: [SampleWantTodo().wantTodoOne]
+                                     )],
+        friendList: nil,
+        medalList: [SampleMedal().medalOne, SampleMedal().medalTwo]
     )
 }
