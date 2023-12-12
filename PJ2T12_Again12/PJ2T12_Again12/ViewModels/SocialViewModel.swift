@@ -38,6 +38,18 @@ class SocialViewModel: ObservableObject {
         
         return count
     }
+    
+    func countTotal(_ user: User) -> Int {
+        var totalCount = 0
+        
+        if let recentTodoDate = user.todoByMonthList.last?.date {
+            if setDateFormat(recentTodoDate) == setDateFormat(Date.now) {
+                totalCount = (user.todoByMonthList.last?.todoList.count ?? 0) + (user.todoByMonthList.last?.wantTodoList.count ?? 0)
+            }
+        }
+        
+        return totalCount
+    }
 }
 
 struct SampleTodo {
