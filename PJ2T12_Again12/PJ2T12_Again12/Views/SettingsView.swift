@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State private var totalToggle = true
+    
     var body: some View {
         NavigationView {
             ZStack {
                 NavigationSplitView {
                     List {
-                        Rectangle() // 로그인 뷰
-                            .frame(width: 400, height: 100)
-                            .foregroundStyle(Color.white)
-                        
+                        Section() {
+                            LoginRow() // 로그인뷰
+                        }
                         Section(header: Text("알림 설정")) {
-                            TotalAlarmRow()
-                            MyAlarmRow()
-                            FriendsAlarmRow()
-                            NightAlarmRow()
+                            TotalAlarmRow(totalToggle: $totalToggle)
+                            MyAlarmRow(totalToggle: $totalToggle)
+                            FriendsAlarmRow(totalToggle: $totalToggle)
+                            NightAlarmRow(totalToggle: $totalToggle)
                         }
                         Section(header: Text("테마")) {
                             ThemeRow()
@@ -66,8 +67,18 @@ struct SettingsView: View {
     }
 }
 
+struct LoginRow: View {
+    
+    var body: some View {
+        VStack {
+            Text("로그인을 해서 개인정보를 입력하세요.")
+                .foregroundStyle(Color.gray)
+        }
+    }
+}
+
 struct TotalAlarmRow: View {
-    @State private var totalToggle = true
+    @Binding var totalToggle: Bool
     
     var body: some View {
         HStack {
@@ -81,6 +92,7 @@ struct TotalAlarmRow: View {
 
 struct MyAlarmRow: View {
     @State private var myToggle = true
+    @Binding var totalToggle: Bool
     
     var body: some View {
         HStack {
@@ -88,12 +100,14 @@ struct MyAlarmRow: View {
                 Text("나의 알림")
                 Text("나의 일정 알림을 조절할 수 있습니다.")
             })
+            .disabled(!totalToggle)
         }
     }
 }
 
 struct FriendsAlarmRow: View {
     @State private var friendsToggle = true
+    @Binding var totalToggle: Bool
     
     var body: some View {
         HStack {
@@ -101,12 +115,14 @@ struct FriendsAlarmRow: View {
                 Text("친구 알림")
                 Text("친구들이 보내는 알림을 조절할 수 있습니다.")
             })
+            .disabled(!totalToggle)
         }
     }
 }
 
 struct NightAlarmRow: View {
     @State private var nightToggle = true
+    @Binding var totalToggle: Bool
     
     var body: some View {
         HStack {
@@ -114,6 +130,7 @@ struct NightAlarmRow: View {
                 Text("야간 알림")
                 Text("야간에 오는 알림을 조절할 수 있습니다.")
             })
+            .disabled(!totalToggle)
         }
     }
 }
