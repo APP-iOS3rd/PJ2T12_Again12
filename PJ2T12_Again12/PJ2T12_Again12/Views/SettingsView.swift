@@ -37,7 +37,16 @@ struct SettingsView: View {
                         }
                         
                         Section(header: Text("테마")) {
-                            ThemeRow()
+                            if !isLogin {
+                                Text("로그인 하여 각자의 테마를 만들어 보세요.")
+                                    .foregroundStyle(Color.gray)
+                            } else {
+                                NavigationLink {
+                                    DetailView()
+                                } label: {
+                                    Text("커스텀 테마를 골라보세요.")
+                                }
+                            }
                         }
                         
                         Section(header: Text("설정")) {
@@ -75,8 +84,7 @@ struct SettingsView: View {
                     .background(Color(hex: 0xFFFAE1))
                     .scrollContentBackground(.hidden)
                 }
-            
-            .navigationTitle("설정")
+                .navigationTitle("설정")
         } detail: {
             Text("")
         }
@@ -167,15 +175,6 @@ struct FriendsAlarmRow: View {
                 Text("친구들이 보내는 알림을 조절할 수 있습니다.")
             })
             .disabled(!totalToggle)
-        }
-    }
-}
-
-struct ThemeRow: View {
-    var body: some View {
-        HStack {
-            Text("로그인 하여 각자의 테마를 만들어 보세요.")
-                .foregroundStyle(Color.gray)
         }
     }
 }
