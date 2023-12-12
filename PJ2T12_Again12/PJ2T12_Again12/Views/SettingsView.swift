@@ -20,14 +20,14 @@ struct SettingsView: View {
                 Section() {
                     if !isLogin {
                         NavigationLink {
-                            LoginView()
+                            LoginView(isLogin: $isLogin)
                         } label: {
                             Text("\n 로그인을 해서 더 많은 기능을 사용해보세요. \n")
                                 .foregroundStyle(Color.gray)
                         }
                     } else {
                         NavigationLink {
-                            ProfileEditView(nickname: $nickname, profileImage: $profileImage)
+                            ProfileEditView(nickname: $nickname, profileImage: $profileImage, isLogin: $isLogin)
                         } label: {
                             ProfileView(nickname: $nickname, profileImage: $profileImage)
                         }
@@ -96,6 +96,7 @@ struct SettingsView: View {
 struct LoginView: View {
     @State private var ID = ""
     @State private var password = ""
+    @Binding var isLogin: Bool
     
     var body: some View {
         ZStack {
@@ -114,7 +115,10 @@ struct LoginView: View {
                     TextField("Password", text: $password)
                         .textFieldStyle(.roundedBorder)
                 }
-                Button(action: {}, label: {
+                Button(action: {
+                    login()
+                    isLogin = true
+                }, label: {
                     HStack {
                         Image(systemName: "message.fill")
                         Text("카카오 로그인")
@@ -168,6 +172,7 @@ struct ProfileEditView: View {
     @State private var checkSave = false
     @State private var openPhoto = false
     @Binding var profileImage: UIImage
+    @Binding var isLogin: Bool
     
     var body: some View {
         List {
@@ -224,7 +229,10 @@ struct ProfileEditView: View {
             .listRowBackground(Color(hex: 0xFFFEF6))
             
             Section(header: Text("계정 관리")) {
-                Button("로그아웃", action: logout)
+                Button("로그아웃", action: {
+                    logout()
+                    isLogin = false
+                })
                 
                 NavigationLink {
                     WithDrawView()
@@ -241,9 +249,15 @@ struct ProfileEditView: View {
         .scrollContentBackground(.hidden)
     }
 }
+
+func login() {
+    print("logout")
+}
+
 func logout() {
     print("logout")
 }
+
 func profileSave() {
     print("profile saved")
 }
