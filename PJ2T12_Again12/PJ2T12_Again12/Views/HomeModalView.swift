@@ -8,25 +8,38 @@
 import SwiftUI
 
 struct HomeModalView: View {
-    @StateObject private var homeVM = HomeViewModel()
-    @Binding var shown: Bool
-    @State private var todoTemp: String = ""
-    @State private var selectedImageTemp = ""
+    @ObservedObject var homeVM: HomeViewModel
+    @Binding var shown: Bool //for real usage
+    @Binding var title: String //for real usage
+//    @State var shown: Bool = true //for test
+//    @State var title: String = "해야 하는 투두" //for test
     var circleSize: CGFloat = 60
     var imageSize: CGFloat = 30
     
     var body: some View {
         VStack {
             VStack {
+                Text(title)
+                    .font(.system(size: 21, weight: .bold))
+                    .padding(.top, 25)
+                
                 HStack {
                     ForEach(homeVM.images, id: \.self) { image in
                         Button {
-                            selectedImageTemp = image
+                            homeVM.selectedImage = image
                         } label: {
                             ZStack {
-                                Circle()
-                                    .frame(width: circleSize, height: circleSize)
-                                    .foregroundStyle(selectedImageTemp == image ? .yellow : .white)
+                                if homeVM.selectedImage == image {
+                                    Circle()
+                                        .frame(width: circleSize, height: circleSize)
+                                        .foregroundStyle(.yellow)
+                                        .shadow(radius: 8, x: 5, y: 5)
+                                } else {
+                                    Circle()
+                                        .stroke(.black, lineWidth: 1.5)
+                                        .frame(width: circleSize, height: circleSize)
+                                        .foregroundStyle(.white)
+                                }
                                 Image(systemName: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -37,34 +50,40 @@ struct HomeModalView: View {
                         }
                     }
                 }
-                .padding(.top, 25)
+                HStack {
+                    Text("어떤 투두를 하고 싶은가요?")
+                        .font(.system(size: 15, weight: .medium))
+                    
+                    Spacer()
+                }
+                .padding(.top)
+                .padding(.horizontal)
                 
-                TextField("", text: $todoTemp)
+                TextField("", text: $homeVM.todo)
                     .background(.white)
                     .textFieldStyle(.roundedBorder)
-                    .padding()
+                    .padding(.horizontal)
+                    .shadow(radius: 1, x: 1, y: 1)
                 
                 Spacer()
+                
                 Divider()
                 
                 HStack {
                     Button {
-                        todoTemp = ""
-                        selectedImageTemp = ""
+                        homeVM.todo = ""
+                        homeVM.selectedImage = ""
                         shown = false
                     } label: {
                         Text("취소")
                             .frame(width: UIScreen.main.bounds.width / 2 - 40)
                     }
+                    .padding(.bottom, 5)
                     
                     Divider()
-                        .frame(height: 40)
+                        .frame(height: 45)
                     
                     Button {
-                        homeVM.todo = todoTemp
-                        homeVM.selectedImage = selectedImageTemp
-                        todoTemp = ""
-                        selectedImageTemp = ""
                         shown = false
                     } label: {
                         Text("저장")
@@ -72,8 +91,8 @@ struct HomeModalView: View {
                     }
                 }
             }
-            .frame(width: UIScreen.main.bounds.width - 50, height: 220)
-            .background(.gray)
+            .frame(width: UIScreen.main.bounds.width - 50, height: 300)
+            .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)

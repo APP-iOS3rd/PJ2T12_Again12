@@ -11,6 +11,7 @@
 		0E36BA9A2B25D192003EA141 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BA992B25D192003EA141 /* Extention.swift */; };
 		0E36BAA32B26B696003EA141 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BAA22B26B696003EA141 /* HomeViewModel.swift */; };
 		0E36BAA62B26B6BF003EA141 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BAA52B26B6BF003EA141 /* Color.swift */; };
+		0E36BAB22B26F64C003EA141 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BAB12B26F64C003EA141 /* EditViewModel.swift */; };
 		9E9A102B2B26CF6600A2A73E /* HomeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */; };
 		CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */; };
 		CEB9F5822B219944005A338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5812B219944005A338E /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		CEE940FD2B26D99A00AE52CB /* Todori.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEE940FB2B26D99A00AE52CB /* Todori.xcdatamodeld */; };
 		CEE941032B26FBEB00AE52CB /* Todo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */; };
 		CEE941042B26FBEB00AE52CB /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */; };
+		E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3456BAF2B26FD2100EEA7B1 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,7 @@
 		0E36BA992B25D192003EA141 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		0E36BAA22B26B696003EA141 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0E36BAA52B26B6BF003EA141 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		0E36BAB12B26F64C003EA141 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalView.swift; sourceTree = "<group>"; };
 		CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJ2T12_Again12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PJ2T12_Again12App.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		CEE940FC2B26D99A00AE52CB /* Todori.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todori.xcdatamodel; sourceTree = "<group>"; };
 		CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E3456BAF2B26FD2100EEA7B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 			children = (
 				0E36BAA52B26B6BF003EA141 /* Color.swift */,
 				0E36BA992B25D192003EA141 /* Extention.swift */,
+				E3456BAF2B26FD2100EEA7B1 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				0E36BAA22B26B696003EA141 /* HomeViewModel.swift */,
+				0E36BAB12B26F64C003EA141 /* EditViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -225,10 +231,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E36BAB22B26F64C003EA141 /* EditViewModel.swift in Sources */,
 				CEB9F5992B21A9A9005A338E /* HistoryView.swift in Sources */,
 				CEB9F5952B21A950005A338E /* DetailView.swift in Sources */,
 				CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */,
 				CEB9F58F2B219A85005A338E /* User.swift in Sources */,
+				E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */,
 				0E36BAA62B26B6BF003EA141 /* Color.swift in Sources */,
 				CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */,
 				CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */,
@@ -379,6 +387,8 @@
 				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진앱에 접근 하려고 합니다. ";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -408,6 +418,8 @@
 				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진앱에 접근 하려고 합니다. ";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

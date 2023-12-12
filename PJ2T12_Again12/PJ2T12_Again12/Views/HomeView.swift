@@ -11,8 +11,8 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var homeVM = HomeViewModel()
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var todoList: FetchedResults<Todo>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var wantTodoList: FetchedResults<WantTodo>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == %@", "true")) var todoList: FetchedResults<Todo>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == %@", "false")) var wantTodoList: FetchedResults<Todo>
     var body: some View {
         NavigationStack {
             ZStack {
@@ -48,16 +48,13 @@ struct HomeView: View {
                                     Button() {
                                         homeVM.showingAlert = true
                                     } label: {
-                                        Text(todo.title ?? "Unknown")
+                                        Text(todo.wrappedTitle)
                                             .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                     }
                                 }
+                                // 투두 추가 버튼
                                 if todoList.count < 3 {
                                     Button {
-                                        let todo = Todo(context: moc)
-                                        todo.title = "투두!"
-                                        todo.review = ""
-                                        todo.status = false
                                         homeVM.showingModalAlert = true
                                     } label: {
                                         Text("새로운 투두를 추가해보세요")
@@ -90,16 +87,12 @@ struct HomeView: View {
                                     Button() {
                                         homeVM.showingAlert = true
                                     } label: {
-                                        Text(todo.title ?? "Unknown")
+                                        Text(todo.wrappedTitle)
                                             .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
                                     }
                                 }
                                 if wantTodoList.count < 3 {
                                     Button {
-                                        let wantTodo = WantTodo(context: moc)
-                                        wantTodo.title = "원투두!"
-                                        wantTodo.review = ""
-                                        wantTodo.status = false
                                         homeVM.showingModalAlert = true
                                     } label: {
                                         Text("새로운 투두를 추가해보세요")
@@ -125,7 +118,7 @@ struct HomeView: View {
                 .padding()
                 
                 if homeVM.showingModalAlert {
-                    HomeModalView(shown: $homeVM.showingModalAlert)
+                    HomeModalView(homeVM: homeVM, shown: $homeVM.showingModalAlert, title: .constant("해야 하는 투두"))
                 }
             }
             .alert("일정을 달성 하셨나요?" ,isPresented: $homeVM.showingAlert) {
