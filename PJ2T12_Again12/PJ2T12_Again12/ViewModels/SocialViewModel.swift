@@ -12,6 +12,13 @@ class SocialViewModel: ObservableObject {
     @Published var isLogin = true
     @Published var myFriendsList: [User] = [SampleUsers().userOne, SampleUsers().userTwo, SampleUsers().userThree]
     
+    func setDateFormat(_ date: Date) -> String {
+        let year = date.formatted(Date.FormatStyle().year(.defaultDigits))
+        let month = date.formatted(Date.FormatStyle().month(.twoDigits))
+        
+        return "\(year)-\(month)"
+    }
+    
     func countDone(_ user: User) -> Int {
         let totalTodo = user.todoByMonthList.last?.todoList ?? user.todoByMonthList[0].todoList
         let totalWantTodo = user.todoByMonthList.last?.wantTodoList ?? user.todoByMonthList[0].wantTodoList
