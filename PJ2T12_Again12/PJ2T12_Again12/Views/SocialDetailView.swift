@@ -21,6 +21,7 @@ struct SocialDetailView: View {
     //Fonts
     let titleFontSize: Font.TextStyle = .largeTitle
     let titleFontWeight: Font.Weight = .medium
+    let noTodoriGuideTextSize: CGFloat = 15
     
     //Colors
     let viewbackgroundColor: Color = Color(hex: 0xFFFAE1)
@@ -28,6 +29,7 @@ struct SocialDetailView: View {
     let profileBackgroundColor: Color = .white
     let cheerButtonColor: Color = Color(hex: 0xB79800)
     let hurryButtonColor: Color = Color(hex: 0xB76300)
+    let noTodoriGuideTextColor: Color = .gray
     let todoListGroupBorderColor: Color = Color(hex: 0xA58B00)
     let medalBackgroundColor: Color = .white
     
@@ -94,13 +96,26 @@ struct SocialDetailView: View {
                         
                         VStack {
                             if socialVM.isThisMonth(friend) {
+                                //이번달 투두리가 todo, wantTodo와 관계 없이 한 개라도 생성되어 있을 때
                                 let todoList: [Todo] = socialVM.getTodoList(friend)
-                                ForEach(todoList) { todo in
-                                    Text(todo.title)
-                                        .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                if todoList.count == 0 {
+                                    Text("친구가 아직 투두리를 작성하지 않았어요.")
+                                        .font(.system(size: noTodoriGuideTextSize))
+                                        .foregroundStyle(noTodoriGuideTextColor)
+                                } else {
+                                    ForEach(todoList) { todo in
+                                        Text(todo.title)
+                                            .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                    }
                                 }
+                            } else {
+                                //이번달 투두리가 todo, wantTodo와 모두 한 개도 없을때
+                                Text("친구가 아직 투두리를 작성하지 않았어요.")
+                                    .font(.system(size: noTodoriGuideTextSize))
+                                    .foregroundStyle(noTodoriGuideTextColor)
                             }
                         } //VStack
+                        .frame(width: 330)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
@@ -119,13 +134,26 @@ struct SocialDetailView: View {
                         
                         VStack {
                             if socialVM.isThisMonth(friend) {
+                                //이번달 투두리가 todo, wantTodo와 관계 없이 한 개라도 생성되어 있을 때
                                 let wantTodoList: [WantTodo] = socialVM.getWantTodoList(friend)
-                                ForEach(wantTodoList) { wantTodo in
-                                    Text(wantTodo.title)
-                                        .modifier(TodoCellModifier(status: wantTodo.status, hexCode: 0xB76300))
+                                if wantTodoList.count == 0 {
+                                    Text("친구가 아직 투두리를 작성하지 않았어요.")
+                                        .font(.system(size: noTodoriGuideTextSize))
+                                        .foregroundStyle(noTodoriGuideTextColor)
+                                } else {
+                                    ForEach(wantTodoList) { wantTodo in
+                                        Text(wantTodo.title)
+                                            .modifier(TodoCellModifier(status: wantTodo.status, hexCode: 0xB76300))
+                                    }
                                 }
+                            } else {
+                                //이번달 투두리가 todo, wantTodo와 모두 한 개도 없을때
+                                Text("친구가 아직 투두리를 작성하지 않았어요.")
+                                    .font(.system(size: noTodoriGuideTextSize))
+                                    .foregroundStyle(noTodoriGuideTextColor)
                             }
                         } //VStack
+                        .frame(width: 330)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
