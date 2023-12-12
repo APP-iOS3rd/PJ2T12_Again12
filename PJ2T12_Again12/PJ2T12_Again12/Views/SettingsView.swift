@@ -135,10 +135,7 @@ struct ProfileView: View {
                 .foregroundStyle(Color.pink)
                 .frame(width: 100, height: 100)
                 .clipShape(Circle())
-                .overlay(
-                    Circle()
-                        .stroke(Color.yellow, lineWidth: 1)
-                )
+                .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
             VStack (alignment: .leading) {
                 Text("닉네임: \(nickname)")
                 Text("")
@@ -151,6 +148,10 @@ struct ProfileView: View {
 
 struct ProfileEditView: View {
     @Binding var nickname: String
+    @StateObject private var viewModel = EditViewModel()
+    @State private var checkSave = false
+    @State private var openPhoto = false
+    @State private var image = UIImage()
     
     var body: some View {
         ZStack {
@@ -164,11 +165,49 @@ struct ProfileEditView: View {
                 }
                 Spacer()
                 HStack {
-                    Image(systemName: "hare.fill")
-                        .resizable()
-                        .foregroundStyle(Color.pink)
-                        .frame(width: 100, height: 100)
+//                    Image(systemName: "hare.fill")
+//                        .resizable()
+//                        .foregroundStyle(Color.pink)
+//                        .frame(width: 100, height: 100)
+//                        .padding()
+                    HStack {
+                        Button(action: {
+                            viewModel.checkAlbumPermission()
+                            if viewModel.albumPermissionGranted {
+                                self.openPhoto = true
+                            }
+                        }) {
+                            ZStack {
+                                if !checkSave {
+                                    if image.size != CGSize.zero {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .frame(width: 100, height: 100)
+                                            .scaledToFit()
+                                            .clipShape(Circle())
+                                            .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+                                    } else {
+                                        Image(systemName: "hare.fill")
+                                            .resizable()
+                                            .frame(width: 100, height: 100)
+                                            .foregroundColor(.pink)
+                                            .clipShape(Circle())
+                                            .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+                                    }
+                                }
+                                Image(systemName: "camera.circle")
+                                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(.gray)
+                                    .offset(x: 40, y: 40)
+                            }
+                        }
+                        .sheet(isPresented: $openPhoto) {
+                            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                        }
                         .padding()
+                        Spacer()
+                            
+                    }
                     VStack (alignment: .leading) {
                         Text("닉네임")
                         TextField("닉네임을 설정해주세요.", text: $nickname)
