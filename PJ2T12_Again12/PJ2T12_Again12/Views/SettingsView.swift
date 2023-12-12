@@ -72,6 +72,8 @@ struct SettingsView: View {
                         }
                     }
                     .listStyle(.grouped)
+                    .background(Color(hex: 0xFFFAE1))
+                    .scrollContentBackground(.hidden)
                 }
             
             .navigationTitle("설정")
