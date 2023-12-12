@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var totalToggle = true
-    @State private var isLogin = true
+    @State private var isLogin = false
     @State private var nickname = "투두리"
     @State private var profileImage = UIImage()
     
@@ -22,7 +22,7 @@ struct SettingsView: View {
                         NavigationLink {
                             LoginView()
                         } label: {
-                            Text("\n 로그인을 해서 개인정보를 입력하세요. \n")
+                            Text("\n 로그인을 해서 더 많은 기능을 사용해보세요. \n")
                                 .foregroundStyle(Color.gray)
                         }
                     } else {
@@ -117,24 +117,30 @@ struct LoginView: View {
         ZStack {
             Color(hex: 0xFFFAE1)
                 .ignoresSafeArea()
-            VStack {
+            VStack(spacing: 20) {
                 HStack {
                     Text("ID             ")
+                        .foregroundStyle(Color(hex: 0x432D00))
                     TextField("ID", text: $ID)
                         .textFieldStyle(.roundedBorder)
                 }
-                .padding()
                 HStack {
                     Text("Password")
+                        .foregroundStyle(Color(hex: 0x432D00))
                     TextField("Password", text: $password)
                         .textFieldStyle(.roundedBorder)
                 }
+                Button(action: {}, label: {
+                    HStack {
+                        Image(systemName: "message.fill")
+                        Text("카카오 로그인")
+                    }
+                })
                 .padding()
-                Image(systemName: "airplane") // 카카오 연동
-                    .resizable()
-                    .frame(width: 50, height: 50)
+                .background(Color(hex: 0xFEE500))
+                .cornerRadius(10)
             }
-            .padding(30)
+            .padding()
         }
     }
 }
