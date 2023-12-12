@@ -47,6 +47,33 @@ struct Medal {
     var count: Int
 }
 
+struct ViewMonth: Identifiable {
+        let id = UUID()
+        let date: String
+        let count: Int
+    }
+    
+extension ViewMonth {
+        static let wantTodoMonth: [ViewMonth] = [
+            .init(date: "1월", count: 5),
+            .init(date: "2월", count: 5),
+            .init(date: "3월", count: 5),
+            .init(date: "4월", count: 5),
+            .init(date: "5월", count: 5),
+            .init(date: "6월", count: 5)
+        ]
+        
+        static let todoMonth: [ViewMonth] = [
+            .init(date: "1월", count: 5),
+            .init(date: "2월", count: 3),
+            .init(date: "3월", count: 2),
+            .init(date: "4월", count: 5),
+            .init(date: "5월", count: 5),
+            .init(date: "6월", count: 5)
+        ]
+
+    }
+
 var sampleUser: User = User(
     name: "양주원",
     profileImage: "person",
