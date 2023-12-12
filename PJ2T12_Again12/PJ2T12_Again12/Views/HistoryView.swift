@@ -38,7 +38,7 @@ init() {
                     if selectedSegment == 0 {
                         ScrollView {
                             ForEach(toDoList) { todo in
-                                NavigationLink(destination: DetailView(), label: {
+                                NavigationLink(destination: EditView(), label: {
                                     HStack {
                                         Text(" 🍞 ")
                                         VStack(alignment: .leading) {
@@ -50,7 +50,7 @@ init() {
                                 })
                             }
                             ForEach(haveToList) { todo in
-                                NavigationLink(destination: DetailView(), label: {
+                                NavigationLink(destination: EditView(), label: {
                                     HStack {
                                         Text(" 🍁 ")
                                         VStack(alignment: .leading) {
@@ -66,7 +66,7 @@ init() {
                     } else if selectedSegment == 1 {
                         ScrollView {
                             ForEach(toDoList) { todo in
-                                NavigationLink(destination: DetailView(), label: {
+                                NavigationLink(destination: EditView(), label: {
                                     HStack {
                                         Text(" 🍞 ")
                                         VStack(alignment: .leading) {
@@ -82,7 +82,7 @@ init() {
                     } else {
                         ScrollView {
                             ForEach(haveToList) { todo in
-                                NavigationLink(destination: DetailView(), label: {
+                                NavigationLink(destination: EditView(), label: {
                                     HStack {
                                         Text(" 🍁 ")
                                         VStack(alignment: .leading) {
