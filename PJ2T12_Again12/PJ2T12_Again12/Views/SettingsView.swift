@@ -9,24 +9,37 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var totalToggle = true
+    @State private var isLogin = false
     
     var body: some View {
-        NavigationView {
+        NavigationSplitView {
             ZStack {
-                NavigationSplitView {
+                Color(hex: 0xFFFAE1)
+                    .ignoresSafeArea()
                     List {
-                        Section() {
-                            LoginRow() // 로그인뷰
+                        Section() { // 로그인뷰
+                            if !isLogin {
+                                NavigationLink {
+                                    LoginView()
+                                } label: {
+                                    Text("\n 로그인을 해서 개인정보를 입력하세요. \n")
+                                        .foregroundStyle(Color.gray)
+                                }
+                            } else {
+                                AfterLoginView()
+                            }
                         }
+                        
                         Section(header: Text("알림 설정")) {
                             TotalAlarmRow(totalToggle: $totalToggle)
                             MyAlarmRow(totalToggle: $totalToggle)
                             FriendsAlarmRow(totalToggle: $totalToggle)
-                            NightAlarmRow(totalToggle: $totalToggle)
                         }
+                        
                         Section(header: Text("테마")) {
                             ThemeRow()
                         }
+                        
                         Section(header: Text("설정")) {
                             NavigationLink {
                                 DetailView()
@@ -44,6 +57,7 @@ struct SettingsView: View {
                                 Text("문의사항")
                             }
                         }
+                        
                         Section(header: Text("계정 관리")) {
                             NavigationLink {
                                 DetailView()
@@ -58,21 +72,56 @@ struct SettingsView: View {
                         }
                     }
                     .listStyle(.grouped)
-                } detail: {
-                    Text("")
                 }
-            }
-            .navigationBarTitle("설정")
+            
+            .navigationTitle("설정")
+        } detail: {
+            Text("")
         }
     }
 }
 
-struct LoginRow: View {
+struct LoginView: View {
+    @State private var ID = ""
+    @State private var password = ""
     
     var body: some View {
-        VStack {
-            Text("로그인을 해서 개인정보를 입력하세요.")
-                .foregroundStyle(Color.gray)
+        ZStack {
+            Color(hex: 0xFFFAE1)
+                .ignoresSafeArea()
+            VStack {
+                HStack {
+                    Text("ID             ")
+                    TextField("ID", text: $ID)
+                        .textFieldStyle(.roundedBorder)
+                }
+                .padding()
+                HStack {
+                    Text("Password")
+                    TextField("Password", text: $password)
+                        .textFieldStyle(.roundedBorder)
+                }
+                .padding()
+                Image(systemName: "airplane") // 카카오 연동
+                    .resizable()
+                    .frame(width: 50, height: 50)
+            }
+            .padding(30)
+        }
+    }
+}
+
+struct AfterLoginView: View {
+    @State private var nickname = "투두리"
+    var body: some View {
+        HStack {
+            Image(systemName: "airplane")
+                .frame(width: 100)
+            VStack (alignment: .leading) {
+                Text("닉네임")
+                TextField("", text: $nickname)
+                    .textFieldStyle(.roundedBorder)
+            }
         }
     }
 }
@@ -114,21 +163,6 @@ struct FriendsAlarmRow: View {
             Toggle(isOn: $friendsToggle, label: {
                 Text("친구 알림")
                 Text("친구들이 보내는 알림을 조절할 수 있습니다.")
-            })
-            .disabled(!totalToggle)
-        }
-    }
-}
-
-struct NightAlarmRow: View {
-    @State private var nightToggle = true
-    @Binding var totalToggle: Bool
-    
-    var body: some View {
-        HStack {
-            Toggle(isOn: $nightToggle, label: {
-                Text("야간 알림")
-                Text("야간에 오는 알림을 조절할 수 있습니다.")
             })
             .disabled(!totalToggle)
         }
