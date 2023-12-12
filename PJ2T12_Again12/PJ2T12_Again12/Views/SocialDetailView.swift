@@ -14,6 +14,9 @@ struct SocialDetailView: View {
     // Sizes
     let circleSize: CGFloat = 94
     let profileIconSize: CGFloat = 40
+    let buttonWidth: CGFloat = 140
+    let buttonHeight: CGFloat = 52
+    let buttonSpace: CGFloat = 26
     
     //Fonts
     let titleFontSize: Font.TextStyle = .largeTitle
@@ -23,6 +26,8 @@ struct SocialDetailView: View {
     let viewbackgroundColor: Color = Color(hex: 0xFFFAE1)
     let todoriBlack: Color = Color(hex: 0x432D00)
     let profileBackgroundColor: Color = .white
+    let cheerButtonColor: Color = Color(hex: 0xB79800)
+    let hurryButtonColor: Color = Color(hex: 0xB76300)
     let todoListGroupBorderColor: Color = Color(hex: 0xA58B00)
     let medalBackgroundColor: Color = .white
     
@@ -31,7 +36,7 @@ struct SocialDetailView: View {
             viewbackgroundColor
                 .ignoresSafeArea()
             ScrollView {
-                //Title: 이번 달
+                //친구 프로필 이미지와 닉네임
                 HStack {
                     ZStack {
                         Circle()
@@ -42,13 +47,38 @@ struct SocialDetailView: View {
                         
                         Image(systemName: friend.profileImage ?? "person")
                             .font(.system(size: profileIconSize))
-                    }
+                    } //ZStack
                     .padding(.trailing, 30)
                     
                     Text(friend.name ?? "No Name")
                         .foregroundStyle(todoriBlack)
                         .font(.system(titleFontSize, weight: titleFontWeight))
                 } //HStack
+                .padding(.bottom, 20)
+                
+                //응원, 재촉 버튼
+                HStack {
+                    Button {
+                        //기능구현안됨
+                    } label: {
+                        Text("🎉 응원하기")
+                            .frame(width: buttonWidth, height: buttonHeight)
+                            .foregroundStyle(todoriBlack)
+                            .background(cheerButtonColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .padding(.trailing, buttonSpace)
+                    
+                    Button {
+                        //기능구현안됨
+                    } label: {
+                        Text("🚨 재촉하기")
+                            .frame(width: buttonWidth, height: buttonHeight)
+                            .foregroundStyle(todoriBlack)
+                            .background(hurryButtonColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                }
                 .padding(.bottom, 20)
                 
                 // 하고싶은일 + 해야하는일 + 뱃지
