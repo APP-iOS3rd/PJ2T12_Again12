@@ -135,6 +135,7 @@ struct myFriendCell: View {
     let profileBackgroundColor: Color = .white
     let todoTotalColor: Color = .gray
     let todoDoneColor: Color = .orange
+    let viewBackground: Color = .yellow
     
     var body: some View {
         NavigationLink(destination: SocialDetailView()) {
@@ -180,7 +181,7 @@ struct myFriendCell: View {
                 } //VStack
             } //HStack
         } //NavigationLink
-        .listRowBackground(Color.yellow)
+        .listRowBackground(viewBackground)
         .listRowSeparator(.hidden)
         
     }
