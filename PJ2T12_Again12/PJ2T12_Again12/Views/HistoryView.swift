@@ -19,14 +19,13 @@ struct HistoryView: View {
 
     @State private var searchTitle: String = ""
     @State private var selectedSegment = 0
-    @StateObject private var homeVM = HomeViewModel()
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == %@", "true")) var todoList: FetchedResults<Todo>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == %@", "false")) var wantTodoList: FetchedResults<Todo>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
 
     var body: some View {
-        NavigationView {
+        
             ZStack {
                 Color(hex: 0xFFFAE1)
                     .ignoresSafeArea()
@@ -39,10 +38,11 @@ struct HistoryView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                     
+                    // 모두
                     if selectedSegment == 0 {
                         ScrollView {
                             ForEach(todoList) { todo in
-                                NavigationLink(destination: EditView(), label: {
+                                NavigationLink(destination: EditView(todoId: todo.wrappedId), label: {
                                     HStack {
                                         Text(" 🍞 ")
                                         VStack(alignment: .leading) {
@@ -54,7 +54,7 @@ struct HistoryView: View {
                                 })
                             }
                             ForEach(wantTodoList) { todo in
-                                NavigationLink(destination: EditView(), label: {
+                                NavigationLink(destination: EditView(todoId: todo.wrappedId), label: {
                                     HStack {
                                         Text(" 🍁 ")
                                         VStack(alignment: .leading) {
@@ -67,10 +67,11 @@ struct HistoryView: View {
                             }
                         }
                         .padding()
+                    // 해야하는 일
                     } else if selectedSegment == 1 {
                         ScrollView {
                             ForEach(todoList) { todo in
-                                NavigationLink(destination: EditView(), label: {
+                                NavigationLink(destination: EditView(todoId: todo.wrappedId), label: {
                                     HStack {
                                         Text(" 🍞 ")
                                         VStack(alignment: .leading) {
@@ -84,9 +85,10 @@ struct HistoryView: View {
                         }
                         .padding()
                     } else {
+                        // 하고 싶은 일 
                         ScrollView {
                             ForEach(wantTodoList) { todo in
-                                NavigationLink(destination: EditView(), label: {
+                                NavigationLink(destination: EditView(todoId: todo.wrappedId), label: {
                                     HStack {
                                         Text(" 🍁 ")
                                         VStack(alignment: .leading) {
@@ -102,12 +104,14 @@ struct HistoryView: View {
                     }
                 }
                 .searchable(text: $searchTitle)
-            }
             .navigationBarTitle("전체 일정 보기")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
 
 #Preview {
-    HistoryView()
+    NavigationView {
+        HistoryView()
+    }
 }

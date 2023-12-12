@@ -8,21 +8,27 @@
 import SwiftUI
 
 struct HomeModalView: View {
+    @Environment(\.managedObjectContext) var moc
     @ObservedObject var homeVM: HomeViewModel
-    @Binding var shown: Bool //for real usage
-    @Binding var title: String //for real usage
-//    @State var shown: Bool = true //for test
-//    @State var title: String = "해야 하는 투두" //for test
+    @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
+    
     var circleSize: CGFloat = 60
     var imageSize: CGFloat = 30
+    
+    init(todoId: UUID, homeVM: HomeViewModel) {
+        print("Initalize")
+        _selectedTodo = FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "id == %@", todoId as CVarArg))
+        self.homeVM = homeVM
+    }
     
     var body: some View {
         VStack {
             VStack {
-                Text(title)
+                Text(homeVM.isTodo ? "해야하는 투두" : "하고싶은 투두")
                     .font(.system(size: 21, weight: .bold))
                     .padding(.top, 25)
                 
+                // 이모티콘
                 HStack {
                     ForEach(homeVM.images, id: \.self) { image in
                         Button {
@@ -51,7 +57,7 @@ struct HomeModalView: View {
                     }
                 }
                 HStack {
-                    Text("어떤 투두를 하고 싶은가요?")
+                    Text(homeVM.isTodo ? "어떤 투두를 해야 하나요?" : "어떤 투두를 하고 싶은가요?")
                         .font(.system(size: 15, weight: .medium))
                     
                     Spacer()
@@ -59,21 +65,16 @@ struct HomeModalView: View {
                 .padding(.top)
                 .padding(.horizontal)
                 
-                TextField("", text: $homeVM.todo)
+                TextField("", text: $homeVM.title)
                     .background(.white)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
                     .shadow(radius: 1, x: 1, y: 1)
-                
                 Spacer()
-                
                 Divider()
-                
                 HStack {
                     Button {
-                        homeVM.todo = ""
-                        homeVM.selectedImage = ""
-                        shown = false
+                        resetUserInputAndDismiss()
                     } label: {
                         Text("취소")
                             .frame(width: UIScreen.main.bounds.width / 2 - 40)
@@ -84,7 +85,16 @@ struct HomeModalView: View {
                         .frame(height: 45)
                     
                     Button {
-                        shown = false
+                        if selectedTodo.isEmpty {   
+                            createNewTodo()
+                        } else {
+                            selectedTodo[0].title = homeVM.title
+                            selectedTodo[0].image = homeVM.selectedImage
+                        }
+                        
+                        saveChanges()
+                        
+                        resetUserInputAndDismiss()
                     } label: {
                         Text("저장")
                             .frame(width: UIScreen.main.bounds.width / 2 - 40)
@@ -97,6 +107,40 @@ struct HomeModalView: View {
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(.ultraThinMaterial)
+        .onAppear {
+            if let selectedTodo = selectedTodo.first {
+                homeVM.title = selectedTodo.wrappedTitle
+                homeVM.selectedImage = selectedTodo.wrappedImage
+            }
+        }
+    }
+    func saveChanges() {
+        if moc.hasChanges {
+            do {
+                try moc.save()
+            } catch {
+                print("Failed to save core data")
+            }
+        } else {
+            print("no chagnes")
+        }
+    }
+    func resetUserInputAndDismiss() {
+        homeVM.title = ""
+        homeVM.selectedImage = homeVM.images.first ?? "paperplane"
+        homeVM.showingModalAlert = false
+    }
+    func createNewTodo() {
+        let todo = Todo(context: moc)
+        todo.title = homeVM.title
+        todo.date = Date.now // 제목 수정시 날짜 덮어씌워짐
+        todo.isTodo = homeVM.isTodo
+        todo.review = ""
+        todo.status = false
+        todo.image = homeVM.selectedImage
+        todo.isSaved = false
+        todo.id = UUID()
+        todo.reviewImage = nil
     }
 }
 

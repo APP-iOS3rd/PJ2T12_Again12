@@ -22,6 +22,9 @@ extension Todo {
     @NSManaged public var status: Bool
     @NSManaged public var title: String?
     @NSManaged public var isTodo: Bool
+    @NSManaged public var isSaved: Bool
+    @NSManaged public var id: UUID?
+    @NSManaged public var reviewImage: Data?
     
     var wrappedDate: Date {
         date ?? Date()
@@ -37,6 +40,10 @@ extension Todo {
 
     var wrappedTitle: String {
         return title ?? "Todo"
+    }
+    
+    var wrappedId: UUID {
+        return id ?? UUID() 
     }
 
 }
