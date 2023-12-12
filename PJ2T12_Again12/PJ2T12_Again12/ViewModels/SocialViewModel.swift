@@ -20,19 +20,24 @@ class SocialViewModel: ObservableObject {
     }
     
     func countDone(_ user: User) -> Int {
-        let totalTodo = user.todoByMonthList.last?.todoList ?? user.todoByMonthList[0].todoList
-        let totalWantTodo = user.todoByMonthList.last?.wantTodoList ?? user.todoByMonthList[0].wantTodoList
         var count = 0
         
-        for todo in totalTodo {
-            if todo.status {
-                count += 1
-            }
-        }
-        
-        for wantTodo in totalWantTodo {
-            if wantTodo.status {
-                count += 1
+        if let recentTodoDate = user.todoByMonthList.last?.date {
+            if setDateFormat(recentTodoDate) == setDateFormat(Date.now) {
+                let totalTodo = user.todoByMonthList.last?.todoList ?? []
+                let totalWantTodo = user.todoByMonthList.last?.wantTodoList ?? []
+                
+                for todo in totalTodo {
+                    if todo.status {
+                        count += 1
+                    }
+                }
+                
+                for wantTodo in totalWantTodo {
+                    if wantTodo.status {
+                        count += 1
+                    }
+                }
             }
         }
         
