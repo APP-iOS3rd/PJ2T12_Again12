@@ -10,10 +10,6 @@ import SwiftUI
 @MainActor
 class SocialViewModel: ObservableObject {
     @Published var isLogin = true
-}
-
-@MainActor
-class myFriend: ObservableObject {
     @Published var myFriendsList: [User] = [SampleUsers().userOne, SampleUsers().userTwo, SampleUsers().userThree]
 }
 
