@@ -24,6 +24,7 @@
 		CEB9F5992B21A9A9005A338E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F5982B21A9A9005A338E /* HistoryView.swift */; };
 		CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F59A2B21A9C5005A338E /* SocialView.swift */; };
 		CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F59C2B21A9CE005A338E /* SettingsView.swift */; };
+		E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3456BAF2B26FD2100EEA7B1 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		CEB9F5982B21A9A9005A338E /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		CEB9F59A2B21A9C5005A338E /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		CEB9F59C2B21A9CE005A338E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E3456BAF2B26FD2100EEA7B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			children = (
 				0E36BAA52B26B6BF003EA141 /* Color.swift */,
 				0E36BA992B25D192003EA141 /* Extention.swift */,
+				E3456BAF2B26FD2100EEA7B1 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				CEB9F5952B21A950005A338E /* DetailView.swift in Sources */,
 				CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */,
 				CEB9F58F2B219A85005A338E /* User.swift in Sources */,
+				E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */,
 				0E36BAA62B26B6BF003EA141 /* Color.swift in Sources */,
 				CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */,
 				CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */,
