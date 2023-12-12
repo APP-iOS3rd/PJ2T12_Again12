@@ -11,6 +11,7 @@ struct SettingsView: View {
     @State private var totalToggle = true
     @State private var isLogin = true
     @State private var nickname = "투두리"
+    @State private var profileImage = UIImage()
     
     var body: some View {
         NavigationSplitView {
@@ -26,9 +27,9 @@ struct SettingsView: View {
                         }
                     } else {
                         NavigationLink {
-                            ProfileEditView(nickname: $nickname)
+                            ProfileEditView(nickname: $nickname, profileImage: $profileImage)
                         } label: {
-                            ProfileView(nickname: $nickname)
+                            ProfileView(nickname: $nickname, profileImage: $profileImage)
                         }
                     }
                 }
@@ -128,14 +129,31 @@ struct LoginView: View {
 // 로그인 이후 뷰
 struct ProfileView: View {
     @Binding var nickname: String
+    @Binding var profileImage: UIImage
+    
     var body: some View {
         HStack {
-            Image(systemName: "hare.fill")
-                .resizable()
-                .foregroundStyle(Color.pink)
-                .frame(width: 100, height: 100)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+//            Image(systemName: "hare.fill")
+//                .resizable()
+//                .foregroundStyle(Color.pink)
+//                .frame(width: 100, height: 100)
+//                .clipShape(Circle())
+//                .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+            if profileImage.size.width != 0 && profileImage.size.height != 0 {
+                Image(uiImage: profileImage)
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+            } else {
+                Image(systemName: "hare.fill")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .foregroundColor(.pink)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+            }
             VStack (alignment: .leading) {
                 Text("닉네임: \(nickname)")
                 Text("")
@@ -151,7 +169,7 @@ struct ProfileEditView: View {
     @StateObject private var viewModel = EditViewModel()
     @State private var checkSave = false
     @State private var openPhoto = false
-    @State private var image = UIImage()
+    @Binding var profileImage: UIImage
     
     var body: some View {
         ZStack {
@@ -165,11 +183,6 @@ struct ProfileEditView: View {
                 }
                 Spacer()
                 HStack {
-//                    Image(systemName: "hare.fill")
-//                        .resizable()
-//                        .foregroundStyle(Color.pink)
-//                        .frame(width: 100, height: 100)
-//                        .padding()
                     HStack {
                         Button(action: {
                             viewModel.checkAlbumPermission()
@@ -179,8 +192,8 @@ struct ProfileEditView: View {
                         }) {
                             ZStack {
                                 if !checkSave {
-                                    if image.size != CGSize.zero {
-                                        Image(uiImage: image)
+                                    if profileImage.size != CGSize.zero {
+                                        Image(uiImage: profileImage)
                                             .resizable()
                                             .frame(width: 100, height: 100)
                                             .scaledToFit()
@@ -202,7 +215,7 @@ struct ProfileEditView: View {
                             }
                         }
                         .sheet(isPresented: $openPhoto) {
-                            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$profileImage)
                         }
                         .padding()
                         Spacer()
