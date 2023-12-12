@@ -112,7 +112,7 @@ struct SampleUsers {
     
     var userFour: User = User(
         name: "친구4",
-        profileImage: "cat",
+        profileImage: "teddybear",
         todoByMonthList: [TodoByMonth(date: Calendar.current.date(from: DateComponents(year: 2023, month: 08, day: 30))!,
                                       todoList: [SampleTodo().toDoOne, SampleTodo().toDoThree],
                                       wantTodoList: [SampleWantTodo().wantTodoOne]
