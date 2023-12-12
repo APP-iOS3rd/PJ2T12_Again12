@@ -13,8 +13,8 @@ class SocialViewModel: ObservableObject {
     @Published var myFriendsList: [User] = [SampleUsers().userOne, SampleUsers().userTwo, SampleUsers().userThree]
     
     func countDone(_ user: User) -> Int {
-        let totalTodo = user.todoByMonthList[0].todoList
-        let totalWantTodo = user.todoByMonthList[0].wantTodoList
+        let totalTodo = user.todoByMonthList.last?.todoList ?? user.todoByMonthList[0].todoList
+        let totalWantTodo = user.todoByMonthList.last?.wantTodoList ?? user.todoByMonthList[0].wantTodoList
         var count = 0
         
         for todo in totalTodo {
