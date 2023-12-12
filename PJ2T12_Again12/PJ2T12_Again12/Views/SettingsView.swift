@@ -13,84 +13,83 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationSplitView {
-            ZStack {
-                Color(hex: 0xFFFAE1)
-                    .ignoresSafeArea()
-                    List {
-                        Section() { // 로그인뷰
-                            if !isLogin {
-                                NavigationLink {
-                                    LoginView()
-                                } label: {
-                                    Text("\n 로그인을 해서 개인정보를 입력하세요. \n")
-                                        .foregroundStyle(Color.gray)
-                                }
-                            } else {
-                                AfterLoginView()
-                            }
+            List {
+                // 로그인 뷰
+                Section() {
+                    if !isLogin {
+                        NavigationLink {
+                            LoginView()
+                        } label: {
+                            Text("\n 로그인을 해서 개인정보를 입력하세요. \n")
+                                .foregroundStyle(Color.gray)
                         }
-                        
-                        Section(header: Text("알림 설정")) {
-                            TotalAlarmRow(totalToggle: $totalToggle)
-                            MyAlarmRow(totalToggle: $totalToggle)
-                            FriendsAlarmRow(totalToggle: $totalToggle)
-                        }
-                        
-                        Section(header: Text("테마")) {
-                            if !isLogin {
-                                Text("로그인 하여 각자의 테마를 만들어 보세요.")
-                                    .foregroundStyle(Color.gray)
-                            } else {
-                                NavigationLink {
-                                    DetailView()
-                                } label: {
-                                    Text("커스텀 테마를 골라보세요.")
-                                }
-                            }
-                        }
-                        
-                        Section(header: Text("설정")) {
-                            NavigationLink {
-                                DetailView()
-                            } label: {
-                                Text("공지사항")
-                            }
-                            NavigationLink {
-                                DetailView()
-                            } label: {
-                                Text("정보")
-                            }
-                            NavigationLink {
-                                DetailView()
-                            } label: {
-                                Text("문의사항")
-                            }
-                        }
-                        
-                        Section(header: Text("계정 관리")) {
-                            NavigationLink {
-                                DetailView()
-                            } label: {
-                                Text("로그아웃")
-                            }
-                            NavigationLink {
-                                DetailView()
-                            } label: {
-                                Text("회원 탈퇴")
-                            }
+                    } else {
+                        ProfileView()
+                    }
+                }
+                
+                Section(header: Text("알림 설정")) {
+                    TotalAlarmRow(totalToggle: $totalToggle)
+                    MyAlarmRow(totalToggle: $totalToggle)
+                    FriendsAlarmRow(totalToggle: $totalToggle)
+                }
+                
+                Section(header: Text("테마")) {
+                    if !isLogin {
+                        Text("로그인 하여 각자의 테마를 만들어 보세요.")
+                            .foregroundStyle(Color.gray)
+                    } else {
+                        NavigationLink {
+                            DetailView()
+                        } label: {
+                            Text("커스텀 테마를 골라보세요.")
                         }
                     }
-                    .listStyle(.grouped)
-                    .background(Color(hex: 0xFFFAE1))
-                    .scrollContentBackground(.hidden)
                 }
-                .navigationTitle("설정")
+                
+                Section(header: Text("설정")) {
+                    NavigationLink {
+                        DetailView()
+                    } label: {
+                        Text("공지사항")
+                    }
+                    NavigationLink {
+                        DetailView()
+                    } label: {
+                        Text("정보")
+                    }
+                    NavigationLink {
+                        DetailView()
+                    } label: {
+                        Text("문의사항")
+                    }
+                }
+                
+                Section(header: Text("계정 관리")) {
+                    NavigationLink {
+                        DetailView()
+                    } label: {
+                        Text("로그아웃")
+                    }
+                    NavigationLink {
+                        DetailView()
+                    } label: {
+                        Text("회원 탈퇴")
+                    }
+                }
+            }
+            .listStyle(.grouped)
+            .background(Color(hex: 0xFFFAE1))
+            .scrollContentBackground(.hidden)
+            
+            .navigationTitle("설정")
         } detail: {
             Text("")
         }
     }
 }
 
+// 로그인 하는뷰
 struct LoginView: View {
     @State private var ID = ""
     @State private var password = ""
@@ -121,7 +120,8 @@ struct LoginView: View {
     }
 }
 
-struct AfterLoginView: View {
+// 로그인 이후 뷰
+struct ProfileView: View {
     @State private var nickname = "투두리"
     var body: some View {
         HStack {
@@ -136,6 +136,7 @@ struct AfterLoginView: View {
     }
 }
 
+// 전체 알림 Row
 struct TotalAlarmRow: View {
     @Binding var totalToggle: Bool
     
@@ -149,6 +150,7 @@ struct TotalAlarmRow: View {
     }
 }
 
+// 나의 알림 Row
 struct MyAlarmRow: View {
     @State private var myToggle = true
     @Binding var totalToggle: Bool
@@ -164,6 +166,7 @@ struct MyAlarmRow: View {
     }
 }
 
+// 친구 알림 Row
 struct FriendsAlarmRow: View {
     @State private var friendsToggle = true
     @Binding var totalToggle: Bool
