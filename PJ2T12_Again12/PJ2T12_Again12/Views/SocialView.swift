@@ -164,7 +164,7 @@ struct myFriendCell: View {
     let viewBackground: Color = .yellow
     
     var body: some View {
-        NavigationLink(destination: SocialDetailView()) {
+        NavigationLink(destination: SocialDetailView(socialVM: socialVM, friend: friend)) {
             HStack {
                 //프로필이미지
                 ZStack {
