@@ -11,6 +11,26 @@ import SwiftUI
 class SocialViewModel: ObservableObject {
     @Published var isLogin = true
     @Published var myFriendsList: [User] = [SampleUsers().userOne, SampleUsers().userTwo, SampleUsers().userThree]
+    
+    func countDone(_ user: User) -> Int {
+        let totalTodo = user.todoByMonthList[0].todoList
+        let totalWantTodo = user.todoByMonthList[0].wantTodoList
+        var count = 0
+        
+        for todo in totalTodo {
+            if todo.status {
+                count += 1
+            }
+        }
+        
+        for wantTodo in totalWantTodo {
+            if wantTodo.status {
+                count += 1
+            }
+        }
+        
+        return count
+    }
 }
 
 struct SampleTodo {
