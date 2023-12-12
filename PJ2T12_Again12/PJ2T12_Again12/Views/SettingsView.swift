@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var totalToggle = true
-    @State private var isLogin = false
+    @State private var isLogin = true
+    @State private var nickname = "투두리"
     
     var body: some View {
         NavigationSplitView {
@@ -24,7 +25,11 @@ struct SettingsView: View {
                                 .foregroundStyle(Color.gray)
                         }
                     } else {
-                        ProfileView()
+                        NavigationLink {
+                            ProfileEditView(nickname: $nickname)
+                        } label: {
+                            ProfileView(nickname: $nickname)
+                        }
                     }
                 }
                 
@@ -40,7 +45,7 @@ struct SettingsView: View {
                             .foregroundStyle(Color.gray)
                     } else {
                         NavigationLink {
-                            DetailView()
+                            ThemeView()
                         } label: {
                             Text("커스텀 테마를 골라보세요.")
                         }
@@ -49,17 +54,17 @@ struct SettingsView: View {
                 
                 Section(header: Text("설정")) {
                     NavigationLink {
-                        DetailView()
+                        NoticeView()
                     } label: {
                         Text("공지사항")
                     }
                     NavigationLink {
-                        DetailView()
+                        SettingDetailView()
                     } label: {
                         Text("정보")
                     }
                     NavigationLink {
-                        DetailView()
+                        QnAView()
                     } label: {
                         Text("문의사항")
                     }
@@ -67,12 +72,12 @@ struct SettingsView: View {
                 
                 Section(header: Text("계정 관리")) {
                     NavigationLink {
-                        DetailView()
+                        LogoutView()
                     } label: {
                         Text("로그아웃")
                     }
                     NavigationLink {
-                        DetailView()
+                        WithDrawView()
                     } label: {
                         Text("회원 탈퇴")
                     }
@@ -122,16 +127,39 @@ struct LoginView: View {
 
 // 로그인 이후 뷰
 struct ProfileView: View {
-    @State private var nickname = "투두리"
+    @Binding var nickname: String
     var body: some View {
         HStack {
             Image(systemName: "airplane")
                 .frame(width: 100)
             VStack (alignment: .leading) {
-                Text("닉네임")
-                TextField("", text: $nickname)
-                    .textFieldStyle(.roundedBorder)
+                Text("닉네임: \(nickname)")
+                Text("")
             }
+        }
+        .padding()
+    }
+}
+
+struct ProfileEditView: View {
+    @Binding var nickname: String
+    var body: some View {
+        ZStack {
+            Color(hex: 0xFFFAE1)
+                .ignoresSafeArea()
+            VStack {
+                HStack {
+                    Image(systemName: "airplane")
+                        .frame(width: 100)
+                    VStack (alignment: .leading) {
+                        Text("닉네임")
+                        TextField("닉네임을 설정해주세요.", text: $nickname)
+                            .textFieldStyle(.roundedBorder)
+                    }
+                }
+                
+            }
+            .padding()
         }
     }
 }
@@ -181,6 +209,81 @@ struct FriendsAlarmRow: View {
         }
     }
 }
+
+// 커스텀테마 뷰
+struct ThemeView: View {
+    var body: some View {
+        ZStack {
+            Color(hex: 0xFFFAE1)
+                .ignoresSafeArea()
+            VStack {
+                Text("커스텀 테마 기능 지원 예정")
+                    .foregroundStyle(Color.gray)
+            }
+        }
+    }
+}
+
+struct NoticeView: View {
+    var body: some View {
+        ZStack {
+            Color(hex: 0xFFFAE1)
+                .ignoresSafeArea()
+            VStack {
+                Text("공지 사항 뷰")
+            }
+        }
+    }
+}
+
+struct SettingDetailView: View {
+    var body: some View {
+        ZStack {
+            Color(hex: 0xFFFAE1)
+                .ignoresSafeArea()
+            VStack {
+                Text("어플 정보 뷰")
+            }
+        }
+    }
+}
+
+struct QnAView: View {
+    var body: some View {
+        ZStack {
+            Color(hex: 0xFFFAE1)
+                .ignoresSafeArea()
+            VStack {
+                Text("문의사항 뷰")
+            }
+        }
+    }
+}
+
+struct LogoutView: View {
+    var body: some View {
+        ZStack {
+            Color(hex: 0xFFFAE1)
+                .ignoresSafeArea()
+            VStack {
+                Text("로그아웃 뷰")
+            }
+        }
+    }
+}
+
+struct WithDrawView: View {
+    var body: some View {
+        ZStack {
+            Color(hex: 0xFFFAE1)
+                .ignoresSafeArea()
+            VStack {
+                Text("회원탈퇴 뷰")
+            }
+        }
+    }
+}
+
 
 #Preview {
     SettingsView()
