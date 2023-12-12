@@ -87,22 +87,22 @@ class SocialViewModel: ObservableObject {
 }
 
 struct SampleTodo {
-    var toDoOne = Todo(date: Date.now, title: "일찍일어나기", image: "airplane", review: "했다", status: true)
-    var toDoTwo = Todo(date: Date.now, title: "크리스마스 쿠키 만들기", review: "", status: false)
-    var toDoThree = Todo(date: Date.now, title: "열심히 공부하기", review: "", status: false)
+    var toDoOne = Todo(date: Date.now, title: "일찍일어나기", image: "dumbbell", review: "했다", status: true)
+    var toDoTwo = Todo(date: Date.now, title: "크리스마스 쿠키 만들기", image: "paperplane", review: "", status: false)
+    var toDoThree = Todo(date: Date.now, title: "열심히 공부하기", image:"book.closed", review: "", status: false)
 }
 
 struct SampleWantTodo {
-    var wantTodoOne = WantTodo(date: Date.now, title: "네트워크 공부", review: "", status: false)
-    var wantTodoTow = WantTodo(date: Date.now, title: "수업 복습", image: "airplane", review: "무진장 많았는데 결국 난 해냈다", status: true)
-    var wantTodoThree = WantTodo(date: Date.now, title: "수영하기", image: "airplane", review: "드디어 신청", status: true)
+    var wantTodoOne = WantTodo(date: Date.now, title: "네트워크 공부", image: "paperplane", review: "", status: false)
+    var wantTodoTow = WantTodo(date: Date.now, title: "수업 복습", image: "paperplane", review: "무진장 많았는데 결국 난 해냈다", status: true)
+    var wantTodoThree = WantTodo(date: Date.now, title: "수영하기", image: "dumbbell", review: "드디어 신청", status: true)
 }
 
 struct SampleMedal {
     var medalOne = Medal(title: "일 년 달성", image: "star", status: false, count: 0)
     var medalTwo = Medal(title: "한 달 달성", image: "star.fill", status: true, count: 0)
-    var medalThree = Medal(title: "하고 싶은 투두 10개 달성", image: "moon.fill", status: true, count: 0)
-    var medalFour = Medal(title: "해야 하는 투두 10개 달성", image: "moon", status: false, count: 0)
+    var medalThree = Medal(title: "하고 싶은 투두 10개 달성", image: "moon.stars.fill", status: true, count: 0)
+    var medalFour = Medal(title: "해야 하는 투두 10개 달성", image: "moon.stars", status: false, count: 0)
 }
 
 struct SampleUsers {
