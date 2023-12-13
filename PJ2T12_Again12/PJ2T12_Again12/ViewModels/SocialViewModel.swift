@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 class SocialViewModel: ObservableObject {
-    @Published var isLogin = true
+    @Published var isLogin = false
     @Published var myFriendsList: [User] = [SampleUsers().userOne, SampleUsers().userTwo, SampleUsers().userThree, SampleUsers().userFour]
     
     func setDateFormat(_ date: Date) -> String {
