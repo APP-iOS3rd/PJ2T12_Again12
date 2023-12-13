@@ -15,6 +15,7 @@
 		9E7852B12B28419E003BC698 /* SocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7852B02B28419E003BC698 /* SocialViewModel.swift */; };
 		9E7852B32B2860D5003BC698 /* SocialDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7852B22B2860D5003BC698 /* SocialDetailView.swift */; };
 		9E9A102B2B26CF6600A2A73E /* HomeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */; };
+		01D722B62B28B4C100F93E87 /* StatusModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D722B52B28B4C100F93E87 /* StatusModalView.swift */; };
 		CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */; };
 		CEB9F5822B219944005A338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5812B219944005A338E /* Assets.xcassets */; };
 		CEB9F5852B219944005A338E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5842B219944005A338E /* Preview Assets.xcassets */; };
@@ -26,6 +27,10 @@
 		CEB9F5992B21A9A9005A338E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F5982B21A9A9005A338E /* HistoryView.swift */; };
 		CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F59A2B21A9C5005A338E /* SocialView.swift */; };
 		CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F59C2B21A9CE005A338E /* SettingsView.swift */; };
+		CEE940FA2B26D85700AE52CB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE940F92B26D85700AE52CB /* DataController.swift */; };
+		CEE940FD2B26D99A00AE52CB /* Todori.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEE940FB2B26D99A00AE52CB /* Todori.xcdatamodeld */; };
+		CEE941032B26FBEB00AE52CB /* Todo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */; };
+		CEE941042B26FBEB00AE52CB /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */; };
 		E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3456BAF2B26FD2100EEA7B1 /* String.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +43,7 @@
 		9E7852B02B28419E003BC698 /* SocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewModel.swift; sourceTree = "<group>"; };
 		9E7852B22B2860D5003BC698 /* SocialDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDetailView.swift; sourceTree = "<group>"; };
 		9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalView.swift; sourceTree = "<group>"; };
+		01D722B52B28B4C100F93E87 /* StatusModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModalView.swift; sourceTree = "<group>"; };
 		CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJ2T12_Again12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PJ2T12_Again12App.swift; sourceTree = "<group>"; };
 		CEB9F5812B219944005A338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +56,10 @@
 		CEB9F5982B21A9A9005A338E /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		CEB9F59A2B21A9C5005A338E /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		CEB9F59C2B21A9CE005A338E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CEE940F92B26D85700AE52CB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		CEE940FC2B26D99A00AE52CB /* Todori.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todori.xcdatamodel; sourceTree = "<group>"; };
+		CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3456BAF2B26FD2100EEA7B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,12 +103,15 @@
 		CEB9F57C2B219941005A338E /* PJ2T12_Again12 */ = {
 			isa = PBXGroup;
 			children = (
+				CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */,
+				CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */,
 				CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */,
+				CEE941002B26EA3100AE52CB /* CoreData */,
 				0E36BAA42B26B6BF003EA141 /* Extensions */,
-				CEB9F58B2B219A1C005A338E /* Models */,
-				CEB9F5812B219944005A338E /* Assets.xcassets */,
 				CEB9F58C2B219A48005A338E /* Views */,
 				CEB9F58D2B219A66005A338E /* ViewModels */,
+				CEB9F58B2B219A1C005A338E /* Models */,
+				CEB9F5812B219944005A338E /* Assets.xcassets */,
 				CEB9F5832B219944005A338E /* Preview Content */,
 			);
 			path = PJ2T12_Again12;
@@ -132,6 +145,7 @@
 				CEB9F59A2B21A9C5005A338E /* SocialView.swift */,
 				9E7852B22B2860D5003BC698 /* SocialDetailView.swift */,
 				CEB9F5962B21A966005A338E /* StatusView.swift */,
+				01D722B52B28B4C100F93E87 /* StatusModalView.swift */,
 				CEB9F5902B21A925005A338E /* TodoriTapView.swift */,
 			);
 			path = Views;
@@ -145,6 +159,15 @@
 				9E7852B02B28419E003BC698 /* SocialViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CEE941002B26EA3100AE52CB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CEE940F92B26D85700AE52CB /* DataController.swift */,
+				CEE940FB2B26D99A00AE52CB /* Todori.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +243,7 @@
 				0E36BAB22B26F64C003EA141 /* EditViewModel.swift in Sources */,
 				CEB9F5992B21A9A9005A338E /* HistoryView.swift in Sources */,
 				CEB9F5952B21A950005A338E /* DetailView.swift in Sources */,
+				01D722B62B28B4C100F93E87 /* StatusModalView.swift in Sources */,
 				CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */,
 				9E7852B32B2860D5003BC698 /* SocialDetailView.swift in Sources */,
 				CEB9F58F2B219A85005A338E /* User.swift in Sources */,
@@ -228,13 +252,17 @@
 				9E7852B12B28419E003BC698 /* SocialViewModel.swift in Sources */,
 				CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */,
 				CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */,
+				CEE940FA2B26D85700AE52CB /* DataController.swift in Sources */,
 				0E36BA7E2B22F41E003EA141 /* EditView.swift in Sources */,
+				CEE940FD2B26D99A00AE52CB /* Todori.xcdatamodeld in Sources */,
 				0E36BAA32B26B696003EA141 /* HomeViewModel.swift in Sources */,
 				CEB9F5972B21A966005A338E /* StatusView.swift in Sources */,
 				CEB9F5932B21A937005A338E /* HomeView.swift in Sources */,
 				0E36BA9A2B25D192003EA141 /* Extention.swift in Sources */,
 				CEB9F5912B21A925005A338E /* TodoriTapView.swift in Sources */,
 				9E9A102B2B26CF6600A2A73E /* HomeModalView.swift in Sources */,
+				CEE941032B26FBEB00AE52CB /* Todo+CoreDataClass.swift in Sources */,
+				CEE941042B26FBEB00AE52CB /* Todo+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +406,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,6 +438,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -444,6 +474,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CEE940FB2B26D99A00AE52CB /* Todori.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CEE940FC2B26D99A00AE52CB /* Todori.xcdatamodel */,
+			);
+			currentVersion = CEE940FC2B26D99A00AE52CB /* Todori.xcdatamodel */;
+			path = Todori.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CEB9F5722B219941005A338E /* Project object */;
 }
