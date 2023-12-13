@@ -9,20 +9,23 @@ import SwiftUI
 
 struct HistoryView: View {
 
-init() {
-    UISegmentedControl.appearance().selectedSegmentTintColor = .brown
-    UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-    UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.brown], for: .normal)
-    
-    UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
-}
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = .brown
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.brown], for: .normal)
+        
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
+    }
 
-@State private var searchTitle: String = ""
-@State private var selectedSegment = 0
-@StateObject private var homeVM = HomeViewModel()
+    @State private var searchTitle: String = ""
+    @State private var selectedSegment = 0
+    
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
 
     var body: some View {
-        NavigationView {
+        
             ZStack {
                 Color(hex: 0xFFFAE1)
                     .ignoresSafeArea()
@@ -35,27 +38,28 @@ init() {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                     
+                    // 모두
                     if selectedSegment == 0 {
                         ScrollView {
-                            ForEach(toDoList) { todo in
-                                NavigationLink(destination: EditView(), label: {
+                            ForEach(todoList) { todo in
+                                NavigationLink(destination: EditView(todoId: todo.wrappedId), label: {
                                     HStack {
                                         Text(" 🍞 ")
                                         VStack(alignment: .leading) {
-                                            Text(todo.title)
-                                            Text("yyyy.MM".stringFromDate(now: todo.date))
+                                            Text(todo.wrappedTitle)
+                                            Text("yyyy.MM".stringFromDate(now: todo.wrappedDate))
                                         }
                                     }
                                     .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                 })
                             }
-                            ForEach(haveToList) { todo in
-                                NavigationLink(destination: EditView(), label: {
+                            ForEach(wantTodoList) { todo in
+                                NavigationLink(destination: EditView(todoId: todo.wrappedId), label: {
                                     HStack {
                                         Text(" 🍁 ")
                                         VStack(alignment: .leading) {
-                                            Text(todo.title)
-                                            Text("yyyy.MM".stringFromDate(now: todo.date))
+                                            Text(todo.wrappedTitle)
+                                            Text("yyyy.MM".stringFromDate(now: todo.wrappedDate))
                                         }
                                     }
                                     .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
@@ -63,15 +67,16 @@ init() {
                             }
                         }
                         .padding()
+                    // 해야하는 일
                     } else if selectedSegment == 1 {
                         ScrollView {
-                            ForEach(toDoList) { todo in
-                                NavigationLink(destination: EditView(), label: {
+                            ForEach(todoList) { todo in
+                                NavigationLink(destination: EditView(todoId: todo.wrappedId), label: {
                                     HStack {
                                         Text(" 🍞 ")
                                         VStack(alignment: .leading) {
-                                            Text(todo.title)
-                                            Text("yyyy.MM".stringFromDate(now: todo.date))
+                                            Text(todo.wrappedTitle)
+                                            Text("yyyy.MM".stringFromDate(now: todo.wrappedDate))
                                         }
                                     }
                                     .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
@@ -80,14 +85,15 @@ init() {
                         }
                         .padding()
                     } else {
+                        // 하고 싶은 일 
                         ScrollView {
-                            ForEach(haveToList) { todo in
-                                NavigationLink(destination: EditView(), label: {
+                            ForEach(wantTodoList) { todo in
+                                NavigationLink(destination: EditView(todoId: todo.wrappedId), label: {
                                     HStack {
                                         Text(" 🍁 ")
                                         VStack(alignment: .leading) {
-                                            Text(todo.title)
-                                            Text("yyyy.MM".stringFromDate(now: todo.date))
+                                            Text(todo.wrappedTitle)
+                                            Text("yyyy.MM".stringFromDate(now: todo.wrappedDate))
                                         }
                                     }
                                     .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
@@ -98,12 +104,14 @@ init() {
                     }
                 }
                 .searchable(text: $searchTitle)
-            }
             .navigationBarTitle("전체 일정 보기")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
 
 #Preview {
-    HistoryView()
+    NavigationView {
+        HistoryView()
+    }
 }

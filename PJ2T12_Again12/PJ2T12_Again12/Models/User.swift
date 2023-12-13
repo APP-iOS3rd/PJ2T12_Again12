@@ -1,9 +1,9 @@
-//
-//  User.swift
-//  PJ2T12_Again12
-//
-//  Created by KHJ on 2023/12/07.
-//
+////
+////  User.swift
+////  PJ2T12_Again12
+////
+////  Created by KHJ on 2023/12/07.
+////
 
 import Foundation
 
@@ -18,11 +18,11 @@ struct User: Identifiable {
 
 struct TodoByMonth {
     let date: Date
-    var todoList: [Todo]
+    var todoList: [FriendsTodo]
     var wantTodoList: [WantTodo]
 }
 
-struct Todo: Identifiable {
+struct FriendsTodo: Identifiable {
     let id = UUID()
     let date: Date
     var title: String
@@ -93,12 +93,12 @@ var sampleUser: User = User(
     medalList: [Medal(title: "한 달 달성", image: "star.fill", status: false, count: 0)]
 )
 
-var toDoOne = Todo(date: Date.now, title: "일찍일어나기", image: "airplane", review: "했다", status: true)
-var toDoTwo = Todo(date: Date.now, title: "크리스마스 쿠키 만들기", review: "", status: false)
-var toDoThree = Todo(date: Date.now, title: "열심히 공부하기", review: "", status: false)
+var toDoOne = FriendsTodo(date: Date.now, title: "일찍일어나기", image: "airplane", review: "했다", status: true)
+var toDoTwo = FriendsTodo(date: Date.now, title: "크리스마스 쿠키 만들기", review: "", status: false)
+var toDoThree = FriendsTodo(date: Date.now, title: "열심히 공부하기", review: "", status: false)
 var haveToOne = WantTodo(date: Date.now, title: "네트워크 공부", review: "", status: false)
 var haveToTow = WantTodo(date: Date.now, title: "수업 복습", image: "airplane", review: "무진장 많았는데 결국 난 해냈다", status: true)
 var haveToThree = WantTodo(date: Date.now, title: "수영하기", image: "airplane", review: "드디어 신청", status: true)
 
-var toDoList: [Todo] = [toDoOne, toDoTwo, toDoThree]
+var toDoList: [FriendsTodo] = [toDoOne, toDoTwo, toDoThree]
 var haveToList: [WantTodo] = [haveToOne, haveToTow, haveToThree]

@@ -16,7 +16,14 @@ struct EditView: View {
     @State private var userText: String = ""
     @State private var checkSave = false
     @State private var showAlert = false
-    @State private var goToHome = false
+    
+    @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
+
+    init(todoId: UUID) {
+        _selectedTodo = FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "id == %@", todoId as CVarArg))
+    }
     
     var body: some View {
         NavigationStack {
@@ -30,7 +37,7 @@ struct EditView: View {
                             Spacer()
                             Image(systemName: "airplane")
                                 .font(.title2)
-                            Text("아침 일찍 일어나기")
+                            Text(selectedTodo.first?.title ?? "Unknown")
                                 .font(.system(size: 25))
                                 .bold()
                                 .lineLimit(1)
@@ -49,13 +56,14 @@ struct EditView: View {
                                       message: nil,
                                       primaryButton: .cancel(),
                                       secondaryButton: .destructive(Text("삭제")) {
-                                    //삭제하기 버튼이 눌렸을 때 할 동작추가
-                                    //홈뷰에 status를 없앨껀지, 그 항목 자체를 삭제할껀지
-                                    goToHome.toggle()
+                                    for todo in selectedTodo {
+                                        moc.delete(todo)
+                                    }
+                                    try? moc.save()
+                                    dismiss()
                                 }
                                 )
                             }
-                            .background(NavigationLink("", destination: HomeView(), isActive: $goToHome))
                             Spacer()
                         }
                         .padding(.bottom, 20)
@@ -116,6 +124,15 @@ struct EditView: View {
                         }
                         
                         Button(action: {
+                            if let selectedTodo = selectedTodo.first {
+                                selectedTodo.review = userText
+                                selectedTodo.isSaved.toggle()
+                                selectedTodo.status.toggle()
+                                if let imageData = image.pngData() {
+                                    selectedTodo.reviewImage = imageData
+                                }
+                            }
+                            try? moc.save()
                             checkSave.toggle()
                         }) {
                             Text(checkSave ? "수정하기" : "작성완료")
@@ -132,6 +149,15 @@ struct EditView: View {
                 }
                 .onTapGesture {
                     hideKeyboard()
+                }
+                .onAppear {
+                    if let selectedTodo = selectedTodo.first {
+                        userText = selectedTodo.wrappedReview
+                        checkSave = selectedTodo.isSaved
+                        if let imageData = selectedTodo.reviewImage {
+                            image = UIImage(data: imageData) ?? UIImage(systemName: "heart")!
+                        }
+                    }
                 }
             }
         }
@@ -186,7 +212,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 
 #Preview {
-    EditView()
+    EditView(todoId: UUID())
 }
 
 
