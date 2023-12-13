@@ -95,6 +95,7 @@ struct LoginView: View {
     @State private var ID = ""
     @State private var password = ""
     @Binding var isLogin: Bool
+    @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
     
     var body: some View {
         ZStack {
@@ -102,7 +103,7 @@ struct LoginView: View {
                 .ignoresSafeArea()
             VStack(spacing: 20) {
                 Button(action: {
-                    login()
+                    kakaoAuthVM.handleKakaoLogin()
                     isLogin = true
                 }, label: {
                     HStack {
@@ -180,6 +181,7 @@ struct ProfileEditView: View {
     @State private var openPhoto = false
     @Binding var profileImage: UIImage
     @Binding var isLogin: Bool
+    @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
     
     var body: some View {
         List {
@@ -237,7 +239,7 @@ struct ProfileEditView: View {
             
             Section(header: Text("계정 관리")) {
                 Button("로그아웃", action: {
-                    logout()
+                    kakaoAuthVM.kakaoLogout()
                     isLogin = false
                 })
                 
