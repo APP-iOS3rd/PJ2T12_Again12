@@ -103,18 +103,6 @@ struct LoginView: View {
             Color(hex: 0xFFFAE1)
                 .ignoresSafeArea()
             VStack(spacing: 20) {
-                HStack {
-                    Text("ID             ")
-                        .foregroundStyle(Color(hex: 0x432D00))
-                    TextField("ID", text: $ID)
-                        .textFieldStyle(.roundedBorder)
-                }
-                HStack {
-                    Text("Password")
-                        .foregroundStyle(Color(hex: 0x432D00))
-                    TextField("Password", text: $password)
-                        .textFieldStyle(.roundedBorder)
-                }
                 Button(action: {
                     login()
                     isLogin = true
@@ -126,6 +114,27 @@ struct LoginView: View {
                 })
                 .padding()
                 .background(Color(hex: 0xFEE500))
+                .cornerRadius(10)
+                Button(action: {}, label: {
+                    HStack {
+                        Text("G  ")
+                            .fontWeight(.heavy)
+                        Text("Sign in with Google")
+                    }
+                })
+                .padding()
+                .background(Color(hex: 0xFFFFFF))
+                .cornerRadius(10)
+                Button(action: {}, label: {
+                    HStack {
+                        Text("N  ")
+                            .fontWeight(.heavy)
+                        Text("네이버 로그인")
+                    }
+                    .foregroundStyle(Color.white)
+                })
+                .padding()
+                .background(Color(hex: 0x03C75A))
                 .cornerRadius(10)
             }
             .padding()
