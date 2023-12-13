@@ -50,26 +50,37 @@ struct Medal {
 struct ViewMonth: Identifiable {
         let id = UUID()
         let date: String
-        let count: Int
+        let done: Int
+        let undone: Int
     }
     
 extension ViewMonth {
         static let wantTodoMonth: [ViewMonth] = [
-            .init(date: "1월", count: 5),
-            .init(date: "2월", count: 5),
-            .init(date: "3월", count: 5),
-            .init(date: "4월", count: 5),
-            .init(date: "5월", count: 5),
-            .init(date: "6월", count: 5)
+            .init(date: "1월", done: 1, undone: 2),
+            .init(date: "2월", done: 1, undone: 2),
+            .init(date: "3월", done: 1, undone: 2),
+            .init(date: "4월", done: 1, undone: 2),
+            .init(date: "5월", done: 2, undone: 1),
+            .init(date: "6월", done: 2, undone: 1),
+            .init(date: "7월", done: 1, undone: 2),
+            .init(date: "8월", done: 1, undone: 2),
+            .init(date: "9월", done: 1, undone: 2),
+            .init(date: "10월", done: 1, undone: 2),
+            .init(date: "11월", done: 3, undone: 0)
         ]
         
         static let todoMonth: [ViewMonth] = [
-            .init(date: "1월", count: 5),
-            .init(date: "2월", count: 3),
-            .init(date: "3월", count: 2),
-            .init(date: "4월", count: 5),
-            .init(date: "5월", count: 5),
-            .init(date: "6월", count: 5)
+            .init(date: "1월", done: 3, undone: 0),
+            .init(date: "2월", done: 3, undone: 0),
+            .init(date: "3월", done: 1, undone: 2),
+            .init(date: "4월", done: 1, undone: 2),
+            .init(date: "5월", done: 1, undone: 2),
+            .init(date: "6월", done: 1, undone: 2),
+            .init(date: "7월", done: 1, undone: 2),
+            .init(date: "8월", done: 1, undone: 2),
+            .init(date: "9월", done: 1, undone: 2),
+            .init(date: "10월", done: 1, undone: 2),
+            .init(date: "11월", done: 2, undone: 1)
         ]
 
     }
