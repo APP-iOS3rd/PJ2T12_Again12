@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct SettingsView: View {
     @State private var totalToggle = true
@@ -94,6 +95,20 @@ struct LoginView: View {
     @State private var password = ""
     @Binding var isLogin: Bool
     @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
+    @State var shouldShowBottomToastMessage : Bool = false
+    
+    func createBottomToastMessage() -> some View {
+        VStack(alignment: .leading){
+            Text("아직 미구현 기능 입니다.\n카카오 로그인을 이용해 주세요.")
+                .font(.system(size: 14))
+                .foregroundColor(Color.white)
+                .padding(10)
+            Divider().opacity(0)
+        }
+        .frame(width: 300)
+        .background(Color(hex: 0x6E6F70))
+        .cornerRadius(15)
+    }
     
     var body: some View {
         ZStack {
@@ -109,13 +124,17 @@ struct LoginView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 200, height: 50)
                 })
-                Button(action: {}, label: {
-                    Image("ios_light_sq_SU")
+                Button(action: {
+                    self.shouldShowBottomToastMessage = true
+                }, label: {
+                    Image("GoogleLoginImage")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 195, height: 50)
                 })
-                Button(action: {}, label: {
+                Button(action: {
+                    self.shouldShowBottomToastMessage = true
+                }, label: {
                     Image("NaverLoginImage")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -123,6 +142,16 @@ struct LoginView: View {
                 })
             }
             .padding()
+        }
+        .popup(isPresented: $shouldShowBottomToastMessage) {
+            createBottomToastMessage()
+        } customize: {
+            $0
+                .type(.floater())
+                .position(.center)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.3))
         }
     }
 }
