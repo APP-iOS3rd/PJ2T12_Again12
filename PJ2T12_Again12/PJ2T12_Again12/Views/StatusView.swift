@@ -35,6 +35,7 @@ struct StatusView: View {
                 VStack {
                     HStack {
                         Text("기록")
+                            .padding(10)
                             .navigationTitle("나의 투두 기록")
                         Spacer()
                     }
@@ -58,8 +59,8 @@ struct StatusView: View {
                                 }
                             }
                             .chartForegroundStyleScale([
-                                "todo": .pink,
-                                "wantTodo": .blue
+                                "todo": Color(red: 226 / 255, green: 211 / 255, blue: 136 / 255),
+                                "wantTodo": Color(red: 226 / 255, green: 190 / 255, blue: 136 / 255)
                             ])
                             //막대그래프 기존 크기 정하기
                             .frame(width: 500, height: 280, alignment: .center)
@@ -70,10 +71,11 @@ struct StatusView: View {
                         .frame(width: geometry.size.width , height: geometry.size.height)
                     }
                     VStack {
-                        Divider()
-                            .background(Color.black)
+                        
                         HStack {
-                            Text("메달")
+                            Text("뱃지")
+                                .padding(10)
+                                .position(x: 25, y: 18)
                             Spacer()
                         }
                         LazyVGrid(columns: columns, spacing: 20) {
