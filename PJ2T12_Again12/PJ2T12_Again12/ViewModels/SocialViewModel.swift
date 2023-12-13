@@ -31,8 +31,8 @@ class SocialViewModel: ObservableObject {
     }
     
     ///어떤 유저가 TodoByMonth 데이터가 있다면 가장 최신 데이터인 todoList를 가지고 온다.
-    func getTodoList(_ user: User) -> [Todo] {
-        var result: [Todo] = []
+    func getTodoList(_ user: User) -> [FriendsTodo] {
+        var result: [FriendsTodo] = []
         
         if let todoList = user.todoByMonthList.last?.todoList {
             result = todoList
@@ -87,9 +87,9 @@ class SocialViewModel: ObservableObject {
 }
 
 struct SampleTodo {
-    var toDoOne = Todo(date: Date.now, title: "일찍일어나기", image: "dumbbell", review: "했다", status: true)
-    var toDoTwo = Todo(date: Date.now, title: "크리스마스 쿠키 만들기", image: "paperplane", review: "", status: false)
-    var toDoThree = Todo(date: Date.now, title: "열심히 공부하기", image:"book.closed", review: "", status: false)
+    var toDoOne = FriendsTodo(date: Date.now, title: "일찍일어나기", image: "dumbbell", review: "했다", status: true)
+    var toDoTwo = FriendsTodo(date: Date.now, title: "크리스마스 쿠키 만들기", image: "paperplane", review: "", status: false)
+    var toDoThree = FriendsTodo(date: Date.now, title: "열심히 공부하기", image:"book.closed", review: "", status: false)
 }
 
 struct SampleWantTodo {

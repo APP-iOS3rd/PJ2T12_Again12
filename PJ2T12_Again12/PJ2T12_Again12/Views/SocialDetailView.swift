@@ -97,7 +97,7 @@ struct SocialDetailView: View {
                         VStack {
                             if socialVM.isThisMonth(friend) {
                                 //이번달 투두리가 todo, wantTodo와 관계 없이 한 개라도 생성되어 있을 때
-                                let todoList: [Todo] = socialVM.getTodoList(friend)
+                                let todoList: [FriendsTodo] = socialVM.getTodoList(friend)
                                 if todoList.count == 0 {
                                     Text("친구가 아직 투두리를 작성하지 않았어요.")
                                         .font(.system(size: noTodoriGuideTextSize))
