@@ -75,7 +75,7 @@ struct StatusView: View {
                         HStack {
                             Text("뱃지")
                                 .padding(10)
-                                .position(x: 25, y: 18)
+                                .position(x: 25, y: 5)
                             Spacer()
                         }
                         LazyVGrid(columns: columns, spacing: 20) {
@@ -86,7 +86,6 @@ struct StatusView: View {
                                             .font(.system(size: 20))
                                             .frame(width: 90, height: 90)
                                             .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
-                                        
                                     }
                                     .sheet(isPresented: $showMedals) {
                                         StatusModalView()
@@ -96,6 +95,11 @@ struct StatusView: View {
                                 .frame(width: .infinity, height: 150, alignment: .center)
                             }
                         }
+                        .frame(width: 350, height: 280)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(hex: 0xA58B00).opacity(0.32), lineWidth: 2)
+                        )
                     }
                 }
             }
