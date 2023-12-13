@@ -30,7 +30,7 @@ struct StatusView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(hex: 0xFFFAE1)
+                Color.BackgroundYellow
                     .ignoresSafeArea()
                 VStack {
                     HStack {
@@ -59,13 +59,13 @@ struct StatusView: View {
                                 }
                             }
                             .chartForegroundStyleScale([
-                                "todo": Color(red: 226 / 255, green: 211 / 255, blue: 136 / 255),
-                                "wantTodo": Color(red: 226 / 255, green: 190 / 255, blue: 136 / 255)
+                                "todo": Color.WanttoYesButtonBrown,
+                                "wantTodo": Color.TodoButtonBrown
                             ])
                             //막대그래프 기존 크기 정하기
                             .frame(width: 500, height: 280, alignment: .center)
                             // hexcode를 rgb값으로 변경하여 넣기
-                            .background(Color(red: 255 / 255, green: 254 / 255, blue: 246 / 255))
+                            .background(Color.AlertBackWhite)
                             .padding(10)
                         }
                         .frame(width: geometry.size.width , height: geometry.size.height)
@@ -98,7 +98,7 @@ struct StatusView: View {
                         .frame(width: 350, height: 280)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color(hex: 0xA58B00).opacity(0.32), lineWidth: 2)
+                                .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
                         )
                     }
                 }
