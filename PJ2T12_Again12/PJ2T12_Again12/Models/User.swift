@@ -40,7 +40,7 @@ struct WantTodo: Identifiable {
     var status: Bool
 }
 
-struct Medal {
+struct Medal: Hashable {
     var title: String
     var image: String
     var status: Bool
