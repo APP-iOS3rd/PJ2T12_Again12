@@ -51,6 +51,7 @@ struct EditView: View {
                                     .font(.title2)
                                     .opacity(checkSave ? 1.0 : 0 )
                             }
+                            .disabled(!checkSave)
                             .alert(isPresented: $showAlert) {
                                 Alert(title: Text("삭제하시겠습니까?"),
                                       message: nil,
