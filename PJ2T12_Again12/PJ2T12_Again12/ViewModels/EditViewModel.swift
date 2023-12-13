@@ -10,6 +10,7 @@ import Photos
 
 class EditViewModel: ObservableObject {
     @Published var albumPermissionGranted = false
+    var authorizationCallback: (() -> Void)?
     
     func checkAlbumPermission() {
         PHPhotoLibrary.requestAuthorization { [weak self] status in
@@ -20,6 +21,7 @@ class EditViewModel: ObservableObject {
                 //-> DispatchQueue.main 을 대체하는 방식
                 DispatchQueue.main.async {
                     self?.albumPermissionGranted = true
+                    self?.authorizationCallback?()
                 }
                 print("Album: 권한 허용")
             case .denied:

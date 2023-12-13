@@ -71,9 +71,12 @@ struct EditView: View {
                         
                         HStack {
                             Button(action: {
+                                print(openPhoto)
                                 viewModel.checkAlbumPermission()
                                 if viewModel.albumPermissionGranted {
-                                    self.openPhoto = true
+                                    viewModel.authorizationCallback = {
+                                        self.openPhoto = true
+                                    }
                                 }
                             }) {
                                 ZStack {
@@ -123,6 +126,7 @@ struct EditView: View {
                                 .lineSpacing(8)
                                 .foregroundColor(Color.TextDefaultGray)
                                 .background(Color.white)
+                                .minimumScaleFactor(0.5)
 
                         }
                         
