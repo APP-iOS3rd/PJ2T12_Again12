@@ -68,7 +68,8 @@ DerivedData/
 *.dSYM
 
 ## API
-.xcconfig
+*.xcconfig
+
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
