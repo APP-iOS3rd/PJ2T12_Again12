@@ -27,7 +27,7 @@ struct HistoryView: View {
     var body: some View {
         
             ZStack {
-                Color(hex: 0xFFFAE1)
+                Color.BackgroundYellow
                     .ignoresSafeArea()
                 VStack {
                     Picker("Select Segment", selection: $selectedSegment) {
@@ -50,6 +50,7 @@ struct HistoryView: View {
                                             Text("yyyy.MM".stringFromDate(now: todo.wrappedDate))
                                         }
                                     }
+                                    // Color.WanttoNoTextBrown
                                     .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                 })
                             }
@@ -62,6 +63,7 @@ struct HistoryView: View {
                                             Text("yyyy.MM".stringFromDate(now: todo.wrappedDate))
                                         }
                                     }
+                                    // Color.TodoNoTextBrown
                                     .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
                                 })
                             }
@@ -79,6 +81,7 @@ struct HistoryView: View {
                                             Text("yyyy.MM".stringFromDate(now: todo.wrappedDate))
                                         }
                                     }
+                                    // Color.WanttoNoTextBrown
                                     .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
                                 })
                             }
@@ -96,6 +99,7 @@ struct HistoryView: View {
                                             Text("yyyy.MM".stringFromDate(now: todo.wrappedDate))
                                         }
                                     }
+                                    // Color.TodoNoTextBrown
                                     .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
                                 })
                             }
