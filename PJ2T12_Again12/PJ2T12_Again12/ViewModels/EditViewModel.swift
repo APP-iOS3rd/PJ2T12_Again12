@@ -9,9 +9,11 @@ import Foundation
 import Photos
 
 class EditViewModel: ObservableObject {
+    //앨범 권한을 물어보는데 기본값은 false
     @Published var albumPermissionGranted = false
     var authorizationCallback: (() -> Void)?
-    
+
+    //앨범 권한을 요청 
     func checkAlbumPermission() {
         PHPhotoLibrary.requestAuthorization { [weak self] status in
             switch status {
@@ -22,6 +24,7 @@ class EditViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.albumPermissionGranted = true
                     self?.authorizationCallback?()
+                    
                 }
                 print("Album: 권한 허용")
             case .denied:

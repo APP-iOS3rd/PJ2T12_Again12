@@ -11,7 +11,7 @@ import Photos
 
 struct EditView: View {
     @StateObject private var viewModel = EditViewModel()
-    @State private var openPhoto = false
+
     @State private var image = UIImage()
     @State private var userText: String = ""
     @State private var checkSave = false
@@ -20,6 +20,8 @@ struct EditView: View {
     @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
 
     init(todoId: UUID) {
         _selectedTodo = FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "id == %@", todoId as CVarArg))
@@ -71,11 +73,9 @@ struct EditView: View {
                         
                         HStack {
                             Button(action: {
-                                print(openPhoto)
                                 viewModel.checkAlbumPermission()
                                 if viewModel.albumPermissionGranted {
                                     viewModel.authorizationCallback = {
-                                        self.openPhoto = true
                                     }
                                 }
                             }) {
@@ -91,7 +91,7 @@ struct EditView: View {
                                     }
                                 }
                             }
-                            .sheet(isPresented: $openPhoto) {
+                            .sheet(isPresented: $viewModel.albumPermissionGranted) {
                                 ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
                             }
                             .padding()
