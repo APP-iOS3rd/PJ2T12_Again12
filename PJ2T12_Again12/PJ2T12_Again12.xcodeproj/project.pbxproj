@@ -7,15 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01D722B62B28B4C100F93E87 /* StatusModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D722B52B28B4C100F93E87 /* StatusModalView.swift */; };
 		0E36BA7E2B22F41E003EA141 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BA7D2B22F41E003EA141 /* EditView.swift */; };
 		0E36BA9A2B25D192003EA141 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BA992B25D192003EA141 /* Extention.swift */; };
 		0E36BAA32B26B696003EA141 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BAA22B26B696003EA141 /* HomeViewModel.swift */; };
 		0E36BAA62B26B6BF003EA141 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BAA52B26B6BF003EA141 /* Color.swift */; };
 		0E36BAB22B26F64C003EA141 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BAB12B26F64C003EA141 /* EditViewModel.swift */; };
+		0E8E26E92B29FFA400F1B3B5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8E26E82B29FFA400F1B3B5 /* WidgetKit.framework */; };
+		0E8E26EB2B29FFA400F1B3B5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8E26EA2B29FFA400F1B3B5 /* SwiftUI.framework */; };
+		0E8E26EE2B29FFA400F1B3B5 /* TodoriWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E26ED2B29FFA400F1B3B5 /* TodoriWidgetBundle.swift */; };
+		0E8E26F02B29FFA400F1B3B5 /* TodoriWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E26EF2B29FFA400F1B3B5 /* TodoriWidgetLiveActivity.swift */; };
+		0E8E26F22B29FFA400F1B3B5 /* TodoriWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E26F12B29FFA400F1B3B5 /* TodoriWidget.swift */; };
+		0E8E26F42B29FFA400F1B3B5 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E26F32B29FFA400F1B3B5 /* AppIntent.swift */; };
+		0E8E26F62B29FFA600F1B3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E8E26F52B29FFA600F1B3B5 /* Assets.xcassets */; };
+		0E8E26FA2B29FFA600F1B3B5 /* TodoriWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0E8E26E62B29FFA400F1B3B5 /* TodoriWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0E8E26FF2B29FFB100F1B3B5 /* Todo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */; };
+		0E8E27002B29FFB300F1B3B5 /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */; };
 		9E7852B12B28419E003BC698 /* SocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7852B02B28419E003BC698 /* SocialViewModel.swift */; };
 		9E7852B32B2860D5003BC698 /* SocialDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7852B22B2860D5003BC698 /* SocialDetailView.swift */; };
 		9E9A102B2B26CF6600A2A73E /* HomeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */; };
-		01D722B62B28B4C100F93E87 /* StatusModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D722B52B28B4C100F93E87 /* StatusModalView.swift */; };
 		CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */; };
 		CEB9F5822B219944005A338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5812B219944005A338E /* Assets.xcassets */; };
 		CEB9F5852B219944005A338E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5842B219944005A338E /* Preview Assets.xcassets */; };
@@ -34,16 +44,49 @@
 		E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3456BAF2B26FD2100EEA7B1 /* String.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0E8E26F82B29FFA600F1B3B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEB9F5722B219941005A338E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E8E26E52B29FFA400F1B3B5;
+			remoteInfo = TodoriWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0E8E26FB2B29FFA600F1B3B5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0E8E26FA2B29FFA600F1B3B5 /* TodoriWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		01D722B52B28B4C100F93E87 /* StatusModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModalView.swift; sourceTree = "<group>"; };
 		0E36BA7D2B22F41E003EA141 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		0E36BA992B25D192003EA141 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		0E36BAA22B26B696003EA141 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0E36BAA52B26B6BF003EA141 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		0E36BAB12B26F64C003EA141 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
+		0E8E26E62B29FFA400F1B3B5 /* TodoriWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodoriWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E8E26E82B29FFA400F1B3B5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		0E8E26EA2B29FFA400F1B3B5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		0E8E26ED2B29FFA400F1B3B5 /* TodoriWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoriWidgetBundle.swift; sourceTree = "<group>"; };
+		0E8E26EF2B29FFA400F1B3B5 /* TodoriWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoriWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		0E8E26F12B29FFA400F1B3B5 /* TodoriWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoriWidget.swift; sourceTree = "<group>"; };
+		0E8E26F32B29FFA400F1B3B5 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		0E8E26F52B29FFA600F1B3B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0E8E26F72B29FFA600F1B3B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7852B02B28419E003BC698 /* SocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewModel.swift; sourceTree = "<group>"; };
 		9E7852B22B2860D5003BC698 /* SocialDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDetailView.swift; sourceTree = "<group>"; };
 		9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalView.swift; sourceTree = "<group>"; };
-		01D722B52B28B4C100F93E87 /* StatusModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModalView.swift; sourceTree = "<group>"; };
 		CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJ2T12_Again12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PJ2T12_Again12App.swift; sourceTree = "<group>"; };
 		CEB9F5812B219944005A338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,6 +107,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0E8E26E32B29FFA400F1B3B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E8E26EB2B29FFA400F1B3B5 /* SwiftUI.framework in Frameworks */,
+				0E8E26E92B29FFA400F1B3B5 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEB9F5772B219941005A338E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -84,10 +136,34 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		0E8E26E72B29FFA400F1B3B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E8E26E82B29FFA400F1B3B5 /* WidgetKit.framework */,
+				0E8E26EA2B29FFA400F1B3B5 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0E8E26EC2B29FFA400F1B3B5 /* TodoriWidget */ = {
+			isa = PBXGroup;
+			children = (
+				0E8E26ED2B29FFA400F1B3B5 /* TodoriWidgetBundle.swift */,
+				0E8E26EF2B29FFA400F1B3B5 /* TodoriWidgetLiveActivity.swift */,
+				0E8E26F12B29FFA400F1B3B5 /* TodoriWidget.swift */,
+				0E8E26F32B29FFA400F1B3B5 /* AppIntent.swift */,
+				0E8E26F52B29FFA600F1B3B5 /* Assets.xcassets */,
+				0E8E26F72B29FFA600F1B3B5 /* Info.plist */,
+			);
+			path = TodoriWidget;
+			sourceTree = "<group>";
+		};
 		CEB9F5712B219941005A338E = {
 			isa = PBXGroup;
 			children = (
 				CEB9F57C2B219941005A338E /* PJ2T12_Again12 */,
+				0E8E26EC2B29FFA400F1B3B5 /* TodoriWidget */,
+				0E8E26E72B29FFA400F1B3B5 /* Frameworks */,
 				CEB9F57B2B219941005A338E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */,
+				0E8E26E62B29FFA400F1B3B5 /* TodoriWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +250,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0E8E26E52B29FFA400F1B3B5 /* TodoriWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E8E26FE2B29FFA600F1B3B5 /* Build configuration list for PBXNativeTarget "TodoriWidgetExtension" */;
+			buildPhases = (
+				0E8E26E22B29FFA400F1B3B5 /* Sources */,
+				0E8E26E32B29FFA400F1B3B5 /* Frameworks */,
+				0E8E26E42B29FFA400F1B3B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TodoriWidgetExtension;
+			productName = TodoriWidgetExtension;
+			productReference = 0E8E26E62B29FFA400F1B3B5 /* TodoriWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		CEB9F5792B219941005A338E /* PJ2T12_Again12 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEB9F5882B219944005A338E /* Build configuration list for PBXNativeTarget "PJ2T12_Again12" */;
@@ -180,10 +274,12 @@
 				CEB9F5762B219941005A338E /* Sources */,
 				CEB9F5772B219941005A338E /* Frameworks */,
 				CEB9F5782B219941005A338E /* Resources */,
+				0E8E26FB2B29FFA600F1B3B5 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0E8E26F92B29FFA600F1B3B5 /* PBXTargetDependency */,
 			);
 			name = PJ2T12_Again12;
 			productName = PJ2T12_Again12;
@@ -200,6 +296,9 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					0E8E26E52B29FFA400F1B3B5 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 					CEB9F5792B219941005A338E = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -219,11 +318,20 @@
 			projectRoot = "";
 			targets = (
 				CEB9F5792B219941005A338E /* PJ2T12_Again12 */,
+				0E8E26E52B29FFA400F1B3B5 /* TodoriWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0E8E26E42B29FFA400F1B3B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E8E26F62B29FFA600F1B3B5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEB9F5782B219941005A338E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,6 +344,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0E8E26E22B29FFA400F1B3B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E8E26EE2B29FFA400F1B3B5 /* TodoriWidgetBundle.swift in Sources */,
+				0E8E26F42B29FFA400F1B3B5 /* AppIntent.swift in Sources */,
+				0E8E26F22B29FFA400F1B3B5 /* TodoriWidget.swift in Sources */,
+				0E8E26FF2B29FFB100F1B3B5 /* Todo+CoreDataClass.swift in Sources */,
+				0E8E26F02B29FFA400F1B3B5 /* TodoriWidgetLiveActivity.swift in Sources */,
+				0E8E27002B29FFB300F1B3B5 /* Todo+CoreDataProperties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEB9F5762B219941005A338E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,7 +389,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0E8E26F92B29FFA600F1B3B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E8E26E52B29FFA400F1B3B5 /* TodoriWidgetExtension */;
+			targetProxy = 0E8E26F82B29FFA600F1B3B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0E8E26FC2B29FFA600F1B3B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TodoriWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TodoriWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again12.TodoriWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0E8E26FD2B29FFA600F1B3B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TodoriWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TodoriWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again12.TodoriWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		CEB9F5862B219944005A338E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -391,6 +574,7 @@
 		CEB9F5892B219944005A338E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -423,6 +607,7 @@
 		CEB9F58A2B219944005A338E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -455,6 +640,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0E8E26FE2B29FFA600F1B3B5 /* Build configuration list for PBXNativeTarget "TodoriWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E8E26FC2B29FFA600F1B3B5 /* Debug */,
+				0E8E26FD2B29FFA600F1B3B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CEB9F5752B219941005A338E /* Build configuration list for PBXProject "PJ2T12_Again12" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
