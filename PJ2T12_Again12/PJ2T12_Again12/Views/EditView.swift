@@ -35,7 +35,7 @@ struct EditView: View {
                         HStack(alignment: .center, spacing: 20) {
                             Spacer()
                             Spacer()
-                            Image(systemName: "airplane")
+                            Image(systemName: selectedTodo.first?.wrappedImage ?? "" )
                                 .font(.title2)
                             Text(selectedTodo.first?.title ?? "Unknown")
                                 .font(.system(size: 25))
