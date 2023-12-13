@@ -14,7 +14,8 @@ struct StatusView: View {
         (doType: "wantTodo", data: ViewMonth.wantTodoMonth),
     ]
     
-    @State var showMedal = false
+    @State var showMedals = false
+    @State var settingsDetent = PresentationDetent.medium
     
     let columns = [
         GridItem(.flexible()),
@@ -70,100 +71,33 @@ struct StatusView: View {
                 HStack {
                     Text("메달")
                     Spacer()
-                
-                }
-                .padding(.bottom, 30.0)
-//                ZStack {
-//                    Button(action: { showMedal = true }) {
-                        LazyVGrid(columns: columns, spacing: 20) {
                     
-                                ZStack {
-                                    Button(action: { showMedal = true }) {
+                }
+                
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(0..<6, id: \.self) {_ in
+                        ZStack {
+                            Button(action: { showMedals = true }) {
                                 Image(systemName: "hare")
                                     .font(.system(size: 20))
                                     .frame(width: 90, height: 90)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
                                 
                             }
-                            
-                            StatusModalView(isShowing: $showMedal)
+                            .sheet(isPresented: $showMedals) {
+                                StatusModalView()
+                                    .presentationDetents( [.medium, .large],
+                                                          selection: $settingsDetent
+                                    )
+                            }
                         }
                         .frame(width: .infinity, height: 150, alignment: .center)
                     }
-                
+                }
             }
         }
     }
 }
-
-
-//struct MedalView: View {
-//    @State var transitionView: Bool = false
-//    var body: some View {
-//        ZStack(alignment: .bottom) {
-//
-//            VStack{
-//                Button("버튼") {
-//                    transitionView.toggle()
-//                }
-//                Spacer()
-//            }
-//
-//            if transitionView {
-//            RoundedRectangle(cornerRadius: 20)
-//                .frame(height: UIScreen.main.bounds.height * 0.5)
-//                .transition(AnyTransition.opacity.animation(.easeInOut))
-//                .animation(.easeIn)
-//            }
-//        }
-//        .ignoresSafeArea(edges: .bottom)
-//    }
-//}
-//    struct MedalView: View {
-//        @Environment(\.presentationMode) var presentation
-//
-//        var body: some View {
-//            VStack {
-//                Text("헌신적인 학습자")
-//                Image(systemName: "hare")
-//                Button(action: {
-//                    presentation.wrappedValue.dismiss()
-//                }) {
-//                    Text("Modal view 닫기").bold()
-//                }
-//                .frame(width: 150, height: 30, alignment: .center)
-//                .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray))
-//                .font(.system(size: 16))
-//                .foregroundColor(Color.white)
-//                .offset(y: UIScreen.main.bounds.height / 4)
-//
-//            }
-//
-//        }
-//    }
-//struct MedalView: View {
-//    @State var isPresented = false
-//
-//    var body: some View {
-//        Button("Show Modal") {
-//            isPresented.toggle()
-//        }
-//        .sheet(isPresented: $isPresented) {
-//            VStack {
-//                Text("This is a modal view")
-//                Button("Dismiss") {
-//                    isPresented.toggle()
-//                }
-//            }
-//            .frame(width: 300, height: 300)
-//            .background(Color.white)
-//            .cornerRadius(10)
-//            .shadow(radius: 5)
-//            .offset(y: UIScreen.main.bounds.height / 2)
-//        }
-//    }
-//}
-
 
 #Preview {
     StatusView()

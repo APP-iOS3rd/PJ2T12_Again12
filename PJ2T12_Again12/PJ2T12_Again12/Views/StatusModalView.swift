@@ -9,31 +9,16 @@ import SwiftUI
 
 struct StatusModalView: View {
     
-    @Binding var isShowing: Bool
-    
     var body: some View {
-        if isShowing {
-            ZStack(alignment: .bottom){
-                Color.black
-                    .opacity(0.3)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        isShowing = false
-                    }
-                VStack{
-                    Text("hello")
-                }
-                .frame(height: 300)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                .transition(.move(edge: .bottom))
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            .ignoresSafeArea()
-            .animation(.easeInOut)
-        }
+        Text("위대한 계획러")
+        Image(systemName: "hare")
+            .font(.system(size: 20))
+            .frame(width: 90, height: 90)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
+        Text("1년동안 모든 계획을 실행한 유저")
     }
 }
+
 
 struct StatusModalView_Previews: PreviewProvider {
     static var previews: some View {
