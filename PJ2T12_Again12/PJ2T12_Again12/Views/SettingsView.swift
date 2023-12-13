@@ -384,6 +384,7 @@ struct QnAView: View {
     }
 }
 
+
 struct WithDrawView: View {
     var body: some View {
         ZStack {
