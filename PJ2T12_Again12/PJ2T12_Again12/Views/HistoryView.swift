@@ -17,12 +17,21 @@ struct HistoryView: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
     }
     
-    @State private var searchTitle: String = ""
+    @State private var searchTitle = ""
     @State private var selectedSegment = 0
     
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
+    
+//    private var filteredtodoList: [Todo] {
+//        guard !searchTitle.isEmpty else {
+//            return Array(todoList)
+//        }
+//        return todoList.filter { todo in
+//            todo.title?.lowercased().contains(searchTitle.lowercased())
+//        }
+//    }
     
     var body: some View {
         
