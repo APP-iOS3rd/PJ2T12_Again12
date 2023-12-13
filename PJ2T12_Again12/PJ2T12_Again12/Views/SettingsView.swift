@@ -104,35 +104,23 @@ struct LoginView: View {
                     kakaoAuthVM.handleKakaoLogin()
                     isLogin = true
                 }, label: {
-                    HStack {
-                        Image(systemName: "message.fill")
-                        Text("카카오 로그인")
-                    }
+                    Image("KakaoLoginImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200, height: 50)
                 })
-                .padding()
-                .background(Color(hex: 0xFEE500))
-                .cornerRadius(10)
                 Button(action: {}, label: {
-                    HStack {
-                        Text("G  ")
-                            .fontWeight(.heavy)
-                        Text("Sign in with Google")
-                    }
+                    Image("ios_light_sq_SU")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 195, height: 50)
                 })
-                .padding()
-                .background(Color(hex: 0xFFFFFF))
-                .cornerRadius(10)
                 Button(action: {}, label: {
-                    HStack {
-                        Text("N  ")
-                            .fontWeight(.heavy)
-                        Text("네이버 로그인")
-                    }
-                    .foregroundStyle(Color(hex: 0xFFFFFF))
+                    Image("NaverLoginImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 215, height: 50)
                 })
-                .padding()
-                .background(Color(hex: 0x03C75A))
-                .cornerRadius(10)
             }
             .padding()
         }

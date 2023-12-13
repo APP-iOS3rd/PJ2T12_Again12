@@ -40,6 +40,7 @@
 		E3A9AC912B2992F0002B0AE6 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = E3A9AC902B2992F0002B0AE6 /* KakaoSDKCert */; };
 		E3A9AC932B2992F0002B0AE6 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = E3A9AC922B2992F0002B0AE6 /* KakaoSDKCertCore */; };
 		E3A9AC952B2992F0002B0AE6 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = E3A9AC942B2992F0002B0AE6 /* KakaoSDKCommon */; };
+		E3D2CDAA2B2A21C300C11851 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E3D2CDA92B2A21C300C11851 /* PopupView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3D2CDAA2B2A21C300C11851 /* PopupView in Frameworks */,
 				E3A9AC932B2992F0002B0AE6 /* KakaoSDKCertCore in Frameworks */,
 				E3A9AC912B2992F0002B0AE6 /* KakaoSDKCert in Frameworks */,
 				E3A9AC8D2B2992F0002B0AE6 /* KakaoSDK in Frameworks */,
@@ -223,6 +225,7 @@
 				E3A9AC902B2992F0002B0AE6 /* KakaoSDKCert */,
 				E3A9AC922B2992F0002B0AE6 /* KakaoSDKCertCore */,
 				E3A9AC942B2992F0002B0AE6 /* KakaoSDKCommon */,
+				E3D2CDA92B2A21C300C11851 /* PopupView */,
 			);
 			productName = PJ2T12_Again12;
 			productReference = CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */;
@@ -254,6 +257,7 @@
 			mainGroup = CEB9F5712B219941005A338E;
 			packageReferences = (
 				E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				E3D2CDA82B2A21C300C11851 /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = CEB9F57B2B219941005A338E /* Products */;
 			projectDirPath = "";
@@ -534,6 +538,14 @@
 				minimumVersion = 2.19.0;
 			};
 		};
+		E3D2CDA82B2A21C300C11851 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -561,6 +573,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKCommon;
+		};
+		E3D2CDA92B2A21C300C11851 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3D2CDA82B2A21C300C11851 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 /* End XCSwiftPackageProductDependency section */
 
