@@ -14,7 +14,7 @@ struct SettingsView: View {
     @State private var profileImage = UIImage()
     
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             List {
                 // 로그인 뷰
                 Section() {
@@ -83,8 +83,6 @@ struct SettingsView: View {
             .background(Color.BackgroundYellow)
             .scrollContentBackground(.hidden)
             .navigationTitle("설정")
-        } detail: {
-            Text("")
         }
         .accentColor(Color.DefaultBlack)
     }
@@ -182,6 +180,7 @@ struct ProfileEditView: View {
     @Binding var profileImage: UIImage
     @Binding var isLogin: Bool
     @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
+    @State private var logoutAlert: Bool = false
     
     var body: some View {
         List {
@@ -239,9 +238,20 @@ struct ProfileEditView: View {
             
             Section(header: Text("계정 관리")) {
                 Button("로그아웃", action: {
-                    kakaoAuthVM.kakaoLogout()
-                    isLogin = false
+                    logoutAlert = true
                 })
+                .alert(isPresented: $logoutAlert) {
+                    let leftButton = Alert.Button.default(Text("로그아웃")) {
+                        isLogin = false
+                        kakaoAuthVM.kakaoLogout()
+                    }
+                    let rightButton = Alert.Button.default(Text("취소")) {
+                        isLogin = true
+                    }
+                    return Alert(title: Text("로그아웃 하시겠습니까?"),
+                                 primaryButton: rightButton,
+                                 secondaryButton: leftButton)
+                }
                 
                 NavigationLink {
                     WithDrawView()

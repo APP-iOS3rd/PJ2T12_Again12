@@ -51,9 +51,9 @@ class KaKaoAuthVM: ObservableObject {
                 }
             }
         }
-        
     }
     
+    // 카카오 앱이 있을경우 -> 어플로 로그인
     func handleLoginWithKakoTalkApp() async -> Bool{
         
         await withCheckedContinuation{ continuation in
@@ -72,6 +72,7 @@ class KaKaoAuthVM: ObservableObject {
         }
     }
     
+    // 카카오 앱이 없을경우 -> 웹뷰로 로그인
     func handleWithKakaoAccount() async -> Bool {
         
         await withCheckedContinuation { continuation in
