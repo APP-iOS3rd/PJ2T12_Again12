@@ -11,7 +11,6 @@ import KakaoSDKAuth
 import KakaoSDKUser
 
 class KaKaoAuthVM: ObservableObject {
-    
     @Published var isLoggedIn : Bool = false
     
     // 버튼에 사용하는 로그인 함수
@@ -19,9 +18,7 @@ class KaKaoAuthVM: ObservableObject {
     func handleKakaoLogin(){
         Task {
             if (UserApi.isKakaoTalkLoginAvailable()) {
-                
                 isLoggedIn = await handleLoginWithKakoTalkApp()
-                
             } else {
                 isLoggedIn = await handleWithKakaoAccount()
             }
@@ -38,6 +35,7 @@ class KaKaoAuthVM: ObservableObject {
         }
     }
     
+    // 카카오 로그아웃 함수
     func handleKakaoLogout() async -> Bool {
         await withCheckedContinuation { continuation in
             UserApi.shared.logout {(error) in
@@ -55,7 +53,6 @@ class KaKaoAuthVM: ObservableObject {
     
     // 카카오 앱이 있을경우 -> 어플로 로그인
     func handleLoginWithKakoTalkApp() async -> Bool{
-        
         await withCheckedContinuation{ continuation in
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
@@ -64,7 +61,6 @@ class KaKaoAuthVM: ObservableObject {
                 }
                 else {
                     print("loginWithKakaoTalk() success.")
-
                     _ = oauthToken
                     continuation.resume(returning: true)
                 }
@@ -74,7 +70,6 @@ class KaKaoAuthVM: ObservableObject {
     
     // 카카오 앱이 없을경우 -> 웹뷰로 로그인
     func handleWithKakaoAccount() async -> Bool {
-        
         await withCheckedContinuation { continuation in
             UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                 if let error = error {
@@ -83,7 +78,6 @@ class KaKaoAuthVM: ObservableObject {
                 }
                 else {
                     print("loginWithKakaoAccount() success.")
-
                     _ = oauthToken
                     continuation.resume(returning: true)
                 }
