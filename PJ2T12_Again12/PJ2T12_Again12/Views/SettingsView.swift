@@ -71,9 +71,7 @@ struct SettingsView: View {
                             .foregroundStyle(Color(hex: 0x432D00))
                     }
                     NavigationLink {
-                        // QnAView() 가 맞음
-                        // EditView() 확인용
-                        EditView()
+                        QnAView()
                     } label: {
                         Text("문의사항")
                             .foregroundStyle(Color(hex: 0x432D00))
