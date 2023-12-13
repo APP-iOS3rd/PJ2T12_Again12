@@ -193,7 +193,6 @@ struct ProfileEditView: View {
     @Binding var nickname: String
     @StateObject private var viewModel = EditViewModel()
     @State private var checkSave = false
-    @State private var openPhoto = false
     @Binding var profileImage: UIImage
     @Binding var isLogin: Bool
     @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
@@ -206,9 +205,6 @@ struct ProfileEditView: View {
                     HStack {
                         Button(action: {
                             viewModel.checkAlbumPermission()
-                            if viewModel.albumPermissionGranted {
-                                self.openPhoto = true
-                            }
                         }) {
                             ZStack {
                                 if !checkSave {
@@ -234,7 +230,7 @@ struct ProfileEditView: View {
                                     .offset(x: 40, y: 40)
                             }
                         }
-                        .sheet(isPresented: $openPhoto) {
+                        .sheet(isPresented: $viewModel.albumPermissionGranted) {
                             ImagePicker(sourceType: .photoLibrary, selectedImage: self.$profileImage)
                         }
                         .padding()
