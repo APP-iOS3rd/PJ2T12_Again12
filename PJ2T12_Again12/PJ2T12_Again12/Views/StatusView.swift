@@ -52,13 +52,10 @@ struct StatusView: View {
                                         BarMark(x: .value("Month", $0.date),
                                                 y: .value("Count", $0.undone))
                                         .foregroundStyle(.gray)
-                                        
                                     }
                                     .foregroundStyle(by: .value("doType", element.doType))
                                     .position(by: .value("doType", element.doType))
-                                    
                                 }
-                                
                             }
                             .chartForegroundStyleScale([
                                 "todo": .pink,
@@ -66,12 +63,10 @@ struct StatusView: View {
                             ])
                             //막대그래프 기존 크기 정하기
                             .frame(width: 500, height: 280, alignment: .center)
+                            .background(Color.white)
+                            .padding(10)
                         }
                         .frame(width: geometry.size.width , height: geometry.size.height)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color(hex: 0xA58B00).opacity(0.32), lineWidth: 2)
-                        )
                     }
                     VStack {
                         Divider()
@@ -79,9 +74,7 @@ struct StatusView: View {
                         HStack {
                             Text("메달")
                             Spacer()
-                            
                         }
-                        
                         LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(0..<6, id: \.self) {_ in
                                 ZStack {
@@ -94,9 +87,7 @@ struct StatusView: View {
                                     }
                                     .sheet(isPresented: $showMedals) {
                                         StatusModalView()
-                                            .presentationDetents( [.height(250), .large],
-                                                                  selection: $settingsDetent
-                                            )
+                                            .presentationDetents( [.height(250), .large], selection: $settingsDetent)
                                     }
                                 }
                                 .frame(width: .infinity, height: 150, alignment: .center)
@@ -104,12 +95,10 @@ struct StatusView: View {
                         }
                     }
                 }
-                
             }
-            
-        }
         }
     }
+}
 
 #Preview {
     StatusView()
