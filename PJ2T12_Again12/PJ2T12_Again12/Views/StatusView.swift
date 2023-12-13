@@ -14,6 +14,10 @@ struct StatusView: View {
         (doType: "wantTodo", data: ViewMonth.wantTodoMonth),
     ]
     
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
+    }
+    
     @State var showMedals = false
     @State var settingsDetent = PresentationDetent.medium
     
@@ -24,80 +28,88 @@ struct StatusView: View {
     ]
     
     var body: some View {
-        VStack {
-            Text("목표 달성도")
-                .font(.largeTitle)
-                .bold()
-            Divider()
-                .background(Color.black)
-            HStack {
-                Text("기록")
-                Spacer()
-            }
-            GeometryReader{ geometry in
-                ScrollView(.horizontal) {
-                    Chart {
-                        // element는 Data
-                        ForEach(Data, id: \.doType) { element in
-                            // $0은 따로 정하지 않아 element.data
-                            ForEach(element.data, id: \.date) {
-                                //todoMonth
-                                BarMark(x: .value("Month", $0.date),
-                                        y: .value("Count", $0.done))
-                                // undone
-                                BarMark(x: .value("Month", $0.date),
-                                        y: .value("Count", $0.undone))
-                                .foregroundStyle(.gray)
+        NavigationView {
+            ZStack {
+                Color(hex: 0xFFFAE1)
+                    .ignoresSafeArea()
+                VStack {
+                    HStack {
+                        Text("기록")
+                            .navigationTitle("나의 투두 기록")
+                        Spacer()
+                    }
+                    GeometryReader{ geometry in
+                        ScrollView(.horizontal) {
+                            Chart {
+                                // element는 Data
+                                ForEach(Data, id: \.doType) { element in
+                                    // $0은 따로 정하지 않아 element.data
+                                    ForEach(element.data, id: \.date) {
+                                        //todoMonth
+                                        BarMark(x: .value("Month", $0.date),
+                                                y: .value("Count", $0.done))
+                                        // undone
+                                        BarMark(x: .value("Month", $0.date),
+                                                y: .value("Count", $0.undone))
+                                        .foregroundStyle(.gray)
+                                        
+                                    }
+                                    .foregroundStyle(by: .value("doType", element.doType))
+                                    .position(by: .value("doType", element.doType))
+                                    
+                                }
                                 
                             }
-                            .foregroundStyle(by: .value("doType", element.doType))
-                            .position(by: .value("doType", element.doType))
+                            .chartForegroundStyleScale([
+                                "todo": .pink,
+                                "wantTodo": .blue
+                            ])
+                            //막대그래프 기존 크기 정하기
+                            .frame(width: 500, height: 280, alignment: .center)
+                        }
+                        .frame(width: geometry.size.width , height: geometry.size.height)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(hex: 0xA58B00).opacity(0.32), lineWidth: 2)
+                        )
+                    }
+                    VStack {
+                        Divider()
+                            .background(Color.black)
+                        HStack {
+                            Text("메달")
+                            Spacer()
                             
                         }
                         
-                    }
-                    .chartForegroundStyleScale([
-                        "todo": .pink,
-                        "wantTodo": .blue
-                    ])
-                    //막대그래프 기존 크기 정하기
-                    .frame(width: 500, height: 280, alignment: .center)
-                }
-                .frame(width: geometry.size.width , height: geometry.size.height)
-            }
-            VStack {
-                Divider()
-                    .background(Color.black)
-                HStack {
-                    Text("메달")
-                    Spacer()
-                    
-                }
-                
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(0..<6, id: \.self) {_ in
-                        ZStack {
-                            Button(action: { showMedals = true }) {
-                                Image(systemName: "hare")
-                                    .font(.system(size: 20))
-                                    .frame(width: 90, height: 90)
-                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
-                                
-                            }
-                            .sheet(isPresented: $showMedals) {
-                                StatusModalView()
-                                    .presentationDetents( [.medium, .large],
-                                                          selection: $settingsDetent
-                                    )
+                        LazyVGrid(columns: columns, spacing: 20) {
+                            ForEach(0..<6, id: \.self) {_ in
+                                ZStack {
+                                    Button(action: { showMedals = true }) {
+                                        Image(systemName: "hare")
+                                            .font(.system(size: 20))
+                                            .frame(width: 90, height: 90)
+                                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
+                                        
+                                    }
+                                    .sheet(isPresented: $showMedals) {
+                                        StatusModalView()
+                                            .presentationDetents( [.height(250), .large],
+                                                                  selection: $settingsDetent
+                                            )
+                                    }
+                                }
+                                .frame(width: .infinity, height: 150, alignment: .center)
                             }
                         }
-                        .frame(width: .infinity, height: 150, alignment: .center)
                     }
                 }
+                
             }
+            
+        }
         }
     }
-}
 
 #Preview {
     StatusView()
