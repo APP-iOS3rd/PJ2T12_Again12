@@ -28,7 +28,7 @@ struct EditView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(hex: 0xFFFAE1)
+                Color.BackgroundYellow
                     .ignoresSafeArea()
                 ScrollView {
                     VStack() {
@@ -42,7 +42,7 @@ struct EditView: View {
                                 .bold()
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.5)
-                                .foregroundColor(Color(hex: 0xB76300))
+                                .foregroundColor(Color.DefaultBlack)
                             Spacer()
                             Button(action: {
                                 showAlert.toggle()
@@ -79,11 +79,12 @@ struct EditView: View {
                                 ZStack {
                                     if !checkSave {
                                         RoundedRectangle(cornerRadius: 12)
+                                            .strokeBorder(Color.DefaultBlack, lineWidth: 1)
                                             .frame(width: 90, height: 90)
-                                            .foregroundColor(Color(red: 0xD9 / 255.0, green: 0xD9 / 255.0, blue: 0xD9 / 255.0))
+
                                         Image(systemName: "camera.circle")
                                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                                            .foregroundColor(.white)
+                                            .foregroundColor(Color.CameraGray)
                                     }
                                 }
                             }
@@ -113,13 +114,14 @@ struct EditView: View {
                                 }
                                 .overlay(
                                     Text("할 일을 마치며 느낀점을 적어주세요")
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(Color.TextDefaultGray)
                                         .opacity(userText.isEmpty ? 1 : 0)
                                 )
                         } else {
                             Text(userText)
                                 .frame(width: 320, height: 250)
                                 .lineSpacing(8)
+                                .foregroundColor(Color.TextDefaultGray)
                                 .background(Color.white)
 
                         }
@@ -141,7 +143,7 @@ struct EditView: View {
                                 .foregroundColor(.white)
                                 .padding()
                                 .frame(width: 170, height: 50)
-                                .background(Color.blue)
+                                .background(Color.TodoButtonBrown)
                                 .cornerRadius(10)
                         }
                         .padding(.top, 60)
@@ -162,7 +164,7 @@ struct EditView: View {
                 }
             }
         }
-        
+        .accentColor(Color.DefaultBlack)
     }
 }
 
