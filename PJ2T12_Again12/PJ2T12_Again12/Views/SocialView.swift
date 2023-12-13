@@ -35,10 +35,11 @@ struct SocialViewIfNotLogin: View {
     let buttonCornerRadius: CGFloat = 10
     
     //Color
-    let loginGuideTextColor: Color = .gray
+    let defaultTextColor: Color = .defaultBlack
+    let loginGuideTextColor: Color = .notLoginGuideText
     let loginButtonTextColor: Color = .white
-    let loginButtonColor: Color = .orange
-    let viewBackground: Color = .yellow
+    let loginButtonColor: Color = .loginButtonBrown
+    let viewBackground: Color = .backgroundYellow
     
     var body: some View {
         VStack {
@@ -46,6 +47,7 @@ struct SocialViewIfNotLogin: View {
                 VStack {
                     HStack {
                         Text("친구")
+                            .foregroundStyle(defaultTextColor)
                             .font(.system(size: titleFontSize, weight: titleFontWeight))
                             .padding(.leading, 20)
                         
@@ -78,7 +80,7 @@ struct SocialViewIfNotLogin: View {
                             socialVM.isLogin = false
                         }
                         
-                        return Alert(title: Text("로그인 하시겠습니까?"), 
+                        return Alert(title: Text("로그인 하시겠습니까?"),
                                      primaryButton: rightButton,
                                      secondaryButton: leftButton)
                     } //alert
@@ -101,8 +103,9 @@ struct SocialViewIfLogin: View {
     let buttonWeight: Font.Weight = .medium
     
     //Color
-    let addFriendButtonColor: Color = .black
-    let viewBackground: Color = .yellow
+    let titleTextColor: Color = .defaultBlack
+    let addFriendButtonColor: Color = .defaultBlack
+    let viewBackground: Color = .backgroundYellow
     
     var body: some View {
         NavigationView {
@@ -113,6 +116,7 @@ struct SocialViewIfLogin: View {
                         HStack {
                             Text("친구")
                                 .font(.system(size: titleFontSize, weight: titleFontWeight))
+                                .foregroundStyle(titleTextColor)
                                 .padding(.leading, 20)
                             
                             Spacer()
@@ -157,11 +161,12 @@ struct myFriendCell: View {
     let verticalStackHeight: CGFloat = 15
     
     //Colors
-    let profileBorderColor: Color = .black
+    let defaultTextColor: Color = .defaultBlack
+    let profileBorderColor: Color = .defaultBlack
     let profileBackgroundColor: Color = .white
-    let todoTotalColor: Color = .gray
-    let todoDoneColor: Color = .orange
-    let viewBackground: Color = .yellow
+    let todoTotalColor: Color = .socialChartGray
+    let todoDoneColor: Color = .socialChartBrown
+    let viewBackground: Color = .backgroundYellow
     
     var body: some View {
         NavigationLink(destination: SocialDetailView(socialVM: socialVM, friend: friend)) {
@@ -182,6 +187,7 @@ struct myFriendCell: View {
                 //친구이름 + 가로그래프 + 투두 개수
                 VStack(alignment: .leading) {
                     Text(friend.name ?? "Error")
+                        .foregroundStyle(defaultTextColor)
                     //가로그래프 + 투두 개수
                     HStack {
                         let todoTotal = socialVM.countTotal(friend)
@@ -203,6 +209,7 @@ struct myFriendCell: View {
                         .frame(width: verticalStackWidth * 6)
                         
                         Text("\(todoDone) / \(todoTotal)")
+                            .foregroundStyle(defaultTextColor)
                     }
                 } //VStack
             } //HStack
