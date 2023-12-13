@@ -63,7 +63,8 @@ struct StatusView: View {
                             ])
                             //막대그래프 기존 크기 정하기
                             .frame(width: 500, height: 280, alignment: .center)
-                            .background(Color.white)
+                            // hexcode를 rgb값으로 변경하여 넣기
+                            .background(Color(red: 255 / 255, green: 254 / 255, blue: 246 / 255))
                             .padding(10)
                         }
                         .frame(width: geometry.size.width , height: geometry.size.height)
