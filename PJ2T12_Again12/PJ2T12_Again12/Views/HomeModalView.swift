@@ -25,9 +25,9 @@ struct HomeModalView: View {
     private let todoGuideFontSize: CGFloat = 15
     private let todoGuideFontWeight: Font.Weight = .medium
     
-    //Colors
-    private let selectedTodoImageColor: Color = .todoModalButton
-    private let selectedWantTodoImageColor: Color = .wanttoModalButton
+    //Colors: wanttoModalButton과 todoModalButton 색상이 반대로 Asset 설정 되어 있어 반대로 사용하고 있습니다.
+    private let selectedTodoImageColor: Color = .wanttoModalButton
+    private let selectedWantTodoImageColor: Color = .todoModalButton
     private let defaultBlack: Color = .defaultBlack
     private let alertBackWhite: Color = .alertBackWhite
     
