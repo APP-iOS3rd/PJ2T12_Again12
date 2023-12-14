@@ -17,6 +17,7 @@ struct EditView: View {
     @State private var userText: String = ""
     @State private var checkSave = false
     @State private var showAlert = false
+    @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
     
     @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
     @Environment(\.dismiss) var dismiss
@@ -36,17 +37,11 @@ struct EditView: View {
                 ScrollView {
                     VStack() {
                         HStack(alignment: .center, spacing: 20) {
-                            Spacer()
-                            Spacer()
-                            Image(systemName: selectedTodo.first?.wrappedImage ?? "" )
-                                .font(.title2)
-                            Text(selectedTodo.first?.title ?? "Unknown")
+                            Label(selectedTodo.first?.title ?? "Todori", systemImage: selectedTodo.first?.image ??  "airplane")
                                 .font(.system(size: 25))
                                 .bold()
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
-                                .foregroundColor(Color.DefaultBlack)
-                            Spacer()
+                                .foregroundColor(Color(hex: 0xB76300))
+
                             Button(action: {
                                 showAlert.toggle()
                             }) {
@@ -124,7 +119,7 @@ struct EditView: View {
                                 )
                         } else {
                             Text(userText)
-                                .frame(width: 320, height: 250)
+                                .frame(maxWidth: 320, minHeight: 250)
                                 .lineSpacing(8)
                                 .foregroundColor(Color.TextDefaultGray)
                                 .background(Color.white)
@@ -142,6 +137,8 @@ struct EditView: View {
                                 }
                             }
                             try? moc.save()
+                            firstWantTodoIt += 1
+                            print(firstWantTodoIt)
                             checkSave.toggle()
                             WidgetCenter.shared.reloadAllTimelines()
                         }) {
@@ -169,6 +166,26 @@ struct EditView: View {
                         }
                     }
                 }
+            }
+            .toolbar {
+                Button {
+                    showAlert.toggle()
+                } label: {
+                    Image(systemName: "trash")
+                }
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("삭제하시겠습니까?"),
+                      message: nil,
+                      primaryButton: .cancel(),
+                      secondaryButton: .destructive(Text("삭제")) {
+                    for todo in selectedTodo {
+                        moc.delete(todo)
+                    }
+                    try? moc.save()
+                    dismiss()
+                }
+                )
             }
         }
         .accentColor(Color.DefaultBlack)
@@ -222,7 +239,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 
 #Preview {
-    EditView(todoId: UUID())
+    NavigationView {
+        EditView(todoId: UUID())
+    }
 }
 
 

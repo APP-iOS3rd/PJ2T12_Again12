@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import UserNotifications
+import PopupView
 
 struct SettingsView: View {
     @State private var totalToggle = true
@@ -14,7 +16,7 @@ struct SettingsView: View {
     @State private var profileImage = UIImage()
     
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             List {
                 // 로그인 뷰
                 Section() {
@@ -23,7 +25,7 @@ struct SettingsView: View {
                             LoginView(isLogin: $isLogin)
                         } label: {
                             Text("\n 로그인을 해서 더 많은 기능을 사용해보세요. \n")
-                                .foregroundStyle(Color.gray)
+                                .foregroundStyle(Color.TextDefaultGray)
                         }
                     } else {
                         NavigationLink {
@@ -33,60 +35,58 @@ struct SettingsView: View {
                         }
                     }
                 }
-                .listRowBackground(Color(hex: 0xFFFEF6))
+                .listRowBackground(Color.AlertBackWhite)
                 
                 Section(header: Text("알림 설정")) {
                     TotalAlarmRow(totalToggle: $totalToggle)
                     MyAlarmRow(totalToggle: $totalToggle)
                     FriendsAlarmRow(totalToggle: $totalToggle)
                 }
-                .listRowBackground(Color(hex: 0xFFFEF6))
+                .listRowBackground(Color.AlertBackWhite)
                 
                 Section(header: Text("테마")) {
                     if !isLogin {
                         Text("로그인 하여 각자의 테마를 만들어 보세요.")
-                            .foregroundStyle(Color.gray)
+                            .foregroundStyle(Color.TextDefaultGray)
                     } else {
                         NavigationLink {
                             ThemeView()
                         } label: {
                             Text("커스텀 테마를 골라보세요.")
-                                .foregroundStyle(Color(hex: 0x432D00))
+                                .foregroundStyle(Color.DefaultBlack)
                         }
                     }
                 }
-                .listRowBackground(Color(hex: 0xFFFEF6))
+                .listRowBackground(Color.AlertBackWhite)
                 
                 Section(header: Text("설정")) {
                     NavigationLink {
                         NoticeView()
                     } label: {
                         Text("공지사항")
-                            .foregroundStyle(Color(hex: 0x432D00))
+                            .foregroundStyle(Color.DefaultBlack)
                     }
                     NavigationLink {
                         SettingDetailView()
                     } label: {
                         Text("정보")
-                            .foregroundStyle(Color(hex: 0x432D00))
+                            .foregroundStyle(Color.DefaultBlack)
                     }
                     NavigationLink {
                         QnAView()
                     } label: {
                         Text("문의사항")
-                            .foregroundStyle(Color(hex: 0x432D00))
+                            .foregroundStyle(Color.DefaultBlack)
                     }
                 }
-                .listRowBackground(Color(hex: 0xFFFEF6))
+                .listRowBackground(Color.AlertBackWhite)
             }
             .listStyle(.grouped)
-            .background(Color(hex: 0xFFFAE1))
+            .background(Color.BackgroundYellow)
             .scrollContentBackground(.hidden)
             .navigationTitle("설정")
-        } detail: {
-            Text("")
         }
-        .accentColor(Color(hex: 0x432D00))
+        .accentColor(Color.DefaultBlack)
     }
 }
 
@@ -95,47 +95,64 @@ struct LoginView: View {
     @State private var ID = ""
     @State private var password = ""
     @Binding var isLogin: Bool
+    @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
+    @State var shouldShowBottomToastMessage : Bool = false
+    
+    func createBottomToastMessage() -> some View {
+        VStack(alignment: .leading){
+            Text("아직 미구현 기능 입니다.\n카카오 로그인을 이용해 주세요.")
+                .font(.system(size: 14))
+                .foregroundColor(Color.white)
+                .padding(10)
+            Divider().opacity(0)
+        }
+        .frame(width: 300)
+        .background(Color(hex: 0x6E6F70))
+        .cornerRadius(15)
+    }
     
     var body: some View {
         ZStack {
-            Color(hex: 0xFFFAE1)
+            Color.BackgroundYellow
                 .ignoresSafeArea()
             VStack(spacing: 20) {
                 Button(action: {
-                    login()
+                    kakaoAuthVM.handleKakaoLogin()
                     isLogin = true
                 }, label: {
-                    HStack {
-                        Image(systemName: "message.fill")
-                        Text("카카오 로그인")
-                    }
+                    Image("KakaoLoginImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200, height: 50)
                 })
-                .padding()
-                .background(Color(hex: 0xFEE500))
-                .cornerRadius(10)
-                Button(action: {}, label: {
-                    HStack {
-                        Text("G  ")
-                            .fontWeight(.heavy)
-                        Text("Sign in with Google")
-                    }
+                Button(action: {
+                    self.shouldShowBottomToastMessage = true
+                }, label: {
+                    Image("GoogleLoginImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 195, height: 50)
                 })
-                .padding()
-                .background(Color(hex: 0xFFFFFF))
-                .cornerRadius(10)
-                Button(action: {}, label: {
-                    HStack {
-                        Text("N  ")
-                            .fontWeight(.heavy)
-                        Text("네이버 로그인")
-                    }
-                    .foregroundStyle(Color.white)
+                Button(action: {
+                    self.shouldShowBottomToastMessage = true
+                }, label: {
+                    Image("NaverLoginImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 215, height: 50)
                 })
-                .padding()
-                .background(Color(hex: 0x03C75A))
-                .cornerRadius(10)
             }
             .padding()
+        }
+        .popup(isPresented: $shouldShowBottomToastMessage) {
+            createBottomToastMessage()
+        } customize: {
+            $0
+                .type(.floater())
+                .position(.center)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.3))
         }
     }
 }
@@ -153,20 +170,20 @@ struct ProfileView: View {
                     .frame(width: 100, height: 100)
                     .scaledToFit()
                     .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.yellow, lineWidth: 1))
+                    .overlay(Circle().stroke(Color.TodoNoTextBrown, lineWidth: 1))
             } else {
                 Image(systemName: "hare.fill")
                     .resizable()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(.pink)
+                    .foregroundColor(Color.SocialChartBrown)
                     .clipShape(Circle())
-                    .overlay(Circle().stroke(Color(hex: 0xE5F5FF), lineWidth: 1))
+                    .overlay(Circle().stroke(Color.TodoNoTextBrown, lineWidth: 1))
             }
             VStack (alignment: .leading) {
                 Text("닉네임: \(nickname)")
                 Text("")
             }
-            .foregroundStyle(Color(hex: 0x432D00))
+            .foregroundStyle(Color.DefaultBlack)
             .padding()
         }
         .padding()
@@ -177,9 +194,10 @@ struct ProfileEditView: View {
     @Binding var nickname: String
     @StateObject private var viewModel = EditViewModel()
     @State private var checkSave = false
-    @State private var openPhoto = false
     @Binding var profileImage: UIImage
     @Binding var isLogin: Bool
+    @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
+    @State private var logoutAlert: Bool = false
     
     var body: some View {
         List {
@@ -188,9 +206,6 @@ struct ProfileEditView: View {
                     HStack {
                         Button(action: {
                             viewModel.checkAlbumPermission()
-                            if viewModel.albumPermissionGranted {
-                                self.openPhoto = true
-                            }
                         }) {
                             ZStack {
                                 if !checkSave {
@@ -200,23 +215,23 @@ struct ProfileEditView: View {
                                             .frame(width: 100, height: 100)
                                             .scaledToFit()
                                             .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color(hex: 0xE5F5FF), lineWidth: 1))
+                                            .overlay(Circle().stroke(Color.TodoNoTextBrown, lineWidth: 1))
                                     } else {
                                         Image(systemName: "hare.fill")
                                             .resizable()
                                             .frame(width: 100, height: 100)
-                                            .foregroundColor(.pink)
+                                            .foregroundColor(Color.SocialChartBrown)
                                             .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color(hex: 0xE5F5FF), lineWidth: 1))
+                                            .overlay(Circle().stroke(Color.TodoNoTextBrown, lineWidth: 1))
                                     }
                                 }
                                 Image(systemName: "camera.circle")
                                     .font(.title)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color.CameraGray)
                                     .offset(x: 40, y: 40)
                             }
                         }
-                        .sheet(isPresented: $openPhoto) {
+                        .sheet(isPresented: $viewModel.albumPermissionGranted) {
                             ImagePicker(sourceType: .photoLibrary, selectedImage: self.$profileImage)
                         }
                         .padding()
@@ -228,35 +243,47 @@ struct ProfileEditView: View {
                         TextField("닉네임을 설정해주세요.", text: $nickname)
                             .textFieldStyle(.roundedBorder)
                     }
-                    .foregroundStyle(Color(hex: 0x432D00))
+                    .foregroundStyle(Color.DefaultBlack)
                     .padding()
                 }
-                .background(Color.white)
+                .background(Color(hex: 0xFFFFFF))
             }
-            .listRowBackground(Color(hex: 0xFFFEF6))
+            .listRowBackground(Color.AlertBackWhite)
             
             Section(header: Text("계정 관리")) {
                 Button("로그아웃", action: {
-                    logout()
-                    isLogin = false
+                    logoutAlert = true
                 })
+                .alert(isPresented: $logoutAlert) {
+                    let leftButton = Alert.Button.default(Text("로그아웃")) {
+                        isLogin = false
+                        kakaoAuthVM.kakaoLogout()
+                    }
+                    let rightButton = Alert.Button.default(Text("취소")) {
+                        isLogin = true
+                    }
+                    return Alert(title: Text("로그아웃 하시겠습니까?"),
+                                 primaryButton: rightButton,
+                                 secondaryButton: leftButton)
+                }
                 
                 NavigationLink {
                     WithDrawView()
                 } label: {
                     Text("회원 탈퇴")
-                        .foregroundStyle(Color(hex: 0x432D00))
+                        .foregroundStyle(Color.DefaultBlack)
                 }
             }
-            .listRowBackground(Color(hex: 0xFFFEF6))
+            .listRowBackground(Color.AlertBackWhite)
             
         }
         .listStyle(.grouped)
-        .background(Color(hex: 0xFFFAE1))
+        .background(Color.BackgroundYellow)
         .scrollContentBackground(.hidden)
     }
 }
 
+// 더미 함수
 func login() {
     print("login")
 }
@@ -277,10 +304,17 @@ struct TotalAlarmRow: View {
         HStack {
             Toggle(isOn: $totalToggle, label: {
                 Text("전체 알림")
-                    .foregroundStyle(Color(hex: 0x432D00))
+                    .foregroundStyle(Color.DefaultBlack)
                 Text("전체 알림을 조절할 수 있습니다.")
             })
-            .tint(Color(hex: 0xFFCD7B))
+            .tint(Color.SocialChartBrown)
+        }
+        .onChange(of: totalToggle) { newValue in
+            if !newValue {
+                let center = UNUserNotificationCenter.current()
+                center.removeAllPendingNotificationRequests()
+                print("successfully remove all pending notifications")
+            }
         }
         
     }
@@ -293,13 +327,23 @@ struct MyAlarmRow: View {
     
     var body: some View {
         HStack {
-            Toggle(isOn: $myToggle, label: {
-                Text("나의 알림")
-                    .foregroundStyle(Color(hex: 0x432D00))
-                Text("나의 일정 알림을 조절할 수 있습니다.")
-            })
-            .disabled(!totalToggle)
-            .tint(Color(hex: 0xFFCD7B))
+            if totalToggle {
+                Toggle(isOn: $myToggle, label: {
+                    Text("나의 알림")
+                        .foregroundStyle(Color.DefaultBlack)
+                    Text("나의 일정 알림을 조절할 수 있습니다.")
+                })
+                .tint(Color.SocialChartBrown)
+            } else {
+                Toggle(isOn: $totalToggle, label: {
+                    Text("나의 알림")
+                        .foregroundStyle(Color.DefaultBlack)
+                    Text("나의 일정 알림을 조절할 수 있습니다.")
+                })
+                .disabled(true)
+                .tint(Color.SocialChartBrown)
+                
+            }
         }
     }
 }
@@ -311,13 +355,22 @@ struct FriendsAlarmRow: View {
     
     var body: some View {
         HStack {
-            Toggle(isOn: $friendsToggle, label: {
-                Text("친구 알림")
-                    .foregroundStyle(Color(hex: 0x432D00))
-                Text("친구들이 보내는 알림을 조절할 수 있습니다.")
-            })
-            .disabled(!totalToggle)
-            .tint(Color(hex: 0xFFCD7B))
+            if totalToggle {
+                Toggle(isOn: $friendsToggle, label: {
+                    Text("친구 알림")
+                        .foregroundStyle(Color.DefaultBlack)
+                    Text("친구들이 보내는 알림을 조절할 수 있습니다.")
+                })
+                .tint(Color.SocialChartBrown)
+            } else {
+                Toggle(isOn: $totalToggle, label: {
+                    Text("친구 알림")
+                        .foregroundStyle(Color.DefaultBlack)
+                    Text("친구들이 보내는 알림을 조절할 수 있습니다.")
+                })
+                .disabled(true)
+                .tint(Color.SocialChartBrown)
+            }
         }
     }
 }
@@ -326,11 +379,11 @@ struct FriendsAlarmRow: View {
 struct ThemeView: View {
     var body: some View {
         ZStack {
-            Color(hex: 0xFFFAE1)
+            Color.BackgroundYellow
                 .ignoresSafeArea()
             VStack {
                 Text("커스텀 테마 기능 지원 예정")
-                    .foregroundStyle(Color.gray)
+                    .foregroundStyle(Color.TextDefaultGray)
             }
         }
     }
@@ -339,7 +392,7 @@ struct ThemeView: View {
 struct NoticeView: View {
     var body: some View {
         ZStack {
-            Color(hex: 0xFFFAE1)
+            Color.BackgroundYellow
                 .ignoresSafeArea()
             VStack {
                 Text("공지 사항 뷰")
@@ -351,7 +404,7 @@ struct NoticeView: View {
 struct SettingDetailView: View {
     var body: some View {
         ZStack {
-            Color(hex: 0xFFFAE1)
+            Color.BackgroundYellow
                 .ignoresSafeArea()
             VStack {
                 Text("어플 정보 뷰")
@@ -363,7 +416,7 @@ struct SettingDetailView: View {
 struct QnAView: View {
     var body: some View {
         ZStack {
-            Color(hex: 0xFFFAE1)
+            Color.BackgroundYellow
                 .ignoresSafeArea()
             VStack {
                 Text("문의사항 뷰")
@@ -372,10 +425,11 @@ struct QnAView: View {
     }
 }
 
+
 struct WithDrawView: View {
     var body: some View {
         ZStack {
-            Color(hex: 0xFFFAE1)
+            Color.BackgroundYellow
                 .ignoresSafeArea()
             VStack {
                 Text("회원탈퇴 뷰")
