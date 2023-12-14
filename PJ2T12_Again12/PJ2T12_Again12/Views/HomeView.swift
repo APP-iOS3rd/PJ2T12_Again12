@@ -24,44 +24,18 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(hex: 0xFFFAE1)
+                Color.backgroundYellow
                     .ignoresSafeArea()
                 ScrollView {
                     // NavBar
                     navigationBar
                     VStack(spacing: 16) {
-                        // 해야하는 투두
-                        VStack {
-                            HStack {
-                                Text("해야하면")
-                                    .bold()
-                                Spacer()
-                            }
-                            VStack {
-                                ForEach(todoList, id: \.self) { todo in
-                                    Button {
-                                        homeVM.selectedTodoId = todo.wrappedId
-                                        homeVM.showingAlert = true
-                                    } label: {
-                                        Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
-                                            .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
-                                    }
-                                }
-                                // 투두 추가 버튼
-                                if todoList.count < 3 {
-                                    addTodoButton(isTodo: true)
-                                }
-                            }
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color(hex: 0xA58B00).opacity(0.32), lineWidth: 2)
-                            )
-                        }
                         // 하고싶은 투두
                         VStack {
                             HStack {
                                 Text("하고싶으면")
+                                    .font(.system(size: 17))
+                                    .foregroundStyle(.defaultBlack)
                                     .bold()
                                 Spacer()
                             }
@@ -72,7 +46,7 @@ struct HomeView: View {
                                         homeVM.showingAlert = true
                                     } label: {
                                         Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
-                                            .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                            .modifier(WantTodoCellModifier(status: todo.status))
                                     }
                                 }
                                 // 투두 추가 버튼
@@ -83,7 +57,37 @@ struct HomeView: View {
                             .padding()
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color(hex: 0xA58B00).opacity(0.32), lineWidth: 2)
+                                    .stroke(Color.BorderBrown, lineWidth: 2)
+                            )
+                        }
+                        // 해야하는 투두
+                        VStack {
+                            HStack {
+                                Text("해야하면")
+                                    .font(.system(size: 17))
+                                    .bold()
+                                    .foregroundStyle(.defaultBlack)
+                                Spacer()
+                            }
+                            VStack {
+                                ForEach(todoList, id: \.self) { todo in
+                                    Button {
+                                        homeVM.selectedTodoId = todo.wrappedId
+                                        homeVM.showingAlert = true
+                                    } label: {
+                                        Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
+                                            .modifier(TodoCellModifier(status: todo.status))
+                                    }
+                                }
+                                // 투두 추가 버튼
+                                if todoList.count < 3 {
+                                    addTodoButton(isTodo: true)
+                                }
+                            }
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.BorderBrown, lineWidth: 2)
                             )
                         }
                     }
@@ -93,12 +97,13 @@ struct HomeView: View {
                     HomeModalView(todoId: homeVM.selectedTodoId, homeVM: homeVM)
                 }
             }
-            .alert("일정을 달성 하셨나요?", isPresented: $homeVM.showingAlert) {
-                Button("제목 수정") {
+            .alert("투두를 달성 하셨나요?", isPresented: $homeVM.showingAlert) {
+                Button("투두 수정") {
                     // HomeModalView 제목 수정
                     homeVM.showingModalAlert = true
                 }
-                NavigationLink("소감 작성") {
+                .foregroundStyle(.brown)
+                NavigationLink("투두 완료") {
                     EditView(todoId: homeVM.selectedTodoId)
                 }
             }
@@ -110,7 +115,7 @@ struct HomeView: View {
     var navigationBar: some View {
         HStack {
             Text("yyyy.MM".stringFromDate(now: Date.now))
-                .foregroundStyle(Color(hex: 0x432D00))
+                .foregroundStyle(Color.DefaultBlack)
                 .font(.largeTitle)
                 .fontWeight(.medium)
             Spacer()
@@ -119,7 +124,7 @@ struct HomeView: View {
             } label: {
                 Image(systemName: "doc.text")
                     .font(.title)
-                    .foregroundStyle(Color(hex: 0x432D00))
+                    .foregroundStyle(Color.DefaultBlack)
             }
         }
         .padding(.bottom, 4)
@@ -137,31 +142,49 @@ struct HomeView: View {
     }
 }
 
+// MARK: - Modifiers
+
 struct TodoCellModifier: ViewModifier {
     let status: Bool
-    let hexCode: UInt
     func body(content: Content) -> some View {
         content
             .padding()
             .bold()
-            .foregroundColor(status ? .white : Color(hex: hexCode))
+            .foregroundColor(status ? Color(hex: 0xFFFAF4) : .todoNoTextBrown)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(status ? Color(hex: hexCode, alpha: 0.4) : .white)
+                    .fill(status ? .todoButtonBrown : .white)
             )
     }
 }
+
+struct WantTodoCellModifier: ViewModifier {
+    let status: Bool
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .bold()
+            .foregroundColor(status ? Color(hex: 0xFFFADE) : .wanttoNoTextBrown)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(status ? .wanttoYesButtonBrown : .white)
+            )
+    }
+}
+
 
 struct AddCellModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding()
-            .foregroundStyle(.black)
+            .foregroundStyle(.defaultBlack)
+            .fontWeight(.heavy)
             .frame(maxWidth: .infinity, alignment: .center)
             .background(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color.white.opacity(0.6))
+                    .fill(.newTodoButtonBrown)
             )
             .padding(.top, 32)
     }
@@ -170,3 +193,4 @@ struct AddCellModifier: ViewModifier {
 #Preview {
     HomeView()
 }
+

@@ -105,7 +105,7 @@ struct SocialDetailView: View {
                                 } else {
                                     ForEach(todoList) { todo in
                                         Text(todo.title)
-                                            .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                            .modifier(TodoCellModifier(status: todo.status))
                                     }
                                 }
                             } else {
@@ -143,7 +143,7 @@ struct SocialDetailView: View {
                                 } else {
                                     ForEach(wantTodoList) { wantTodo in
                                         Text(wantTodo.title)
-                                            .modifier(TodoCellModifier(status: wantTodo.status, hexCode: 0xB76300))
+                                            .modifier(WantTodoCellModifier(status: wantTodo.status))
                                     }
                                 }
                             } else {
