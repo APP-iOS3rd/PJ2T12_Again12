@@ -8,10 +8,17 @@ import Foundation
 import SwiftUI
 import Charts
 
+
 struct StatusView: View {
-    let Data = [
-        (doType: "todo", data: ViewMonth.todoMonth),
-        (doType: "wantTodo", data: ViewMonth.wantTodoMonth),
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
+    
+    @State var Data = [
+//        DataType(doType: "todo", data: [TodoOverView(date: 1, done: 1, undone: 1)]),
+//        DataType(doType: "wantTodo", data: [TodoOverView(date: 1, done: 1, undone: 1)])
+
+        DataType(doType: "todo", data: TodoOverView.todoMonth),
+        DataType(doType: "wantTodo", data: TodoOverView.wantTodoMonth)
     ]
     
     @State var showMedal = false
@@ -23,75 +30,95 @@ struct StatusView: View {
     ]
     
     var body: some View {
-        VStack {
-            Text("목표 달성도")
-                .font(.largeTitle)
-                .bold()
-            Divider()
-                .background(Color.black)
-            HStack {
-                Text("기록")
-                Spacer()
-            }
-            GeometryReader{ geometry in
-                ScrollView(.horizontal) {
-                    Chart {
-                        // element는 Data
-                        ForEach(Data, id: \.doType) { element in
-                            // $0은 따로 정하지 않아 element.data
-                            ForEach(element.data, id: \.date) {
-                                //todoMonth
-                                BarMark(x: .value("Month", $0.date),
-                                        y: .value("Count", $0.done))
-                                // undone
-                                BarMark(x: .value("Month", $0.date),
-                                        y: .value("Count", $0.undone))
-                                .foregroundStyle(.gray)
-                                
-                            }
-                            .foregroundStyle(by: .value("doType", element.doType))
-                            .position(by: .value("doType", element.doType))
-                            
-                        }
-                        
-                    }
-                    .chartForegroundStyleScale([
-                        "todo": .pink,
-                        "wantTodo": .blue
-                    ])
-                    //막대그래프 기존 크기 정하기
-                    .frame(width: 500, height: 280, alignment: .center)
-                }
-                .frame(width: geometry.size.width , height: geometry.size.height)
-            }
+        NavigationView {
             VStack {
-                Divider()
-                    .background(Color.black)
                 HStack {
-                    Text("메달")
+                    Text("기록")
                     Spacer()
-                
                 }
-                .padding(.bottom, 30.0)
-//                ZStack {
-//                    Button(action: { showMedal = true }) {
-                        LazyVGrid(columns: columns, spacing: 20) {
-                    
-                                ZStack {
-                                    Button(action: { showMedal = true }) {
-                                Image(systemName: "hare")
-                                    .font(.system(size: 20))
-                                    .frame(width: 90, height: 90)
-                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
-                                
+                GeometryReader{ geometry in
+                    ScrollView(.horizontal) {
+                        Chart {
+                            // element는 Data
+                            ForEach(Data, id: \.doType) { element in
+                                // $0은 따로 정하지 않아 element.data
+                                ForEach(element.data, id: \.date) {
+                                    //todoMonth
+                                    BarMark(x: .value("Month", "\($0.date)월"),
+                                            y: .value("Count", $0.done))
+                                    // undone
+                                    BarMark(x: .value("Month", "\($0.date)월"),
+                                            y: .value("Count", $0.undone))
+                                    .foregroundStyle(.gray)
+                                    
+                                }
+                                .foregroundStyle(by: .value("doType", element.doType))
+                                .position(by: .value("doType", element.doType))
                             }
-                            
-                            StatusModalView(isShowing: $showMedal)
                         }
-                        .frame(width: .infinity, height: 150, alignment: .center)
+                        .chartForegroundStyleScale([
+                            "todo": .yellow,
+                            "wantTodo": .brown
+                        ])
+                        //막대그래프 기존 크기 정하기
+                        .frame(width: 500, height: 280, alignment: .center)
                     }
-                
+                    .frame(width: geometry.size.width , height: geometry.size.height)
+                }
+                VStack {
+                    Divider()
+                        .background(Color.black)
+                    HStack {
+                        Text("메달")
+                        Spacer()
+                    
+                    }
+                    .padding(.bottom, 30.0)
+    //                ZStack {
+    //                    Button(action: { showMedal = true }) {
+                            LazyVGrid(columns: columns, spacing: 20) {
+                        
+                                    ZStack {
+                                        Button(action: { showMedal = true }) {
+                                    Image(systemName: "hare")
+                                        .font(.system(size: 20))
+                                        .frame(width: 90, height: 90)
+                                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
+                                    
+                                }
+                                
+                                StatusModalView(isShowing: $showMedal)
+                            }
+                            .frame(width: .infinity, height: 150, alignment: .center)
+                        }
+                    
+                }
             }
+            .navigationTitle("나의 투두 기록")
+            .onAppear  {
+//                groupTodoByMonth(todoList: todoList, index: 0)
+//                groupTodoByMonth(todoList: wantTodoList, index: 1)
+            }
+        }
+    }
+    func groupTodoByMonth(todoList: FetchedResults<Todo>, index: Int) {
+        let groupdByMonth = Dictionary(grouping: todoList) { todo in
+            return Calendar.current.component(.month, from: todo.wrappedDate)
+        }
+        
+        // todoMonth
+        var todoOverViews: [TodoOverView] = []
+
+        for (month, todos) in groupdByMonth {
+            let doneCount = todos.filter { $0.status == true }.count
+            let undoneCount = todos.filter { $0.status == false }.count
+            let todoOverView = TodoOverView(date: month, done: doneCount, undone: undoneCount)
+            todoOverViews.append(todoOverView)
+        }
+        let type = (index == 0) ? "Todo" : "WantTodo"
+        Data[index].data = todoOverViews.sorted { $0.date < $1.date }
+        for todoOverView in todoOverViews {
+            print("[\(type)] Month: \(todoOverView.date), Done: \(todoOverView.done), Undone: \(todoOverView.undone)")
         }
     }
 }
@@ -163,7 +190,6 @@ struct StatusView: View {
 //        }
 //    }
 //}
-
 
 #Preview {
     StatusView()

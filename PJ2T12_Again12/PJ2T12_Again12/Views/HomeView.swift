@@ -9,10 +9,17 @@ import SwiftUI
 
 // TODO: 이모티콘에 대한 고민 나눠보기
 struct HomeView: View {
+    
     @StateObject private var homeVM = HomeViewModel()
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.date)],
+        predicate: NSPredicate(format: "isTodo == true AND date >= %@ AND date <= %@", Calendar.current.startOfMonth(for: Date.now) as CVarArg, Calendar.current.endOfMonth(for: Date.now) as CVarArg)
+    ) var todoList: FetchedResults<Todo>
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.date)],
+        predicate: NSPredicate(format: "isTodo == false AND date >= %@ AND date <= %@", Calendar.current.startOfMonth(for: Date.now) as CVarArg, Calendar.current.endOfMonth(for: Date.now) as CVarArg)
+    ) var wantTodoList: FetchedResults<Todo>
     
     var body: some View {
         NavigationStack {

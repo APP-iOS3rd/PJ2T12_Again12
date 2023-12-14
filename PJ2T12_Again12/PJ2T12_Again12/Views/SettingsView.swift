@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct SettingsView: View {
     @State private var totalToggle = true
@@ -281,6 +282,13 @@ struct TotalAlarmRow: View {
                 Text("전체 알림을 조절할 수 있습니다.")
             })
             .tint(Color(hex: 0xFFCD7B))
+        }
+        .onChange(of: totalToggle) { newValue in
+            if !newValue {
+                let center = UNUserNotificationCenter.current()
+                center.removeAllPendingNotificationRequests()
+                print("successfully remove all pending notifications")
+            }
         }
         
     }
