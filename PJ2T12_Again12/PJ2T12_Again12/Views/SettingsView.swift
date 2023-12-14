@@ -14,22 +14,23 @@ struct SettingsView: View {
     @State private var isLogin = false
     @State private var nickname = "투두리"
     @State private var profileImage = UIImage()
+    @StateObject var kaKaoAuthVM: KaKaoAuthVM = KaKaoAuthVM()
     
     var body: some View {
         NavigationStack {
             List {
                 // 로그인 뷰
                 Section() {
-                    if !isLogin {
+                    if !kaKaoAuthVM.isLoggedIn {
                         NavigationLink {
-                            LoginView(isLogin: $isLogin)
+                            LoginView()
                         } label: {
                             Text("\n 로그인을 해서 더 많은 기능을 사용해보세요. \n")
                                 .foregroundStyle(Color.TextDefaultGray)
                         }
                     } else {
                         NavigationLink {
-                            ProfileEditView(nickname: $nickname, profileImage: $profileImage, isLogin: $isLogin)
+                            ProfileEditView(nickname: $nickname, profileImage: $profileImage)
                         } label: {
                             ProfileView(nickname: $nickname, profileImage: $profileImage)
                         }
@@ -94,7 +95,6 @@ struct SettingsView: View {
 struct LoginView: View {
     @State private var ID = ""
     @State private var password = ""
-    @Binding var isLogin: Bool
     @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
     @State var shouldShowBottomToastMessage : Bool = false
     
@@ -118,7 +118,6 @@ struct LoginView: View {
             VStack(spacing: 20) {
                 Button(action: {
                     kakaoAuthVM.handleKakaoLogin()
-                    isLogin = true
                 }, label: {
                     Image("KakaoLoginImage")
                         .resizable()
@@ -195,7 +194,6 @@ struct ProfileEditView: View {
     @StateObject private var viewModel = EditViewModel()
     @State private var checkSave = false
     @Binding var profileImage: UIImage
-    @Binding var isLogin: Bool
     @StateObject var kakaoAuthVM : KaKaoAuthVM = KaKaoAuthVM()
     @State private var logoutAlert: Bool = false
     
@@ -256,11 +254,9 @@ struct ProfileEditView: View {
                 })
                 .alert(isPresented: $logoutAlert) {
                     let leftButton = Alert.Button.default(Text("로그아웃")) {
-                        isLogin = false
                         kakaoAuthVM.kakaoLogout()
                     }
                     let rightButton = Alert.Button.default(Text("취소")) {
-                        isLogin = true
                     }
                     return Alert(title: Text("로그아웃 하시겠습니까?"),
                                  primaryButton: rightButton,
