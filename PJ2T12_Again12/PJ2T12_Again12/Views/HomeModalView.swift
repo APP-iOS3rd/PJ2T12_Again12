@@ -107,7 +107,10 @@ struct HomeModalView: View {
 //                            createDummyTodo(month: 11)
 //                            createDummyTodo(month: 10)
 //                            createDummyTodo(month: 9)
-                        } else {
+//                            createDummyTodo(month: 8)
+//                            createDummyTodo(month: 7)
+//                            createDummyTodo(month: 6)
+                        } else {    
                             selectedTodo[0].title = homeVM.title
                             selectedTodo[0].image = homeVM.selectedImage
                         }
@@ -172,24 +175,24 @@ extension HomeModalView {
         
         addNotification(todo: todo)
     }
-//    func createDummyTodo(month: Int) {
-//        for _ in 0...2 {
-//            var dateComponents = DateComponents()
-//            dateComponents.year = 2023
-//            dateComponents.month = month
-//            let todo = Todo(context: moc)
-//            todo.title = homeVM.title
-//            todo.date = Calendar.current.date(from: dateComponents)
-//            todo.isTodo = homeVM.isTodo
-//            todo.review = ""
-//            todo.status = Bool.random()
-//            todo.image = homeVM.selectedImage
-//            todo.isSaved = false
-//            todo.id = UUID()
-//            todo.reviewImage = nil
-//        }
-//
-//    }
+    func createDummyTodo(month: Int) {
+        for _ in 0...2 {
+            var dateComponents = DateComponents()
+            dateComponents.year = 2023
+            dateComponents.month = month
+            let todo = Todo(context: moc)
+            todo.title = homeVM.title
+            todo.date = Calendar.current.date(from: dateComponents)
+            todo.isTodo = Bool.random()
+            todo.review = ""
+            todo.status = Bool.random()
+            todo.image = homeVM.selectedImage
+            todo.isSaved = false
+            todo.id = UUID()
+            todo.reviewImage = nil
+        }
+
+    }
     func addNotification(todo: Todo) {
         let center = UNUserNotificationCenter.current()
         let addRequest = {

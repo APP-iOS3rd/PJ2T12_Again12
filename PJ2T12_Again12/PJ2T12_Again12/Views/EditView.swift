@@ -17,7 +17,7 @@ struct EditView: View {
     @State private var userText: String = ""
     @State private var checkSave = false
     @State private var showAlert = false
-    @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
+    @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = 0
     
     @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
     @Environment(\.dismiss) var dismiss
@@ -41,30 +41,6 @@ struct EditView: View {
                                 .font(.system(size: 25))
                                 .bold()
                                 .foregroundColor(Color(hex: 0xB76300))
-
-                            Button(action: {
-                                showAlert.toggle()
-                            }) {
-                                Image(systemName: "trash")
-                                    .font(.title2)
-                                    .opacity(checkSave ? 1.0 : 0 )
-                            }
-                            .disabled(!checkSave)
-                            .alert(isPresented: $showAlert) {
-                                Alert(title: Text("삭제하시겠습니까?"),
-                                      message: nil,
-                                      primaryButton: .cancel(),
-                                      secondaryButton: .destructive(Text("삭제")) {
-                                    for todo in selectedTodo {
-                                        moc.delete(todo)
-                                    }
-                                    try? moc.save()
-                                    dismiss()
-                                    WidgetCenter.shared.reloadAllTimelines()
-                                }
-                                )
-                            }
-                            Spacer()
                         }
                         .padding(.bottom, 20)
                         

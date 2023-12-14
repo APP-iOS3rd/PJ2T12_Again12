@@ -68,30 +68,30 @@ struct DataType {
 //
 extension TodoOverView {
         static let wantTodoMonth: [TodoOverView] = [
-            .init(date: 1, done: 1, undone: 2),
-            .init(date: 2, done: 1, undone: 2),
+            .init(date: 1, done: 0, undone: 2),
+            .init(date: 2, done: 1, undone: 0),
             .init(date: 3, done: 1, undone: 2),
-            .init(date: 4, done: 1, undone: 2),
-            .init(date: 5, done: 2, undone: 1),
-            .init(date: 6, done: 2, undone: 1),
-            .init(date: 7, done: 1, undone: 2),
-            .init(date: 8, done: 1, undone: 2),
+            .init(date: 4, done: 1, undone: 1),
+            .init(date: 5, done: 2, undone: 0),
+            .init(date: 6, done: 1, undone: 1),
+            .init(date: 7, done: 0, undone: 1),
+            .init(date: 8, done: 1, undone: 1),
             .init(date: 9, done: 1, undone: 2),
-            .init(date: 11, done: 1, undone: 2),
-            .init(date: 12, done: 3, undone: 0)
+            .init(date: 11, done: 0, undone: 2),
+            .init(date: 12, done: 2, undone: 1)
         ]
         
         static let todoMonth: [TodoOverView] = [
-            .init(date: 1, done: 3, undone: 0),
-            .init(date: 2, done: 3, undone: 0),
-            .init(date: 3, done: 1, undone: 2),
-            .init(date: 4, done: 1, undone: 2),
-            .init(date: 5, done: 1, undone: 2),
-            .init(date: 6, done: 1, undone: 2),
-            .init(date: 7, done: 1, undone: 2),
+            .init(date: 1, done: 1, undone: 1),
+            .init(date: 2, done: 2, undone: 0),
+            .init(date: 3, done: 0, undone: 1),
+            .init(date: 4, done: 1, undone: 1),
+            .init(date: 5, done: 0, undone: 3),
+            .init(date: 6, done: 1, undone: 1),
+            .init(date: 7, done: 0, undone: 2),
             .init(date: 8, done: 1, undone: 2),
-            .init(date: 9, done: 1, undone: 2),
-            .init(date: 10, done: 1, undone: 2),
+            .init(date: 9, done: 3, undone: 0),
+            .init(date: 10, done: 1, undone: 1),
             .init(date: 11, done: 2, undone: 1)
         ]
 
