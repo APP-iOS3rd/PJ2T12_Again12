@@ -8,10 +8,17 @@ import Foundation
 import SwiftUI
 import Charts
 
+
 struct StatusView: View {
-    let Data = [
-        (doType: "todo", data: ViewMonth.todoMonth),
-        (doType: "wantTodo", data: ViewMonth.wantTodoMonth),
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
+    
+    @State var Data = [
+//        DataType(doType: "todo", data: [TodoOverView(date: 1, done: 1, undone: 1)]),
+//        DataType(doType: "wantTodo", data: [TodoOverView(date: 1, done: 1, undone: 1)])
+
+        DataType(doType: "todo", data: TodoOverView.todoMonth),
+        DataType(doType: "wantTodo", data: TodoOverView.wantTodoMonth)
     ]
     
     @State var showMedals = false
@@ -108,11 +115,35 @@ struct StatusView: View {
                     }
                 }
             }
+            .navigationTitle("나의 투두 기록")
+            .onAppear  {
+//                groupTodoByMonth(todoList: todoList, index: 0)
+//                groupTodoByMonth(todoList: wantTodoList, index: 1)
+            }
+        }
+    }
+    func groupTodoByMonth(todoList: FetchedResults<Todo>, index: Int) {
+        let groupdByMonth = Dictionary(grouping: todoList) { todo in
+            return Calendar.current.component(.month, from: todo.wrappedDate)
+        }
+        
+        // todoMonth
+        var todoOverViews: [TodoOverView] = []
+
+        for (month, todos) in groupdByMonth {
+            let doneCount = todos.filter { $0.status == true }.count
+            let undoneCount = todos.filter { $0.status == false }.count
+            let todoOverView = TodoOverView(date: month, done: doneCount, undone: undoneCount)
+            todoOverViews.append(todoOverView)
+        }
+        let type = (index == 0) ? "Todo" : "WantTodo"
+        Data[index].data = todoOverViews.sorted { $0.date < $1.date }
+        for todoOverView in todoOverViews {
+            print("[\(type)] Month: \(todoOverView.date), Done: \(todoOverView.done), Undone: \(todoOverView.undone)")
         }
     }
     
 }
-
 
 #Preview {
     StatusView()

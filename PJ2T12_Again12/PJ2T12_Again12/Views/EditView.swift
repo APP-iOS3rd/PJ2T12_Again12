@@ -34,38 +34,10 @@ struct EditView: View {
                 ScrollView {
                     VStack() {
                         HStack(alignment: .center, spacing: 20) {
-                            Spacer()
-                            Spacer()
-                            Image(systemName: "airplane")
-                                .font(.title2)
-                            Text(selectedTodo.first?.title ?? "Unknown")
+                            Label(selectedTodo.first?.title ?? "Todori", systemImage: selectedTodo.first?.image ??  "airplane")
                                 .font(.system(size: 25))
                                 .bold()
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
                                 .foregroundColor(Color(hex: 0xB76300))
-                            Spacer()
-                            Button(action: {
-                                showAlert.toggle()
-                            }) {
-                                Image(systemName: "trash")
-                                    .font(.title2)
-                                    .opacity(checkSave ? 1.0 : 0 )
-                            }
-                            .alert(isPresented: $showAlert) {
-                                Alert(title: Text("삭제하시겠습니까?"),
-                                      message: nil,
-                                      primaryButton: .cancel(),
-                                      secondaryButton: .destructive(Text("삭제")) {
-                                    for todo in selectedTodo {
-                                        moc.delete(todo)
-                                    }
-                                    try? moc.save()
-                                    dismiss()
-                                }
-                                )
-                            }
-                            Spacer()
                         }
                         .padding(.bottom, 20)
                         
@@ -118,7 +90,7 @@ struct EditView: View {
                                 )
                         } else {
                             Text(userText)
-                                .frame(width: 320, height: 250)
+                                .frame(maxWidth: 320, minHeight: 250)
                                 .lineSpacing(8)
                                 .background(Color.white)
 
@@ -162,6 +134,26 @@ struct EditView: View {
                         }
                     }
                 }
+            }
+            .toolbar {
+                Button {
+                    showAlert.toggle()
+                } label: {
+                    Image(systemName: "trash")
+                }
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("삭제하시겠습니까?"),
+                      message: nil,
+                      primaryButton: .cancel(),
+                      secondaryButton: .destructive(Text("삭제")) {
+                    for todo in selectedTodo {
+                        moc.delete(todo)
+                    }
+                    try? moc.save()
+                    dismiss()
+                }
+                )
             }
         }
         
@@ -215,7 +207,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 
 #Preview {
-    EditView(todoId: UUID())
+    NavigationView {
+        EditView(todoId: UUID())
+    }
 }
 
 

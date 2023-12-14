@@ -47,40 +47,52 @@ struct Medal: Hashable {
     var count: Int
 }
 
-struct ViewMonth: Identifiable {
-        let id = UUID()
-        let date: String
-        let done: Int
-        let undone: Int
-    }
-    
-extension ViewMonth {
-        static let wantTodoMonth: [ViewMonth] = [
-            .init(date: "1월", done: 1, undone: 2),
-            .init(date: "2월", done: 1, undone: 2),
-            .init(date: "3월", done: 1, undone: 2),
-            .init(date: "4월", done: 1, undone: 2),
-            .init(date: "5월", done: 2, undone: 1),
-            .init(date: "6월", done: 2, undone: 1),
-            .init(date: "7월", done: 1, undone: 2),
-            .init(date: "8월", done: 1, undone: 2),
-            .init(date: "9월", done: 1, undone: 2),
-            .init(date: "10월", done: 1, undone: 2),
-            .init(date: "11월", done: 3, undone: 0)
+//struct ViewMonth: Identifiable {
+//        let id = UUID()
+//        let date: String
+//        let done: Int
+//        let undone: Int
+//}
+
+struct TodoOverView: Identifiable {
+    let id =  UUID()
+    let date: Int
+    let done: Int
+    let undone: Int
+}
+
+struct DataType {
+    var doType: String
+    var data: [TodoOverView]
+}
+//
+extension TodoOverView {
+        static let wantTodoMonth: [TodoOverView] = [
+            .init(date: 1, done: 1, undone: 2),
+            .init(date: 2, done: 1, undone: 2),
+            .init(date: 3, done: 1, undone: 2),
+            .init(date: 4, done: 1, undone: 2),
+            .init(date: 5, done: 2, undone: 1),
+            .init(date: 6, done: 2, undone: 1),
+            .init(date: 7, done: 1, undone: 2),
+            .init(date: 8, done: 1, undone: 2),
+            .init(date: 9, done: 1, undone: 2),
+            .init(date: 11, done: 1, undone: 2),
+            .init(date: 12, done: 3, undone: 0)
         ]
         
-        static let todoMonth: [ViewMonth] = [
-            .init(date: "1월", done: 3, undone: 0),
-            .init(date: "2월", done: 3, undone: 0),
-            .init(date: "3월", done: 1, undone: 2),
-            .init(date: "4월", done: 1, undone: 2),
-            .init(date: "5월", done: 1, undone: 2),
-            .init(date: "6월", done: 1, undone: 2),
-            .init(date: "7월", done: 1, undone: 2),
-            .init(date: "8월", done: 1, undone: 2),
-            .init(date: "9월", done: 1, undone: 2),
-            .init(date: "10월", done: 1, undone: 2),
-            .init(date: "11월", done: 2, undone: 1)
+        static let todoMonth: [TodoOverView] = [
+            .init(date: 1, done: 3, undone: 0),
+            .init(date: 2, done: 3, undone: 0),
+            .init(date: 3, done: 1, undone: 2),
+            .init(date: 4, done: 1, undone: 2),
+            .init(date: 5, done: 1, undone: 2),
+            .init(date: 6, done: 1, undone: 2),
+            .init(date: 7, done: 1, undone: 2),
+            .init(date: 8, done: 1, undone: 2),
+            .init(date: 9, done: 1, undone: 2),
+            .init(date: 10, done: 1, undone: 2),
+            .init(date: 11, done: 2, undone: 1)
         ]
 
     }

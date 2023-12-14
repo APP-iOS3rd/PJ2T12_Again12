@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 import PopupView
 
 struct SettingsView: View {
@@ -307,6 +308,13 @@ struct TotalAlarmRow: View {
                 Text("전체 알림을 조절할 수 있습니다.")
             })
             .tint(Color.SocialChartBrown)
+        }
+        .onChange(of: totalToggle) { newValue in
+            if !newValue {
+                let center = UNUserNotificationCenter.current()
+                center.removeAllPendingNotificationRequests()
+                print("successfully remove all pending notifications")
+            }
         }
         
     }

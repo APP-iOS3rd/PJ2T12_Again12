@@ -63,7 +63,7 @@ struct HistoryView: View {
                                     }
                                 }
                                 // Color.WanttoNoTextBrown
-                                .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                .modifier(TodoCellModifier(status: todo.status))
                             })
                         }
                         ForEach(wantTodoList) { todo in
@@ -79,7 +79,7 @@ struct HistoryView: View {
                                     }
                                 }
                                 // Color.TodoNoTextBrown
-                                .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                .modifier(WantTodoCellModifier(status: todo.status))
                             })
                         }
                     }
@@ -100,7 +100,7 @@ struct HistoryView: View {
                                     }
                                 }
                                 // Color.WanttoNoTextBrown
-                                .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB79800))
+                                .modifier(TodoCellModifier(status: todo.status))
                             })
                         }
                     }
@@ -121,7 +121,7 @@ struct HistoryView: View {
                                     }
                                 }
                                 // Color.TodoNoTextBrown
-                                .modifier(TodoCellModifier(status: todo.status, hexCode: 0xB76300))
+                                .modifier(WantTodoCellModifier(status: todo.status))
                             })
                         }
                     }
