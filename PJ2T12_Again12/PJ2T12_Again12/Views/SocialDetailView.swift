@@ -27,8 +27,8 @@ struct SocialDetailView: View {
     let viewbackgroundColor: Color = Color(hex: 0xFFFAE1)
     let todoriBlack: Color = Color(hex: 0x432D00)
     let profileBackgroundColor: Color = .white
-    let cheerButtonColor: Color = Color(hex: 0xB79800)
-    let hurryButtonColor: Color = Color(hex: 0xB76300)
+    let cheerButtonColor: Color = .todoModalButton
+    let hurryButtonColor: Color = .wanttoModalButton
     let noTodoriGuideTextColor: Color = .gray
     let todoListGroupBorderColor: Color = Color(hex: 0xA58B00)
     let medalBackgroundColor: Color = .white
