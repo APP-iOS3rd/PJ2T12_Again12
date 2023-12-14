@@ -12,19 +12,21 @@ import Charts
 struct StatusView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
+    @State private var todoBadges = ["FirstF", "Todo10F", "Wantto10F"]
+    @State private var friendBadges = [ "FriendF", "AlertF", "FightingF" ]
+    @State private var selectedbadge = ""
+    @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = 0
     
     @State var Data = [
-//        DataType(doType: "todo", data: [TodoOverView(date: 1, done: 1, undone: 1)]),
-//        DataType(doType: "wantTodo", data: [TodoOverView(date: 1, done: 1, undone: 1)])
-
-        DataType(doType: "todo", data: TodoOverView.todoMonth),
-        DataType(doType: "wantTodo", data: TodoOverView.wantTodoMonth)
+        //        DataType(doType: "todo", data: [TodoOverView(date: 1, done: 1, undone: 1)]),
+        //        DataType(doType: "wantTodo", data: [TodoOverView(date: 1, done: 1, undone: 1)])
+        
+        DataType(doType: "해야하면", data: TodoOverView.todoMonth),
+        DataType(doType: "하고싶으면", data: TodoOverView.wantTodoMonth)
     ]
     
     @State var showMedals = false
     @State var settingsDetent = PresentationDetent.medium
-    
-    let firstWantTodoIt = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
@@ -41,78 +43,118 @@ struct StatusView: View {
             ZStack {
                 Color.BackgroundYellow
                     .ignoresSafeArea()
-                VStack {
+                ScrollView {
                     HStack {
                         Text("기록")
-                            .padding(10)
-                            .navigationTitle("나의 투두 기록")
+                            .padding(4)
                         Spacer()
                     }
-                    GeometryReader{ geometry in
-                        ScrollView(.horizontal) {
-                            Chart {
-                                // element는 Data
-                                ForEach(Data, id: \.doType) { element in
-                                    // $0은 따로 정하지 않아 element.data
-                                    ForEach(element.data, id: \.date) {
-                                        //todoMonth
-                                        BarMark(x: .value("Month", "\($0.date)월"),
-                                                y: .value("Count", $0.done))
-                                        // undone
-                                        BarMark(x: .value("Month", "\($0.date)월"),
-                                                y: .value("Count", $0.undone))
-                                        .foregroundStyle(.gray)
-                                    }
-                                    .foregroundStyle(by: .value("doType", element.doType))
-                                    .position(by: .value("doType", element.doType))
+                    .padding(.leading)
+                    ScrollView(.horizontal) {
+                        Chart {
+                            // element는 Data
+                            ForEach(Data, id: \.doType) { element in
+                                // $0은 따로 정하지 않아 element.data
+                                ForEach(element.data, id: \.date) {
+                                    //todoMonth
+                                    BarMark(x: .value("Month", "\($0.date)월"),
+                                            y: .value("Count", $0.done))
+                                    // undone
+                                    BarMark(x: .value("Month", "\($0.date)월"),
+                                            y: .value("Count", $0.undone))
+                                    .foregroundStyle(Color("ChartNodoBrown"))
                                 }
-                            }
-                            .chartForegroundStyleScale([
-                                "todo": Color.WanttoYesButtonBrown,
-                                "wantTodo": Color.TodoButtonBrown
-                            ])
-                            //막대그래프 기존 크기 정하기
-                            .frame(width: 500, height: 280, alignment: .center)
-                            // hexcode를 rgb값으로 변경하여 넣기
-                            .background(Color.AlertBackWhite)
-                            .padding(10)
-                        }
-                        .frame(width: geometry.size.width , height: geometry.size.height)
-                    }
-                    VStack {
-                        HStack {
-                            Text("뱃지")
-                                .padding(10)
-                                .position(x: 25, y: 5)
-                            Spacer()
-                        }
-                        LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(0..<6, id: \.self) {_ in
-                                ZStack {
-                                    Button(action: { showMedals = true }) {
-                                        if(self.firstWantTodoIt != 0) {
-                                        Image(systemName: "hare.circle")
-                                            .frame(width: 90, height: 90)
-                                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
-                                                    } else {
-                                                        Image(systemName: "hare.circle.fill")
-                                                            .frame(width: 90, height: 90)
-                                                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
-                                                    }
-                                    }
-                                    .sheet(isPresented: $showMedals) {
-                                        StatusModalView()
-                                            .presentationDetents( [.height(250), .large], selection: $settingsDetent)
-                                    }
-                                }
+                                .foregroundStyle(by: .value("doType", element.doType))
+                                .position(by: .value("doType", element.doType))
                             }
                         }
-                        .frame(width: 380, height: 260)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
-                        )
+                        .chartForegroundStyleScale([
+                            "해야하면": Color("ChartTodoBrown"),
+                            "하고싶으면": Color("ChartWanttoBrown")
+                        ])
+                        //막대그래프 기존 크기 정하기
+                        .frame(width: 500, height: 280, alignment: .center)
+                        // hexcode를 rgb값으로 변경하여 넣기
+                        .background(Color.AlertBackWhite)
+                        .padding(10)
                     }
+                    HStack {
+                        Text("뱃지")
+                            .padding(4)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        Button {
+                            selectedbadge = firstWantTodoIt > 0 ? "FirstT" : "FirstF"
+                            showMedals = true
+                        } label: {
+                            Image(firstWantTodoIt > 0 ? "FirstT" : "FirstF")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 75)
+                                .padding(12)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
+                                }
+                        }
+                        Button {
+                            selectedbadge = firstWantTodoIt > 9 ? "Todo10T" : "Todo10F"
+                            showMedals = true
+                        } label: {
+                            Image(firstWantTodoIt > 9 ? "Todo10T" : "Todo10F")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 75)
+                                .padding(12)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
+                                }
+                        }
+                        Button {
+                            selectedbadge = firstWantTodoIt > 9 ? "Wantto10T" : "Wantto10F"
+                            showMedals = true
+                        } label: {
+                            Image(firstWantTodoIt > 9 ? "Wantto10T" : "Wantto10F")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 75)
+                                .padding(12)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
+                                }
+                        }
+                        ForEach(friendBadges, id: \.self) { badge in
+                            Button {
+                                selectedbadge = badge
+                                showMedals = true
+                            } label : {
+                                Image(badge)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 75)
+                                    .padding(12)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
+                                    }
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $showMedals) {
+                        StatusModalView(selectedBadge: $selectedbadge)
+                            .presentationDetents( [.height(300), .large], selection: $settingsDetent)
+                    }
+//                    .frame(width: 380, height: 260)
+                    .padding()
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
+                    }
+                    .padding(.horizontal)
                 }
             }
             .navigationTitle("나의 투두 기록")
@@ -129,7 +171,7 @@ struct StatusView: View {
         
         // todoMonth
         var todoOverViews: [TodoOverView] = []
-
+        
         for (month, todos) in groupdByMonth {
             let doneCount = todos.filter { $0.status == true }.count
             let undoneCount = todos.filter { $0.status == false }.count

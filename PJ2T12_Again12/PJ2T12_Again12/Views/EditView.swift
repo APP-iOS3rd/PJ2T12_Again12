@@ -17,7 +17,7 @@ struct EditView: View {
     @State private var userText: String = ""
     @State private var checkSave = false
     @State private var showAlert = false
-    @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
+    @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = 0
     
     @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
     @Environment(\.dismiss) var dismiss

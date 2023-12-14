@@ -107,7 +107,10 @@ struct HomeModalView: View {
 //                            createDummyTodo(month: 11)
 //                            createDummyTodo(month: 10)
 //                            createDummyTodo(month: 9)
-                        } else {
+//                            createDummyTodo(month: 8)
+//                            createDummyTodo(month: 7)
+//                            createDummyTodo(month: 6)
+                        } else {    
                             selectedTodo[0].title = homeVM.title
                             selectedTodo[0].image = homeVM.selectedImage
                         }
