@@ -9,18 +9,20 @@ import SwiftUI
 
 struct SocialView: View {
     @StateObject private var socialVM = SocialViewModel()
+    @StateObject private var kakaoAuthVM = KaKaoAuthVM()
     
     var body: some View {
-        if socialVM.isLogin {
+        if kakaoAuthVM.isLoggedIn {
             SocialViewIfLogin(socialVM: socialVM)
         } else {
-            SocialViewIfNotLogin(socialVM: socialVM)
+            SocialViewIfNotLogin(socialVM: socialVM, kakaoAuthVM: kakaoAuthVM)
         }
     }
 }
 
 struct SocialViewIfNotLogin: View {
     @ObservedObject var socialVM: SocialViewModel
+    @ObservedObject var kakaoAuthVM: KaKaoAuthVM
     @State private var alertIsPresented: Bool = false
     
     //Font
@@ -62,7 +64,7 @@ struct SocialViewIfNotLogin: View {
                         .padding(.bottom, 100)
                     
                     Button {
-                        alertIsPresented = true
+                        kakaoAuthVM.handleKakaoLogin()
                     } label: {
                         Text("카카오 로그인하기")
                             .foregroundStyle(loginButtonTextColor)
@@ -71,19 +73,6 @@ struct SocialViewIfNotLogin: View {
                             .background(loginButtonColor)
                             .clipShape(RoundedRectangle(cornerRadius: buttonCornerRadius))
                     } //Button
-                    .alert(isPresented: $alertIsPresented) {
-                        let leftButton = Alert.Button.default(Text("로그인")) {
-                            socialVM.isLogin = true
-                        }
-                        
-                        let rightButton = Alert.Button.default(Text("취소")) {
-                            socialVM.isLogin = false
-                        }
-                        
-                        return Alert(title: Text("로그인 하시겠습니까?"),
-                                     primaryButton: rightButton,
-                                     secondaryButton: leftButton)
-                    } //alert
                     
                     Spacer()
                 } //VStack
