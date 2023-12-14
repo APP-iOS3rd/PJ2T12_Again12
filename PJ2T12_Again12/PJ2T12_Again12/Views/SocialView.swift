@@ -12,10 +12,15 @@ struct SocialView: View {
     @StateObject private var kakaoAuthVM = KaKaoAuthVM()
     
     var body: some View {
-        if kakaoAuthVM.isLoggedIn {
-            SocialViewIfLogin(socialVM: socialVM)
-        } else {
-            SocialViewIfNotLogin(socialVM: socialVM, kakaoAuthVM: kakaoAuthVM)
+        NavigationStack {
+            VStack {
+                if kakaoAuthVM.isLoggedIn {
+                    SocialViewIfLogin(socialVM: socialVM)
+                } else {
+                    SocialViewIfNotLogin(socialVM: socialVM, kakaoAuthVM: kakaoAuthVM)
+                }
+            }
+            .navigationTitle("친구").foregroundStyle(.defaultBlack)
         }
     }
 }
@@ -47,14 +52,14 @@ struct SocialViewIfNotLogin: View {
         VStack {
             GeometryReader { geo in
                 VStack {
-                    HStack {
-                        Text("친구")
-                            .foregroundStyle(defaultTextColor)
-                            .font(.system(size: titleFontSize, weight: titleFontWeight))
-                            .padding(.leading, 20)
-                        
-                        Spacer()
-                    }
+//                    HStack {
+//                        Text("친구")
+//                            .foregroundStyle(defaultTextColor)
+//                            .font(.system(size: titleFontSize, weight: titleFontWeight))
+//                            .padding(.leading, 20)
+//                        
+//                        Spacer()
+//                    }
                     
                     Spacer()
                     
