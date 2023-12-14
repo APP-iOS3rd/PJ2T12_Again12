@@ -20,7 +20,7 @@ struct SocialView: View {
                     SocialViewIfNotLogin(socialVM: socialVM, kakaoAuthVM: kakaoAuthVM)
                 }
             }
-            .navigationTitle("친구").foregroundStyle(.defaultBlack)
+//            .navigationTitle("친구").foregroundStyle(.defaultBlack)
         }
     }
 }
@@ -52,14 +52,15 @@ struct SocialViewIfNotLogin: View {
         VStack {
             GeometryReader { geo in
                 VStack {
-//                    HStack {
-//                        Text("친구")
-//                            .foregroundStyle(defaultTextColor)
-//                            .font(.system(size: titleFontSize, weight: titleFontWeight))
-//                            .padding(.leading, 20)
-//                        
-//                        Spacer()
-//                    }
+                    HStack {
+                        Text("친구")
+                            .foregroundStyle(defaultTextColor)
+                            .font(.system(.largeTitle, weight: titleFontWeight))
+                            .padding(.leading, 20)
+                            .padding(.top, 20)
+                        
+                        Spacer()
+                    }
                     
                     Spacer()
                     
@@ -70,6 +71,7 @@ struct SocialViewIfNotLogin: View {
                     
                     Button {
                         kakaoAuthVM.handleKakaoLogin()
+                        kakaoAuthVM.isLoggedIn = true
                     } label: {
                         Text("카카오 로그인하기")
                             .foregroundStyle(loginButtonTextColor)
@@ -107,11 +109,12 @@ struct SocialViewIfLogin: View {
                 GeometryReader { geo in
                     VStack {
                         //뷰 제목과 친구 추가 버튼
-                        HStack {
+                        HStack(alignment: .center) {
                             Text("친구")
-                                .font(.system(size: titleFontSize, weight: titleFontWeight))
                                 .foregroundStyle(titleTextColor)
+                                .font(.system(.largeTitle, weight: titleFontWeight))
                                 .padding(.leading, 20)
+                                .padding(.top, 20)
                             
                             Spacer()
                             
