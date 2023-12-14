@@ -14,7 +14,14 @@ struct StatusView: View {
         (doType: "wantTodo", data: ViewMonth.wantTodoMonth),
     ]
     
-    @State var showMedal = false
+    @State var showMedals = false
+    @State var settingsDetent = PresentationDetent.medium
+    
+    let firstWantTodoIt = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
+    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
+    }
     
     let columns = [
         GridItem(.flexible()),
@@ -23,149 +30,92 @@ struct StatusView: View {
     ]
     
     var body: some View {
-        VStack {
-            Text("목표 달성도")
-                .font(.largeTitle)
-                .bold()
-            Divider()
-                .background(Color.black)
-            HStack {
-                Text("기록")
-                Spacer()
-            }
-            GeometryReader{ geometry in
-                ScrollView(.horizontal) {
-                    Chart {
-                        // element는 Data
-                        ForEach(Data, id: \.doType) { element in
-                            // $0은 따로 정하지 않아 element.data
-                            ForEach(element.data, id: \.date) {
-                                //todoMonth
-                                BarMark(x: .value("Month", $0.date),
-                                        y: .value("Count", $0.done))
-                                // undone
-                                BarMark(x: .value("Month", $0.date),
-                                        y: .value("Count", $0.undone))
-                                .foregroundStyle(.gray)
-                                
-                            }
-                            .foregroundStyle(by: .value("doType", element.doType))
-                            .position(by: .value("doType", element.doType))
-                            
-                        }
-                        
+        NavigationView {
+            ZStack {
+                Color.BackgroundYellow
+                    .ignoresSafeArea()
+                VStack {
+                    HStack {
+                        Text("기록")
+                            .padding(10)
+                            .navigationTitle("나의 투두 기록")
+                        Spacer()
                     }
-                    .chartForegroundStyleScale([
-                        "todo": .pink,
-                        "wantTodo": .blue
-                    ])
-                    //막대그래프 기존 크기 정하기
-                    .frame(width: 500, height: 280, alignment: .center)
-                }
-                .frame(width: geometry.size.width , height: geometry.size.height)
-            }
-            VStack {
-                Divider()
-                    .background(Color.black)
-                HStack {
-                    Text("메달")
-                    Spacer()
-                
-                }
-                .padding(.bottom, 30.0)
-//                ZStack {
-//                    Button(action: { showMedal = true }) {
+                    GeometryReader{ geometry in
+                        ScrollView(.horizontal) {
+                            Chart {
+                                // element는 Data
+                                ForEach(Data, id: \.doType) { element in
+                                    // $0은 따로 정하지 않아 element.data
+                                    ForEach(element.data, id: \.date) {
+                                        //todoMonth
+                                        BarMark(x: .value("Month", $0.date),
+                                                y: .value("Count", $0.done))
+                                        // undone
+                                        BarMark(x: .value("Month", $0.date),
+                                                y: .value("Count", $0.undone))
+                                        .foregroundStyle(.gray)
+                                    }
+                                    .foregroundStyle(by: .value("doType", element.doType))
+                                    .position(by: .value("doType", element.doType))
+                                }
+                            }
+                            .chartForegroundStyleScale([
+                                "todo": Color.WanttoYesButtonBrown,
+                                "wantTodo": Color.TodoButtonBrown
+                            ])
+                            //막대그래프 기존 크기 정하기
+                            .frame(width: 500, height: 280, alignment: .center)
+                            // hexcode를 rgb값으로 변경하여 넣기
+                            .background(Color.AlertBackWhite)
+                            .padding(10)
+                        }
+                        .frame(width: geometry.size.width , height: geometry.size.height)
+                    }
+                    VStack {
+                        HStack {
+                            Text("뱃지")
+                                .padding(10)
+                                .position(x: 25, y: 5)
+                            Spacer()
+                        }
                         LazyVGrid(columns: columns, spacing: 20) {
-                    
+                            ForEach(0..<6, id: \.self) {_ in
                                 ZStack {
-                                    Button(action: { showMedal = true }) {
-                                Image(systemName: "hare")
-                                    .font(.system(size: 20))
-                                    .frame(width: 90, height: 90)
-                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
-                                
+                                    Button(action: { showMedals = true }) {
+                                        if(self.firstWantTodoIt != 0) {
+                                        Image(systemName: "hare.circle")
+                                            .frame(width: 90, height: 90)
+                                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
+                                                    } else {
+                                                        Image(systemName: "hare.circle.fill")
+                                                            .frame(width: 90, height: 90)
+                                                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
+                                                    }
+                                    }
+                                    .sheet(isPresented: $showMedals) {
+                                        StatusModalView()
+                                            .presentationDetents( [.height(250), .large], selection: $settingsDetent)
+                                    }
+                                }
                             }
-                            
-                            StatusModalView(isShowing: $showMedal)
                         }
-                        .frame(width: .infinity, height: 150, alignment: .center)
+                        .frame(width: 380, height: 260)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
+                        )
                     }
-                
+                }
             }
         }
     }
+    
 }
-
-
-//struct MedalView: View {
-//    @State var transitionView: Bool = false
-//    var body: some View {
-//        ZStack(alignment: .bottom) {
-//
-//            VStack{
-//                Button("버튼") {
-//                    transitionView.toggle()
-//                }
-//                Spacer()
-//            }
-//
-//            if transitionView {
-//            RoundedRectangle(cornerRadius: 20)
-//                .frame(height: UIScreen.main.bounds.height * 0.5)
-//                .transition(AnyTransition.opacity.animation(.easeInOut))
-//                .animation(.easeIn)
-//            }
-//        }
-//        .ignoresSafeArea(edges: .bottom)
-//    }
-//}
-//    struct MedalView: View {
-//        @Environment(\.presentationMode) var presentation
-//
-//        var body: some View {
-//            VStack {
-//                Text("헌신적인 학습자")
-//                Image(systemName: "hare")
-//                Button(action: {
-//                    presentation.wrappedValue.dismiss()
-//                }) {
-//                    Text("Modal view 닫기").bold()
-//                }
-//                .frame(width: 150, height: 30, alignment: .center)
-//                .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray))
-//                .font(.system(size: 16))
-//                .foregroundColor(Color.white)
-//                .offset(y: UIScreen.main.bounds.height / 4)
-//
-//            }
-//
-//        }
-//    }
-//struct MedalView: View {
-//    @State var isPresented = false
-//
-//    var body: some View {
-//        Button("Show Modal") {
-//            isPresented.toggle()
-//        }
-//        .sheet(isPresented: $isPresented) {
-//            VStack {
-//                Text("This is a modal view")
-//                Button("Dismiss") {
-//                    isPresented.toggle()
-//                }
-//            }
-//            .frame(width: 300, height: 300)
-//            .background(Color.white)
-//            .cornerRadius(10)
-//            .shadow(radius: 5)
-//            .offset(y: UIScreen.main.bounds.height / 2)
-//        }
-//    }
-//}
 
 
 #Preview {
     StatusView()
 }
+
 
