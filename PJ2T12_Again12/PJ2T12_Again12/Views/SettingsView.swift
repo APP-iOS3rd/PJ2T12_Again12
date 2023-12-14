@@ -282,6 +282,7 @@ struct ProfileEditView: View {
     }
 }
 
+// 더미 함수
 func login() {
     print("login")
 }
