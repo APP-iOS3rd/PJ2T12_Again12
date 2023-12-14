@@ -16,6 +16,7 @@ struct EditView: View {
     @State private var userText: String = ""
     @State private var checkSave = false
     @State private var showAlert = false
+    @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
     
     @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
     @Environment(\.dismiss) var dismiss
@@ -133,6 +134,8 @@ struct EditView: View {
                                 }
                             }
                             try? moc.save()
+                            firstWantTodoIt += 1
+                            print(firstWantTodoIt)
                             checkSave.toggle()
                         }) {
                             Text(checkSave ? "수정하기" : "작성완료")
