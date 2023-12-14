@@ -35,6 +35,7 @@
 		0E8E27122B2B4C1600F1B3B5 /* Helvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8E27102B2B4C1600F1B3B5 /* Helvetica.ttf */; };
 		0E8E27142B2B4C9E00F1B3B5 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E27132B2B4C9E00F1B3B5 /* Text.swift */; };
 		0E8E27152B2B4C9E00F1B3B5 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E27132B2B4C9E00F1B3B5 /* Text.swift */; };
+		0E8E271C2B2B885E00F1B3B5 /* BedgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E271B2B2B885E00F1B3B5 /* BedgeView.swift */; };
 		9E7852B12B28419E003BC698 /* SocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7852B02B28419E003BC698 /* SocialViewModel.swift */; };
 		9E7852B32B2860D5003BC698 /* SocialDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7852B22B2860D5003BC698 /* SocialDetailView.swift */; };
 		9E9A102B2B26CF6600A2A73E /* HomeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */; };
@@ -112,6 +113,7 @@
 		0E8E270D2B2B4BF600F1B3B5 /* Helvetica Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Helvetica Bold.ttf"; path = "../../../../../../../Desktop/helvetica-rmagid/Helvetica Bold.ttf"; sourceTree = "<group>"; };
 		0E8E27102B2B4C1600F1B3B5 /* Helvetica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Helvetica.ttf; path = "../../../../../../../Desktop/helvetica-rmagid/Helvetica.ttf"; sourceTree = "<group>"; };
 		0E8E27132B2B4C9E00F1B3B5 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		0E8E271B2B2B885E00F1B3B5 /* BedgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedgeView.swift; sourceTree = "<group>"; };
 		9E7852B02B28419E003BC698 /* SocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewModel.swift; sourceTree = "<group>"; };
 		9E7852B22B2860D5003BC698 /* SocialDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDetailView.swift; sourceTree = "<group>"; };
 		9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalView.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				CEB9F5962B21A966005A338E /* StatusView.swift */,
 				01D722B52B28B4C100F93E87 /* StatusModalView.swift */,
 				CEB9F5902B21A925005A338E /* TodoriTapView.swift */,
+				0E8E271B2B2B885E00F1B3B5 /* BedgeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				E3A9AC892B2990FA002B0AE6 /* KaKaoAuthVM.swift in Sources */,
 				0E36BA7E2B22F41E003EA141 /* EditView.swift in Sources */,
 				CEE940FD2B26D99A00AE52CB /* Todori.xcdatamodeld in Sources */,
+				0E8E271C2B2B885E00F1B3B5 /* BedgeView.swift in Sources */,
 				0E36BAA32B26B696003EA141 /* HomeViewModel.swift in Sources */,
 				E3A9AC852B2990D2002B0AE6 /* MyAppDelegate.swift in Sources */,
 				CEB9F5972B21A966005A338E /* StatusView.swift in Sources */,
@@ -505,7 +509,7 @@
 				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoriWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TodoriWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = "투두리위젯";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,7 +537,7 @@
 				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoriWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TodoriWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = "투두리위젯";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

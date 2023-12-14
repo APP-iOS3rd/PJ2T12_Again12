@@ -36,7 +36,6 @@ struct HomeView: View {
                                 Text("하고싶으면")
                                     .font(.Hel17Bold)
                                     .foregroundStyle(.defaultBlack)
-                                    .bold()
                                 Spacer()
                             }
                             VStack {

@@ -114,3 +114,12 @@ var haveToThree = WantTodo(date: Date.now, title: "수영하기", image: "airpla
 
 var toDoList: [FriendsTodo] = [toDoOne, toDoTwo, toDoThree]
 var haveToList: [WantTodo] = [haveToOne, haveToTow, haveToThree]
+
+let firstText = ["천 리 길도 한 걸음부터", "첫 번째 해야 하면 투두를 달성하여 뱃지를 획득해 보세요!"]
+let secondText = ["바쁘다 바빠 현대사회","해야 하는 투두를 10개 달성하여 뱃지를 획득해 보세요!"]
+let thirdText = ["드림 컴스 트루", "하고 싶은 투두를 10 개 달성하여 뱃지를 획득해 보세요!"]
+let fourthText = ["너 내 동료가 돼라","친구를 세 명 추가해서 뱃지를 획득해 보세요!"]
+let fifthText = ["이 구역 기강은 내가 잡는다","친구가 투두를 완료하도록 재촉을 10번 보내어 뱃지를 획득해 보세요!"]
+let sixthText = ["따봉 투두리야 고마워","친구가 투두를 완료하도록 응원을 10번 보내어 뱃지를 획득해 보세요!"]
+
+let bedgeTextArray = [firstText, secondText, thirdText, fourthText, fifthText, sixthText]

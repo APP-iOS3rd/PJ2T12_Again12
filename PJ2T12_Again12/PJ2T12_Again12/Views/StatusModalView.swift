@@ -11,18 +11,23 @@ struct StatusModalView: View {
     
     let firstWantTodoIt = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
     @Binding var selectedBadge: String
+    @Binding var begdeSelect: Int
+    
     var body: some View {
         ZStack {
             Color.BackgroundYellow
                 .ignoresSafeArea()
             VStack {
-                Text("천 리 길도 한 걸음부터")
-                    .font(.title3.bold())
+                Text(bedgeTextArray[begdeSelect][0])
+                    .font(.Hel17Bold)
+                    .foregroundStyle(.defaultBlack)
                     .padding(.top, 24)
                 Image(selectedBadge)
                     .resizable()
                     .scaledToFit()
-                Text("첫 번째 해야 하면 투두를 달성하여 뱃지를 획득해 보세요!")
+                Text(bedgeTextArray[begdeSelect][1])
+                    .font(.Hel15)
+                    .foregroundStyle(.defaultBlack)
                     .multilineTextAlignment(.center)
                     .padding(.top, 8)
             }
