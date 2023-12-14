@@ -50,8 +50,14 @@ struct SimpleEntry: TimelineEntry {
 struct TodoriWidgetEntryView : View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.date)],
+        predicate: NSPredicate(format: "isTodo == true AND date >= %@ AND date <= %@", Calendar.current.startOfMonth(for: Date.now) as CVarArg, Calendar.current.endOfMonth(for: Date.now) as CVarArg)
+    ) var todoList: FetchedResults<Todo>
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.date)],
+        predicate: NSPredicate(format: "isTodo == false AND date >= %@ AND date <= %@", Calendar.current.startOfMonth(for: Date.now) as CVarArg, Calendar.current.endOfMonth(for: Date.now) as CVarArg)
+    ) var wantTodoList: FetchedResults<Todo>
     
     var entry: Provider.Entry
     
@@ -129,6 +135,17 @@ extension ConfigurationAppIntent {
         return intent
     }
 }
+
+extension Calendar {
+    func startOfMonth(for date: Date) -> Date {
+        return self.date(from: self.dateComponents([.year, .month], from: self.startOfDay(for: date)))!
+    }
+
+    func endOfMonth(for date: Date) -> Date {
+        return self.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth(for: date))!
+    }
+}
+
 
 #Preview(as: .systemSmall) {
     TodoriWidget()

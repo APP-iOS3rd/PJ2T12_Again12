@@ -56,10 +56,10 @@ struct StatusView: View {
                                     // $0은 따로 정하지 않아 element.data
                                     ForEach(element.data, id: \.date) {
                                         //todoMonth
-                                        BarMark(x: .value("Month", $0.date),
+                                        BarMark(x: .value("Month", "\($0.date)월"),
                                                 y: .value("Count", $0.done))
                                         // undone
-                                        BarMark(x: .value("Month", $0.date),
+                                        BarMark(x: .value("Month", "\($0.date)월"),
                                                 y: .value("Count", $0.undone))
                                         .foregroundStyle(.gray)
                                     }
