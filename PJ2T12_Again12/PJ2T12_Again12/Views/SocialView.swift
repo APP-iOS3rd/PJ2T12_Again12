@@ -55,7 +55,7 @@ struct SocialViewIfNotLogin: View {
                     HStack {
                         Text("친구")
                             .foregroundStyle(defaultTextColor)
-                            .font(.system(.largeTitle, weight: titleFontWeight))
+                            .font(.Hel25Bold)
                             .padding(.leading, 20)
                             .padding(.top, 20)
                         
@@ -75,7 +75,7 @@ struct SocialViewIfNotLogin: View {
                     } label: {
                         Text("카카오 로그인하기")
                             .foregroundStyle(loginButtonTextColor)
-                            .font(.system(buttonTextStyle, weight: buttonFontWeight))
+                            .font(.Hel17Bold)
                             .frame(width: buttonWidth, height: buttonHeight)
                             .background(loginButtonColor)
                             .clipShape(RoundedRectangle(cornerRadius: buttonCornerRadius))
@@ -112,7 +112,7 @@ struct SocialViewIfLogin: View {
                         HStack(alignment: .center) {
                             Text("친구")
                                 .foregroundStyle(titleTextColor)
-                                .font(.system(.largeTitle, weight: titleFontWeight))
+                                .font(.Hel25Bold)
                                 .padding(.leading, 20)
                                 .padding(.top, 20)
                             

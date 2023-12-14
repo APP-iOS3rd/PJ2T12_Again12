@@ -46,6 +46,7 @@ struct StatusView: View {
                 ScrollView {
                     HStack {
                         Text("기록")
+                            .font(.Hel17Bold)
                             .padding(4)
                         Spacer()
                     }
@@ -80,6 +81,7 @@ struct StatusView: View {
                     }
                     HStack {
                         Text("뱃지")
+                            .font(.Hel17Bold)
                             .padding(4)
                         Spacer()
                     }

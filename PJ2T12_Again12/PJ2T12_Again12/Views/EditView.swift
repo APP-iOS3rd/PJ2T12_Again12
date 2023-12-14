@@ -12,6 +12,7 @@ import WidgetKit
 
 struct EditView: View {
     @StateObject private var viewModel = EditViewModel()
+    @ObservedObject var homeVM = HomeViewModel()
 
     @State private var image = UIImage()
     @State private var userText: String = ""
@@ -25,8 +26,10 @@ struct EditView: View {
 //    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
 //    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
 
-    init(todoId: UUID) {
+    init(todoId: UUID, homeVM: HomeViewModel) {
+        print("Initalize")
         _selectedTodo = FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "id == %@", todoId as CVarArg))
+        self.homeVM = homeVM
     }
     
     var body: some View {
@@ -40,7 +43,7 @@ struct EditView: View {
                             Label(selectedTodo.first?.title ?? "Todori", systemImage: selectedTodo.first?.image ??  "airplane")
                                 .font(.system(size: 25))
                                 .bold()
-                                .foregroundColor(Color(hex: 0xB76300))
+                                .foregroundColor(homeVM.isTodo ? Color.TodoNoTextBrown : Color.WanttoNoTextBrown)
                         }
                         .padding(.bottom, 20)
                         
@@ -90,11 +93,13 @@ struct EditView: View {
                                 }
                                 .overlay(
                                     Text("할 일을 마치며 느낀점을 적어주세요")
+                                        .font(.Hel15Bold)
                                         .foregroundColor(Color.TextDefaultGray)
                                         .opacity(userText.isEmpty ? 1 : 0)
                                 )
                         } else {
                             Text(userText)
+                                .font(.Hel15Bold)
                                 .frame(maxWidth: 320, minHeight: 250)
                                 .lineSpacing(8)
                                 .foregroundColor(Color.TextDefaultGray)
@@ -119,7 +124,7 @@ struct EditView: View {
                             WidgetCenter.shared.reloadAllTimelines()
                         }) {
                             Text(checkSave ? "수정하기" : "작성완료")
-                                .font(.headline)
+                                .font(.Hel17Bold)
                                 .foregroundColor(.white)
                                 .padding()
                                 .frame(width: 170, height: 50)
@@ -157,6 +162,7 @@ struct EditView: View {
                       secondaryButton: .destructive(Text("삭제")) {
                     for todo in selectedTodo {
                         moc.delete(todo)
+                        WidgetCenter.shared.reloadAllTimelines()
                     }
                     try? moc.save()
                     dismiss()
@@ -214,10 +220,10 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 
-#Preview {
-    NavigationView {
-        EditView(todoId: UUID())
-    }
-}
-
+//#Preview {
+//    NavigationView {
+//        EditView(todoId: UUID())
+//    }
+//}
+//
 

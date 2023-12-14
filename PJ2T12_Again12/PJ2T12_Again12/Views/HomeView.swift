@@ -34,7 +34,7 @@ struct HomeView: View {
                         VStack {
                             HStack {
                                 Text("하고싶으면")
-                                    .font(.system(size: 17))
+                                    .font(.Hel17Bold)
                                     .foregroundStyle(.defaultBlack)
                                     .bold()
                                 Spacer()
@@ -46,6 +46,7 @@ struct HomeView: View {
                                         homeVM.showingAlert = true
                                     } label: {
                                         Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
+                                            .font(.Hel17Bold)
                                             .modifier(WantTodoCellModifier(status: todo.status))
                                     }
                                 }
@@ -76,6 +77,7 @@ struct HomeView: View {
                                         homeVM.showingAlert = true
                                     } label: {
                                         Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
+                                            .font(.Hel17Bold)
                                             .modifier(TodoCellModifier(status: todo.status))
                                     }
                                 }
@@ -104,7 +106,7 @@ struct HomeView: View {
                 }
                 .foregroundStyle(.brown)
                 NavigationLink("투두 완료") {
-                    EditView(todoId: homeVM.selectedTodoId)
+                    EditView(todoId: homeVM.selectedTodoId, homeVM: homeVM)
                 }
             }
         }
@@ -116,11 +118,10 @@ struct HomeView: View {
         HStack {
             Text("yyyy.MM".stringFromDate(now: Date.now))
                 .foregroundStyle(Color.DefaultBlack)
-                .font(.largeTitle)
-                .fontWeight(.medium)
+                .font(.Alata28)
             Spacer()
             NavigationLink {
-                HistoryView()
+                HistoryView(homeVM: homeVM)
             } label: {
                 Image(systemName: "doc.text")
                     .font(.title)
@@ -137,6 +138,7 @@ struct HomeView: View {
                 homeVM.showingModalAlert = true
             } label: {
                 Text("새로운 투두를 추가해보세요")
+                    .font(.Hel17Bold)
                     .modifier(AddCellModifier())
             }
     }

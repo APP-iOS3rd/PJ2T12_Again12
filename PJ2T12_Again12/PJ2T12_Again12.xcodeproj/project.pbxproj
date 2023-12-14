@@ -27,6 +27,14 @@
 		0E8E27042B2A8CDE00F1B3B5 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE940F92B26D85700AE52CB /* DataController.swift */; };
 		0E8E27072B2AB92600F1B3B5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36BAA52B26B6BF003EA141 /* Color.swift */; };
 		0E8E27082B2AB96F00F1B3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5812B219944005A338E /* Assets.xcassets */; };
+		0E8E270B2B2B4BB400F1B3B5 /* alata-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8E270A2B2B4BB400F1B3B5 /* alata-regular.ttf */; };
+		0E8E270C2B2B4BB400F1B3B5 /* alata-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8E270A2B2B4BB400F1B3B5 /* alata-regular.ttf */; };
+		0E8E270E2B2B4BF600F1B3B5 /* Helvetica Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8E270D2B2B4BF600F1B3B5 /* Helvetica Bold.ttf */; };
+		0E8E270F2B2B4BF600F1B3B5 /* Helvetica Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8E270D2B2B4BF600F1B3B5 /* Helvetica Bold.ttf */; };
+		0E8E27112B2B4C1600F1B3B5 /* Helvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8E27102B2B4C1600F1B3B5 /* Helvetica.ttf */; };
+		0E8E27122B2B4C1600F1B3B5 /* Helvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8E27102B2B4C1600F1B3B5 /* Helvetica.ttf */; };
+		0E8E27142B2B4C9E00F1B3B5 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E27132B2B4C9E00F1B3B5 /* Text.swift */; };
+		0E8E27152B2B4C9E00F1B3B5 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E27132B2B4C9E00F1B3B5 /* Text.swift */; };
 		9E7852B12B28419E003BC698 /* SocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7852B02B28419E003BC698 /* SocialViewModel.swift */; };
 		9E7852B32B2860D5003BC698 /* SocialDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7852B22B2860D5003BC698 /* SocialDetailView.swift */; };
 		9E9A102B2B26CF6600A2A73E /* HomeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */; };
@@ -100,6 +108,10 @@
 		0E8E26F72B29FFA600F1B3B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E8E27052B2A8E8100F1B3B5 /* TodoriWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodoriWidgetExtension.entitlements; sourceTree = "<group>"; };
 		0E8E27062B2A8F0F00F1B3B5 /* PJ2T12_Again12.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PJ2T12_Again12.entitlements; sourceTree = "<group>"; };
+		0E8E270A2B2B4BB400F1B3B5 /* alata-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "alata-regular.ttf"; path = "../../../../../../../Desktop/alata/alata-regular.ttf"; sourceTree = "<group>"; };
+		0E8E270D2B2B4BF600F1B3B5 /* Helvetica Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Helvetica Bold.ttf"; path = "../../../../../../../Desktop/helvetica-rmagid/Helvetica Bold.ttf"; sourceTree = "<group>"; };
+		0E8E27102B2B4C1600F1B3B5 /* Helvetica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Helvetica.ttf; path = "../../../../../../../Desktop/helvetica-rmagid/Helvetica.ttf"; sourceTree = "<group>"; };
+		0E8E27132B2B4C9E00F1B3B5 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		9E7852B02B28419E003BC698 /* SocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewModel.swift; sourceTree = "<group>"; };
 		9E7852B22B2860D5003BC698 /* SocialDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDetailView.swift; sourceTree = "<group>"; };
 		9E9A102A2B26CF6600A2A73E /* HomeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalView.swift; sourceTree = "<group>"; };
@@ -161,6 +173,7 @@
 				0E36BAA52B26B6BF003EA141 /* Color.swift */,
 				0E36BA992B25D192003EA141 /* Extention.swift */,
 				E3456BAF2B26FD2100EEA7B1 /* String.swift */,
+				0E8E27132B2B4C9E00F1B3B5 /* Text.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -185,6 +198,16 @@
 				0E8E26F72B29FFA600F1B3B5 /* Info.plist */,
 			);
 			path = TodoriWidget;
+			sourceTree = "<group>";
+		};
+		0E8E27092B2B4B6B00F1B3B5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0E8E270A2B2B4BB400F1B3B5 /* alata-regular.ttf */,
+				0E8E27102B2B4C1600F1B3B5 /* Helvetica.ttf */,
+				0E8E270D2B2B4BF600F1B3B5 /* Helvetica Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CEB9F5712B219941005A338E = {
@@ -217,6 +240,7 @@
 				CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */,
 				CEE941002B26EA3100AE52CB /* CoreData */,
 				0E36BAA42B26B6BF003EA141 /* Extensions */,
+				0E8E27092B2B4B6B00F1B3B5 /* Fonts */,
 				E3A9AC832B299073002B0AE6 /* KaKaoModels */,
 				CEB9F58C2B219A48005A338E /* Views */,
 				CEB9F58D2B219A66005A338E /* ViewModels */,
@@ -384,8 +408,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8E270F2B2B4BF600F1B3B5 /* Helvetica Bold.ttf in Resources */,
 				0E8E27082B2AB96F00F1B3B5 /* Assets.xcassets in Resources */,
+				0E8E270C2B2B4BB400F1B3B5 /* alata-regular.ttf in Resources */,
 				0E8E26F62B29FFA600F1B3B5 /* Assets.xcassets in Resources */,
+				0E8E27122B2B4C1600F1B3B5 /* Helvetica.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,8 +420,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8E270E2B2B4BF600F1B3B5 /* Helvetica Bold.ttf in Resources */,
 				CEB9F5852B219944005A338E /* Preview Assets.xcassets in Resources */,
+				0E8E270B2B2B4BB400F1B3B5 /* alata-regular.ttf in Resources */,
 				CEB9F5822B219944005A338E /* Assets.xcassets in Resources */,
+				0E8E27112B2B4C1600F1B3B5 /* Helvetica.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +441,7 @@
 				0E8E26F42B29FFA400F1B3B5 /* AppIntent.swift in Sources */,
 				0E8E26F22B29FFA400F1B3B5 /* TodoriWidget.swift in Sources */,
 				0E8E26FF2B29FFB100F1B3B5 /* Todo+CoreDataClass.swift in Sources */,
+				0E8E27152B2B4C9E00F1B3B5 /* Text.swift in Sources */,
 				0E8E26F02B29FFA400F1B3B5 /* TodoriWidgetLiveActivity.swift in Sources */,
 				0E8E27002B29FFB300F1B3B5 /* Todo+CoreDataProperties.swift in Sources */,
 				0E8E27072B2AB92600F1B3B5 /* Color.swift in Sources */,
@@ -431,6 +462,7 @@
 				E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */,
 				0E36BAA62B26B6BF003EA141 /* Color.swift in Sources */,
 				9E7852B12B28419E003BC698 /* SocialViewModel.swift in Sources */,
+				0E8E27142B2B4C9E00F1B3B5 /* Text.swift in Sources */,
 				E3A9AC872B2990EA002B0AE6 /* MySceneDelegate.swift in Sources */,
 				CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */,
 				CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */,
@@ -571,6 +603,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "투두리";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -629,6 +662,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "투두리";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -654,13 +688,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PJ2T12-Again12-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "투두리";
 				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진앱에 접근 하려고 합니다. ";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -690,13 +725,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PJ2T12-Again12-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "투두리";
 				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진앱에 접근 하려고 합니다. ";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

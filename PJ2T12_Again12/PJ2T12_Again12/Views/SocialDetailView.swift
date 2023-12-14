@@ -65,6 +65,7 @@ struct SocialDetailView: View {
                     } label: {
                         Text("🎉 응원하기")
                             .frame(width: buttonWidth, height: buttonHeight)
+                            .font(.Hel17Bold)
                             .foregroundStyle(todoriBlack)
                             .background(cheerButtonColor)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -76,6 +77,7 @@ struct SocialDetailView: View {
                     } label: {
                         Text("🚨 재촉하기")
                             .frame(width: buttonWidth, height: buttonHeight)
+                            .font(.Hel17Bold)
                             .foregroundStyle(todoriBlack)
                             .background(hurryButtonColor)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -89,32 +91,34 @@ struct SocialDetailView: View {
                     VStack {
                         HStack {
                             Text("하고 싶으면")
-                                .bold()
+                                .font(.Hel17Bold)
                             
                             Spacer()
                         } //HStack
-                        
                         VStack {
                             if socialVM.isThisMonth(friend) {
                                 //이번달 투두리가 todo, wantTodo와 관계 없이 한 개라도 생성되어 있을 때
-                                let todoList: [FriendsTodo] = socialVM.getTodoList(friend)
-                                if todoList.count == 0 {
+                                let wantTodoList: [WantTodo] = socialVM.getWantTodoList(friend)
+                                if wantTodoList.count == 0 {
                                     Text("친구가 아직 투두리를 작성하지 않았어요.")
+                                        .font(.Hel15)
                                         .font(.system(size: noTodoriGuideTextSize))
                                         .foregroundStyle(noTodoriGuideTextColor)
                                 } else {
-                                    ForEach(todoList) { todo in
-                                        Text(todo.title)
-                                            .modifier(TodoCellModifier(status: todo.status))
+                                    ForEach(wantTodoList) { wantTodo in
+                                        Text(wantTodo.title)
+                                            .font(.Hel17Bold)
+                                            .modifier(WantTodoCellModifier(status: wantTodo.status))
                                     }
                                 }
                             } else {
                                 //이번달 투두리가 todo, wantTodo와 모두 한 개도 없을때
                                 Text("친구가 아직 투두리를 작성하지 않았어요.")
+                                    .font(.Hel15)
                                     .font(.system(size: noTodoriGuideTextSize))
                                     .foregroundStyle(noTodoriGuideTextColor)
                             }
-                        } //VStack
+                        }
                         .frame(width: 330)
                         .padding()
                         .overlay(
@@ -127,32 +131,35 @@ struct SocialDetailView: View {
                     // 해야 하는 일
                     VStack {
                         HStack {
+                            //생상 확인하기!!! 
                             Text("해야 하면")
-                                .bold()
+                                .font(.Hel17Bold)
                             Spacer()
                         } //HStack
-                        
                         VStack {
                             if socialVM.isThisMonth(friend) {
                                 //이번달 투두리가 todo, wantTodo와 관계 없이 한 개라도 생성되어 있을 때
-                                let wantTodoList: [WantTodo] = socialVM.getWantTodoList(friend)
-                                if wantTodoList.count == 0 {
+                                let todoList: [FriendsTodo] = socialVM.getTodoList(friend)
+                                if todoList.count == 0 {
                                     Text("친구가 아직 투두리를 작성하지 않았어요.")
-                                        .font(.system(size: noTodoriGuideTextSize))
+                                        .font(.Hel15)
                                         .foregroundStyle(noTodoriGuideTextColor)
                                 } else {
-                                    ForEach(wantTodoList) { wantTodo in
-                                        Text(wantTodo.title)
-                                            .modifier(WantTodoCellModifier(status: wantTodo.status))
+                                    ForEach(todoList) { todo in
+                                        Text(todo.title)
+                                            .modifier(TodoCellModifier(status: todo.status))
+                                            .font(.Hel17Bold)
                                     }
                                 }
                             } else {
                                 //이번달 투두리가 todo, wantTodo와 모두 한 개도 없을때
                                 Text("친구가 아직 투두리를 작성하지 않았어요.")
+                                    .font(.Hel15)
                                     .font(.system(size: noTodoriGuideTextSize))
                                     .foregroundStyle(noTodoriGuideTextColor)
                             }
-                        } //VStack
+                        }
+                        //VStack
                         .frame(width: 330)
                         .padding()
                         .overlay(
@@ -166,7 +173,7 @@ struct SocialDetailView: View {
                     VStack {
                         HStack {
                             Text("뱃지")
-                                .bold()
+                                .font(.Hel17Bold)
                             
                             Spacer()
                         } //HStack
