@@ -319,13 +319,23 @@ struct MyAlarmRow: View {
     
     var body: some View {
         HStack {
-            Toggle(isOn: $myToggle, label: {
-                Text("나의 알림")
-                    .foregroundStyle(Color.DefaultBlack)
-                Text("나의 일정 알림을 조절할 수 있습니다.")
-            })
-            .disabled(!totalToggle)
-            .tint(Color.SocialChartBrown)
+            if totalToggle {
+                Toggle(isOn: $myToggle, label: {
+                    Text("나의 알림")
+                        .foregroundStyle(Color.DefaultBlack)
+                    Text("나의 일정 알림을 조절할 수 있습니다.")
+                })
+                .tint(Color.SocialChartBrown)
+            } else {
+                Toggle(isOn: $totalToggle, label: {
+                    Text("나의 알림")
+                        .foregroundStyle(Color.DefaultBlack)
+                    Text("나의 일정 알림을 조절할 수 있습니다.")
+                })
+                .disabled(true)
+                .tint(Color.SocialChartBrown)
+                
+            }
         }
     }
 }
@@ -337,13 +347,22 @@ struct FriendsAlarmRow: View {
     
     var body: some View {
         HStack {
-            Toggle(isOn: $friendsToggle, label: {
-                Text("친구 알림")
-                    .foregroundStyle(Color.DefaultBlack)
-                Text("친구들이 보내는 알림을 조절할 수 있습니다.")
-            })
-            .disabled(!totalToggle)
-            .tint(Color.SocialChartBrown)
+            if totalToggle {
+                Toggle(isOn: $friendsToggle, label: {
+                    Text("친구 알림")
+                        .foregroundStyle(Color.DefaultBlack)
+                    Text("친구들이 보내는 알림을 조절할 수 있습니다.")
+                })
+                .tint(Color.SocialChartBrown)
+            } else {
+                Toggle(isOn: $totalToggle, label: {
+                    Text("친구 알림")
+                        .foregroundStyle(Color.DefaultBlack)
+                    Text("친구들이 보내는 알림을 조절할 수 있습니다.")
+                })
+                .disabled(true)
+                .tint(Color.SocialChartBrown)
+            }
         }
     }
 }
