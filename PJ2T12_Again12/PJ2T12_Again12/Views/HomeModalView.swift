@@ -13,8 +13,21 @@ struct HomeModalView: View {
     @ObservedObject var homeVM: HomeViewModel
     @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
     
-    var circleSize: CGFloat = 60
-    var imageSize: CGFloat = 30
+    //Sizes
+    private let circleSize: CGFloat = 60
+    private let imageSize: CGFloat = 30
+    
+    //Fonts
+    private let titleFontSize: CGFloat = 21
+    private let titleFontWeight: Font.Weight = .bold
+    private let todoGuideFontSize: CGFloat = 15
+    private let todoGuideFontWeight: Font.Weight = .medium
+    
+    //Colors
+    private let selectedTodoImageColor: Color = .todoModalButton
+    private let selectedWantTodoImageColor: Color = .wanttoModalButton
+    private let defaultBlack: Color = .defaultBlack
+    private let alertBackWhite: Color = .alertBackWhite
     
     init(todoId: UUID, homeVM: HomeViewModel) {
         print("Initalize")
@@ -26,7 +39,7 @@ struct HomeModalView: View {
         VStack {
             VStack {
                 Text(homeVM.isTodo ? "해야하는 투두" : "하고싶은 투두")
-                    .font(.system(size: 21, weight: .bold))
+                    .font(.system(size: titleFontSize, weight: titleFontWeight))
                     .padding(.top, 25)
                 
                 // 이모티콘
@@ -39,18 +52,18 @@ struct HomeModalView: View {
                                 if homeVM.selectedImage == image {
                                     Circle()
                                         .frame(width: circleSize, height: circleSize)
-                                        .foregroundStyle(.yellow)
+                                        .foregroundStyle(homeVM.isTodo ? selectedTodoImageColor : selectedWantTodoImageColor)
                                         .shadow(radius: 8, x: 5, y: 5)
                                 } else {
                                     Circle()
-                                        .stroke(.black, lineWidth: 1.5)
+                                        .stroke(defaultBlack, lineWidth: 1.5)
                                         .frame(width: circleSize, height: circleSize)
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(alertBackWhite)
                                 }
                                 Image(systemName: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(defaultBlack)
                                     .frame(width: imageSize, height: imageSize)
                             }
                             .padding(.horizontal, 8)
@@ -59,7 +72,7 @@ struct HomeModalView: View {
                 }
                 HStack {
                     Text(homeVM.isTodo ? "어떤 투두를 해야 하나요?" : "어떤 투두를 하고 싶은가요?")
-                        .font(.system(size: 15, weight: .medium))
+                        .font(.system(size: todoGuideFontSize, weight: todoGuideFontWeight))
                     
                     Spacer()
                 }
@@ -79,6 +92,7 @@ struct HomeModalView: View {
                     } label: {
                         Text("취소")
                             .frame(width: UIScreen.main.bounds.width / 2 - 40)
+                            .foregroundStyle(defaultBlack)
                     }
                     .padding(.bottom, 5)
                     
@@ -102,11 +116,12 @@ struct HomeModalView: View {
                     } label: {
                         Text("저장")
                             .frame(width: UIScreen.main.bounds.width / 2 - 40)
+                            .foregroundStyle(defaultBlack)
                     }
                 }
             }
             .frame(width: UIScreen.main.bounds.width - 50, height: 300)
-            .background(.white)
+            .background(alertBackWhite)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)

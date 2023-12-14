@@ -9,31 +9,29 @@ import SwiftUI
 
 struct StatusModalView: View {
     
-    @Binding var isShowing: Bool
+    let firstWantTodoIt = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
     
     var body: some View {
-        if isShowing {
-            ZStack(alignment: .bottom){
-                Color.black
-                    .opacity(0.3)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        isShowing = false
-                    }
-                VStack{
-                    Text("hello")
+        ZStack {
+            Color.BackgroundYellow
+                .ignoresSafeArea()
+            VStack {
+                Text("위대한 계획러")
+                if(self.firstWantTodoIt != 0) {
+                    Image(systemName: "hare.circle")
+                        .frame(width: 90, height: 90)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
+                } else {
+                    Image(systemName: "hare.circle.fill")
+                        .frame(width: 90, height: 90)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
                 }
-                .frame(height: 300)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                .transition(.move(edge: .bottom))
+                Text("1년동안 모든 계획을 실행한 유저")
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            .ignoresSafeArea()
-            .animation(.easeInOut)
         }
     }
 }
+
 
 struct StatusModalView_Previews: PreviewProvider {
     static var previews: some View {

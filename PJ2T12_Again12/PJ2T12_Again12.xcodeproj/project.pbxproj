@@ -33,6 +33,15 @@
 		CEE941032B26FBEB00AE52CB /* Todo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */; };
 		CEE941042B26FBEB00AE52CB /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */; };
 		E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3456BAF2B26FD2100EEA7B1 /* String.swift */; };
+		E3A9AC852B2990D2002B0AE6 /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9AC842B2990D2002B0AE6 /* MyAppDelegate.swift */; };
+		E3A9AC872B2990EA002B0AE6 /* MySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9AC862B2990EA002B0AE6 /* MySceneDelegate.swift */; };
+		E3A9AC892B2990FA002B0AE6 /* KaKaoAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9AC882B2990FA002B0AE6 /* KaKaoAuthVM.swift */; };
+		E3A9AC8D2B2992F0002B0AE6 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E3A9AC8C2B2992F0002B0AE6 /* KakaoSDK */; };
+		E3A9AC8F2B2992F0002B0AE6 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E3A9AC8E2B2992F0002B0AE6 /* KakaoSDKAuth */; };
+		E3A9AC912B2992F0002B0AE6 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = E3A9AC902B2992F0002B0AE6 /* KakaoSDKCert */; };
+		E3A9AC932B2992F0002B0AE6 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = E3A9AC922B2992F0002B0AE6 /* KakaoSDKCertCore */; };
+		E3A9AC952B2992F0002B0AE6 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = E3A9AC942B2992F0002B0AE6 /* KakaoSDKCommon */; };
+		E3D2CDAA2B2A21C300C11851 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E3D2CDA92B2A21C300C11851 /* PopupView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +72,11 @@
 		CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3456BAF2B26FD2100EEA7B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		E3A9AC842B2990D2002B0AE6 /* MyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
+		E3A9AC862B2990EA002B0AE6 /* MySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySceneDelegate.swift; sourceTree = "<group>"; };
+		E3A9AC882B2990FA002B0AE6 /* KaKaoAuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaKaoAuthVM.swift; sourceTree = "<group>"; };
+		E3A9AC8A2B299218002B0AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		E3D2CDA72B2A153100C11851 /* KeyConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = KeyConfig.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +84,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3D2CDAA2B2A21C300C11851 /* PopupView in Frameworks */,
+				E3A9AC932B2992F0002B0AE6 /* KakaoSDKCertCore in Frameworks */,
+				E3A9AC912B2992F0002B0AE6 /* KakaoSDKCert in Frameworks */,
+				E3A9AC8D2B2992F0002B0AE6 /* KakaoSDK in Frameworks */,
+				E3A9AC952B2992F0002B0AE6 /* KakaoSDKCommon in Frameworks */,
+				E3A9AC8F2B2992F0002B0AE6 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,16 +126,19 @@
 		CEB9F57C2B219941005A338E /* PJ2T12_Again12 */ = {
 			isa = PBXGroup;
 			children = (
+				E3A9AC8A2B299218002B0AE6 /* Info.plist */,
 				CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */,
 				CEE941022B26FBEB00AE52CB /* Todo+CoreDataProperties.swift */,
 				CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */,
 				CEE941002B26EA3100AE52CB /* CoreData */,
 				0E36BAA42B26B6BF003EA141 /* Extensions */,
+				E3A9AC832B299073002B0AE6 /* KaKaoModels */,
 				CEB9F58C2B219A48005A338E /* Views */,
 				CEB9F58D2B219A66005A338E /* ViewModels */,
 				CEB9F58B2B219A1C005A338E /* Models */,
 				CEB9F5812B219944005A338E /* Assets.xcassets */,
 				CEB9F5832B219944005A338E /* Preview Content */,
+				E3D2CDA72B2A153100C11851 /* KeyConfig.xcconfig */,
 			);
 			path = PJ2T12_Again12;
 			sourceTree = "<group>";
@@ -173,6 +196,16 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		E3A9AC832B299073002B0AE6 /* KaKaoModels */ = {
+			isa = PBXGroup;
+			children = (
+				E3A9AC842B2990D2002B0AE6 /* MyAppDelegate.swift */,
+				E3A9AC862B2990EA002B0AE6 /* MySceneDelegate.swift */,
+				E3A9AC882B2990FA002B0AE6 /* KaKaoAuthVM.swift */,
+			);
+			path = KaKaoModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,6 +222,14 @@
 			dependencies = (
 			);
 			name = PJ2T12_Again12;
+			packageProductDependencies = (
+				E3A9AC8C2B2992F0002B0AE6 /* KakaoSDK */,
+				E3A9AC8E2B2992F0002B0AE6 /* KakaoSDKAuth */,
+				E3A9AC902B2992F0002B0AE6 /* KakaoSDKCert */,
+				E3A9AC922B2992F0002B0AE6 /* KakaoSDKCertCore */,
+				E3A9AC942B2992F0002B0AE6 /* KakaoSDKCommon */,
+				E3D2CDA92B2A21C300C11851 /* PopupView */,
+			);
 			productName = PJ2T12_Again12;
 			productReference = CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +258,10 @@
 				Base,
 			);
 			mainGroup = CEB9F5712B219941005A338E;
+			packageReferences = (
+				E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				E3D2CDA82B2A21C300C11851 /* XCRemoteSwiftPackageReference "PopupView" */,
+			);
 			productRefGroup = CEB9F57B2B219941005A338E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,12 +298,15 @@
 				E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */,
 				0E36BAA62B26B6BF003EA141 /* Color.swift in Sources */,
 				9E7852B12B28419E003BC698 /* SocialViewModel.swift in Sources */,
+				E3A9AC872B2990EA002B0AE6 /* MySceneDelegate.swift in Sources */,
 				CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */,
 				CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */,
 				CEE940FA2B26D85700AE52CB /* DataController.swift in Sources */,
+				E3A9AC892B2990FA002B0AE6 /* KaKaoAuthVM.swift in Sources */,
 				0E36BA7E2B22F41E003EA141 /* EditView.swift in Sources */,
 				CEE940FD2B26D99A00AE52CB /* Todori.xcdatamodeld in Sources */,
 				0E36BAA32B26B696003EA141 /* HomeViewModel.swift in Sources */,
+				E3A9AC852B2990D2002B0AE6 /* MyAppDelegate.swift in Sources */,
 				CEB9F5972B21A966005A338E /* StatusView.swift in Sources */,
 				CEB9F5932B21A937005A338E /* HomeView.swift in Sources */,
 				0E36BA9A2B25D192003EA141 /* Extention.swift in Sources */,
@@ -275,6 +323,7 @@
 /* Begin XCBuildConfiguration section */
 		CEB9F5862B219944005A338E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3D2CDA72B2A153100C11851 /* KeyConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -338,6 +387,7 @@
 		};
 		CEB9F5872B219944005A338E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3D2CDA72B2A153100C11851 /* KeyConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -394,6 +444,7 @@
 		};
 		CEB9F5892B219944005A338E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3D2CDA72B2A153100C11851 /* KeyConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -403,6 +454,7 @@
 				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PJ2T12-Again12-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진앱에 접근 하려고 합니다. ";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -426,6 +478,7 @@
 		};
 		CEB9F58A2B219944005A338E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3D2CDA72B2A153100C11851 /* KeyConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -435,6 +488,7 @@
 				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PJ2T12-Again12-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 사진앱에 접근 하려고 합니다. ";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -478,6 +532,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.19.0;
+			};
+		};
+		E3D2CDA82B2A21C300C11851 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E3A9AC8C2B2992F0002B0AE6 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		E3A9AC8E2B2992F0002B0AE6 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		E3A9AC902B2992F0002B0AE6 /* KakaoSDKCert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCert;
+		};
+		E3A9AC922B2992F0002B0AE6 /* KakaoSDKCertCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCertCore;
+		};
+		E3A9AC942B2992F0002B0AE6 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3A9AC8B2B2992F0002B0AE6 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		E3D2CDA92B2A21C300C11851 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3D2CDA82B2A21C300C11851 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		CEE940FB2B26D99A00AE52CB /* Todori.xcdatamodeld */ = {
