@@ -14,12 +14,14 @@ struct StatusView: View {
         (doType: "wantTodo", data: ViewMonth.wantTodoMonth),
     ]
     
+    @State var showMedals = false
+    @State var settingsDetent = PresentationDetent.medium
+    
+    let firstWantTodoIt = UserDefaults.standard.integer(forKey: "firstWantTodoIt")
+    
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
     }
-    
-    @State var showMedals = false
-    @State var settingsDetent = PresentationDetent.medium
     
     let columns = [
         GridItem(.flexible()),
@@ -71,7 +73,6 @@ struct StatusView: View {
                         .frame(width: geometry.size.width , height: geometry.size.height)
                     }
                     VStack {
-                        
                         HStack {
                             Text("뱃지")
                                 .padding(10)
@@ -82,20 +83,24 @@ struct StatusView: View {
                             ForEach(0..<6, id: \.self) {_ in
                                 ZStack {
                                     Button(action: { showMedals = true }) {
-                                        Image(systemName: "hare")
-                                            .font(.system(size: 20))
+                                        if(self.firstWantTodoIt != 0) {
+                                        Image(systemName: "hare.circle")
                                             .frame(width: 90, height: 90)
                                             .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
+                                                    } else {
+                                                        Image(systemName: "hare.circle.fill")
+                                                            .frame(width: 90, height: 90)
+                                                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.3)))
+                                                    }
                                     }
                                     .sheet(isPresented: $showMedals) {
                                         StatusModalView()
                                             .presentationDetents( [.height(250), .large], selection: $settingsDetent)
                                     }
                                 }
-                                .frame(width: .infinity, height: 150, alignment: .center)
                             }
                         }
-                        .frame(width: 350, height: 280)
+                        .frame(width: 380, height: 260)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke((Color.BorderBrown).opacity(0.32), lineWidth: 2)
@@ -105,9 +110,12 @@ struct StatusView: View {
             }
         }
     }
+    
 }
+
 
 #Preview {
     StatusView()
 }
+
 
