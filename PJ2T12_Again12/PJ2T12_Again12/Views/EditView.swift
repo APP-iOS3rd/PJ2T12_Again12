@@ -8,10 +8,11 @@
 import SwiftUI
 import Foundation
 import Photos
+import WidgetKit
 
 struct EditView: View {
     @StateObject private var viewModel = EditViewModel()
-    @State private var openPhoto = false
+
     @State private var image = UIImage()
     @State private var userText: String = ""
     @State private var checkSave = false
@@ -21,6 +22,8 @@ struct EditView: View {
     @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
 
     init(todoId: UUID) {
         _selectedTodo = FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "id == %@", todoId as CVarArg))
@@ -29,7 +32,7 @@ struct EditView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(hex: 0xFFFAE1)
+                Color.BackgroundYellow
                     .ignoresSafeArea()
                 ScrollView {
                     VStack() {
@@ -38,6 +41,30 @@ struct EditView: View {
                                 .font(.system(size: 25))
                                 .bold()
                                 .foregroundColor(Color(hex: 0xB76300))
+
+                            Button(action: {
+                                showAlert.toggle()
+                            }) {
+                                Image(systemName: "trash")
+                                    .font(.title2)
+                                    .opacity(checkSave ? 1.0 : 0 )
+                            }
+                            .disabled(!checkSave)
+                            .alert(isPresented: $showAlert) {
+                                Alert(title: Text("삭제하시겠습니까?"),
+                                      message: nil,
+                                      primaryButton: .cancel(),
+                                      secondaryButton: .destructive(Text("삭제")) {
+                                    for todo in selectedTodo {
+                                        moc.delete(todo)
+                                    }
+                                    try? moc.save()
+                                    dismiss()
+                                    WidgetCenter.shared.reloadAllTimelines()
+                                }
+                                )
+                            }
+                            Spacer()
                         }
                         .padding(.bottom, 20)
                         
@@ -45,21 +72,23 @@ struct EditView: View {
                             Button(action: {
                                 viewModel.checkAlbumPermission()
                                 if viewModel.albumPermissionGranted {
-                                    self.openPhoto = true
+                                    viewModel.authorizationCallback = {
+                                    }
                                 }
                             }) {
                                 ZStack {
                                     if !checkSave {
                                         RoundedRectangle(cornerRadius: 12)
+                                            .strokeBorder(Color.DefaultBlack, lineWidth: 1)
                                             .frame(width: 90, height: 90)
-                                            .foregroundColor(Color(red: 0xD9 / 255.0, green: 0xD9 / 255.0, blue: 0xD9 / 255.0))
+
                                         Image(systemName: "camera.circle")
                                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                                            .foregroundColor(.white)
+                                            .foregroundColor(Color.CameraGray)
                                     }
                                 }
                             }
-                            .sheet(isPresented: $openPhoto) {
+                            .sheet(isPresented: $viewModel.albumPermissionGranted) {
                                 ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
                             }
                             .padding()
@@ -85,14 +114,16 @@ struct EditView: View {
                                 }
                                 .overlay(
                                     Text("할 일을 마치며 느낀점을 적어주세요")
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(Color.TextDefaultGray)
                                         .opacity(userText.isEmpty ? 1 : 0)
                                 )
                         } else {
                             Text(userText)
                                 .frame(maxWidth: 320, minHeight: 250)
                                 .lineSpacing(8)
+                                .foregroundColor(Color.TextDefaultGray)
                                 .background(Color.white)
+                                .minimumScaleFactor(0.5)
 
                         }
                         
@@ -109,13 +140,14 @@ struct EditView: View {
                             firstWantTodoIt += 1
                             print(firstWantTodoIt)
                             checkSave.toggle()
+                            WidgetCenter.shared.reloadAllTimelines()
                         }) {
                             Text(checkSave ? "수정하기" : "작성완료")
                                 .font(.headline)
                                 .foregroundColor(.white)
                                 .padding()
                                 .frame(width: 170, height: 50)
-                                .background(Color.blue)
+                                .background(Color.TodoButtonBrown)
                                 .cornerRadius(10)
                         }
                         .padding(.top, 60)
@@ -156,7 +188,7 @@ struct EditView: View {
                 )
             }
         }
-        
+        .accentColor(Color.DefaultBlack)
     }
 }
 
