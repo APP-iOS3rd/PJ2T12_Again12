@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct HomeModalView: View {
     @Environment(\.managedObjectContext) var moc
@@ -95,6 +96,8 @@ struct HomeModalView: View {
                         saveChanges()
                         
                         resetUserInputAndDismiss()
+                        
+                        WidgetCenter.shared.reloadAllTimelines()
                     } label: {
                         Text("저장")
                             .frame(width: UIScreen.main.bounds.width / 2 - 40)

@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import Photos
+import WidgetKit
 
 struct EditView: View {
     @StateObject private var viewModel = EditViewModel()
@@ -64,6 +65,7 @@ struct EditView: View {
                                     }
                                     try? moc.save()
                                     dismiss()
+                                    WidgetCenter.shared.reloadAllTimelines()
                                 }
                                 )
                             }
@@ -141,6 +143,7 @@ struct EditView: View {
                             }
                             try? moc.save()
                             checkSave.toggle()
+                            WidgetCenter.shared.reloadAllTimelines()
                         }) {
                             Text(checkSave ? "수정하기" : "작성완료")
                                 .font(.headline)

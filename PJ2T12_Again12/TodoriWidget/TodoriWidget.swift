@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import CoreData
 
 struct Provider: AppIntentTimelineProvider {
     
@@ -55,54 +56,62 @@ struct TodoriWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
-            VStack(alignment: .leading) {
-                Text("하고싶다면")
-                VStack(alignment: .leading,spacing: 2) {
-                    ForEach(entry.todo, id: \.self) { stringValue in
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .strokeBorder(Color.white, lineWidth: 1)
-                                .frame(width: 150, height: 30)
-                                .background(Color.white)
-                                .cornerRadius(12)
-                            Text(stringValue)
-                                .foregroundColor(Color("TodoNoTextBrown"))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
+            HStack(alignment: .firstTextBaseline) {
+                VStack(alignment: .leading){
+                    Text("하고 싶으면")
+                    VStack(alignment: .leading, spacing: 2) {
+                        ForEach(wantTodoList) { wanttodo in
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .frame(width: 150, height: 30)
+                                //색깔 바꾸기
+                                    .background(wanttodo.status ? Color.wanttoYesButtonBrown : Color.white)
+                                    .foregroundColor(.clear)
+                                    .cornerRadius(12)
+                                Text(wanttodo.title ?? "" )
+                                //                                .foregroundColor(Color.red)
+                                    .foregroundColor(wanttodo.status ? Color.WanttoYesTextBrown : Color.TodoNoTextBrown)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.5)
+                            }
+                        }
+                    }
+                    Spacer()
+                }
+                .frame(width: 150)
+                .padding(.bottom)
+                VStack(alignment: .leading){
+                    Text("해야 하면")
+                    VStack(alignment: .leading, spacing: 2) {
+                        ForEach(todoList) { todo in
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .frame(width: 150, height: 30)
+                                    .background(todo.status ? Color.TodoButtonBrown : Color.white)
+                                    .foregroundColor(.clear)
+                                    .cornerRadius(12)
+                                Text(todo.title ?? "" )
+                                    .foregroundColor(todo.status ? Color.white : Color.TodoNoTextBrown)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.5)
+                            }
                         }
                     }
                 }
-            }
-            VStack(alignment: .leading) {
-                Text("해야한다면")
-                VStack(alignment: .leading,spacing: 2) {
-                    ForEach(entry.wanttodo, id: \.self) { stringValue in
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .strokeBorder(Color("TodoButtonBrown"), lineWidth: 1)
-                                .frame(width: 150, height: 30)
-                                .background(Color("TodoButtonBrown"))
-                                .cornerRadius(12)
-                            Text(stringValue)
-                                .foregroundColor(Color("WanttoYesTextBrown"))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
-                        }
-                    }
-                }
-            }
+                .frame(width: 150)
         }
     }
 }
 
 struct TodoriWidget: Widget {
     let kind: String = "TodoriWidget"
+    let persistenceController = DataController.shared
     
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
             TodoriWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
@@ -127,3 +136,4 @@ extension ConfigurationAppIntent {
     SimpleEntry(date: .now, configuration: .smiley)
     SimpleEntry(date: .now, configuration: .starEyes)
 }
+
