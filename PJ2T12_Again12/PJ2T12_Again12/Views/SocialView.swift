@@ -9,18 +9,25 @@ import SwiftUI
 
 struct SocialView: View {
     @StateObject private var socialVM = SocialViewModel()
+    @StateObject private var kakaoAuthVM = KaKaoAuthVM()
     
     var body: some View {
-        if socialVM.isLogin {
-            SocialViewIfLogin(socialVM: socialVM)
-        } else {
-            SocialViewIfNotLogin(socialVM: socialVM)
+        NavigationStack {
+            VStack {
+                if kakaoAuthVM.isLoggedIn {
+                    SocialViewIfLogin(socialVM: socialVM)
+                } else {
+                    SocialViewIfNotLogin(socialVM: socialVM, kakaoAuthVM: kakaoAuthVM)
+                }
+            }
+//            .navigationTitle("친구").foregroundStyle(.defaultBlack)
         }
     }
 }
 
 struct SocialViewIfNotLogin: View {
     @ObservedObject var socialVM: SocialViewModel
+    @ObservedObject var kakaoAuthVM: KaKaoAuthVM
     @State private var alertIsPresented: Bool = false
     
     //Font
@@ -48,8 +55,9 @@ struct SocialViewIfNotLogin: View {
                     HStack {
                         Text("친구")
                             .foregroundStyle(defaultTextColor)
-                            .font(.system(size: titleFontSize, weight: titleFontWeight))
+                            .font(.system(.largeTitle, weight: titleFontWeight))
                             .padding(.leading, 20)
+                            .padding(.top, 20)
                         
                         Spacer()
                     }
@@ -62,7 +70,8 @@ struct SocialViewIfNotLogin: View {
                         .padding(.bottom, 100)
                     
                     Button {
-                        alertIsPresented = true
+                        kakaoAuthVM.handleKakaoLogin()
+                        kakaoAuthVM.isLoggedIn = true
                     } label: {
                         Text("카카오 로그인하기")
                             .foregroundStyle(loginButtonTextColor)
@@ -71,19 +80,6 @@ struct SocialViewIfNotLogin: View {
                             .background(loginButtonColor)
                             .clipShape(RoundedRectangle(cornerRadius: buttonCornerRadius))
                     } //Button
-                    .alert(isPresented: $alertIsPresented) {
-                        let leftButton = Alert.Button.default(Text("로그인")) {
-                            socialVM.isLogin = true
-                        }
-                        
-                        let rightButton = Alert.Button.default(Text("취소")) {
-                            socialVM.isLogin = false
-                        }
-                        
-                        return Alert(title: Text("로그인 하시겠습니까?"),
-                                     primaryButton: rightButton,
-                                     secondaryButton: leftButton)
-                    } //alert
                     
                     Spacer()
                 } //VStack
@@ -113,11 +109,12 @@ struct SocialViewIfLogin: View {
                 GeometryReader { geo in
                     VStack {
                         //뷰 제목과 친구 추가 버튼
-                        HStack {
+                        HStack(alignment: .center) {
                             Text("친구")
-                                .font(.system(size: titleFontSize, weight: titleFontWeight))
                                 .foregroundStyle(titleTextColor)
+                                .font(.system(.largeTitle, weight: titleFontWeight))
                                 .padding(.leading, 20)
+                                .padding(.top, 20)
                             
                             Spacer()
                             
