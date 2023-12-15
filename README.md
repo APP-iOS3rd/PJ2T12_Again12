@@ -51,16 +51,15 @@
 |이미지|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/57f3feba-098f-4d22-aeb4-64e3c5790175.PNG" width="210">|
 
 ### 친구 관리
-|설명|로그인 전|로그인 후|
-|:-:|:-:|:-:|
-|이미지|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/1f924975-dff0-4bd5-a4a5-d40db5f12e9d.PNG" width="210">|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/415acdf9-13d5-43f2-91b3-f7c4fb811051.PNG" width="210">|
+|설명|로그인 전|로그인 후|친구의 투두 1|친구의 투두2|
+|:-:|:-:|:-:|:-:|:-:|
+|이미지|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/1f924975-dff0-4bd5-a4a5-d40db5f12e9d.PNG" width="210">|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/415acdf9-13d5-43f2-91b3-f7c4fb811051.PNG" width="210">|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/106911494/1c610341-808a-42e2-b670-b61b3a57cc9c" width="210">|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/106911494/40bbdbfd-51d9-4268-b508-9b8e82e7ea15" width="210">|
+
 
 ### 나의 투두 기록
 |설명|나의 투두기록그래프|나의 뱃지|
 |:-:|:-:|:-:|
 |이미지|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/0650706a-d99b-4158-9c23-2f1a5d1fd303.PNG" width="210">|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/d1de7aae-b7be-4eb9-a0a8-460d4c3ab87f.PNG" width="210">|
-
-
 ### 설정
 |설명|로그인전|로그인후|
 |:-:|:-:|:-:|
