@@ -12,7 +12,7 @@ import PopupView
 struct SettingsView: View {
     @State private var totalToggle = true
     @State private var isLogin = false
-    @State private var nickname = "투두리"
+    @State private var nickname = ""
     @State private var profileImage = UIImage()
     
     var body: some View {
@@ -25,6 +25,7 @@ struct SettingsView: View {
                             LoginView(isLogin: $isLogin)
                         } label: {
                             Text("\n 로그인을 해서 더 많은 기능을 사용해보세요. \n")
+                                .font(.Hel15Bold)
                                 .foregroundStyle(Color.TextDefaultGray)
                         }
                     } else {
@@ -48,12 +49,14 @@ struct SettingsView: View {
                     if !isLogin {
                         Text("로그인 하여 각자의 테마를 만들어 보세요.")
                             .foregroundStyle(Color.TextDefaultGray)
+                            .font(.Hel13Bold)
                     } else {
                         NavigationLink {
                             ThemeView()
                         } label: {
                             Text("커스텀 테마를 골라보세요.")
                                 .foregroundStyle(Color.DefaultBlack)
+                                .font(.Hel15Bold)
                         }
                     }
                 }
@@ -65,18 +68,21 @@ struct SettingsView: View {
                     } label: {
                         Text("공지사항")
                             .foregroundStyle(Color.DefaultBlack)
+                            .font(.Hel15Bold)
                     }
                     NavigationLink {
                         SettingDetailView()
                     } label: {
                         Text("정보")
                             .foregroundStyle(Color.DefaultBlack)
+                            .font(.Hel15Bold)
                     }
                     NavigationLink {
                         QnAView()
                     } label: {
                         Text("문의사항")
                             .foregroundStyle(Color.DefaultBlack)
+                            .font(.Hel15Bold)
                     }
                 }
                 .listRowBackground(Color.AlertBackWhite)
@@ -170,21 +176,34 @@ struct ProfileView: View {
                     .frame(width: 100, height: 100)
                     .scaledToFit()
                     .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.TodoNoTextBrown, lineWidth: 1))
+                    .overlay(Circle().stroke(Color.TextDefaultGray, lineWidth: 0.5))
             } else {
-                Image(systemName: "hare.fill")
+                Image("Mickey")
                     .resizable()
+                    .scaledToFit()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(Color.SocialChartBrown)
                     .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.TodoNoTextBrown, lineWidth: 1))
+                    .overlay(Circle().stroke(Color.TextDefaultGray, lineWidth: 0.5))
+                    .clipped()
             }
-            VStack (alignment: .leading) {
-                Text("닉네임: \(nickname)")
-                Text("")
+            Spacer()
+            VStack (alignment: .leading, spacing: 18) {
+                Text("닉네임")
+                    .font(.Hel20Bold)
+                    .foregroundStyle(Color.DefaultBlack)
+                if nickname == "" {
+                    Text("닉네임을 입력하세요")
+                        .font(.Hel15)
+                        .foregroundStyle(Color.TextDefaultGray)
+                } else {
+                    Text(nickname)
+                        .font(.Hel17)
+                        .foregroundStyle(Color.DefaultBlack)
+                }
             }
-            .foregroundStyle(Color.DefaultBlack)
             .padding()
+            Spacer()
+            Spacer()
         }
         .padding()
     }
@@ -215,14 +234,14 @@ struct ProfileEditView: View {
                                             .frame(width: 100, height: 100)
                                             .scaledToFit()
                                             .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color.TodoNoTextBrown, lineWidth: 1))
+                                            .overlay(Circle().stroke(Color.TextDefaultGray, lineWidth: 0.5))
                                     } else {
-                                        Image(systemName: "hare.fill")
+                                        Image("Mickey")
                                             .resizable()
                                             .frame(width: 100, height: 100)
                                             .foregroundColor(Color.SocialChartBrown)
                                             .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color.TodoNoTextBrown, lineWidth: 1))
+                                            .overlay(Circle().stroke(Color.TextDefaultGray, lineWidth: 0.5))
                                     }
                                 }
                                 Image(systemName: "camera.circle")
@@ -240,8 +259,10 @@ struct ProfileEditView: View {
                     }
                     VStack (alignment: .leading) {
                         Text(" 닉네임")
-                        TextField("닉네임을 설정해주세요.", text: $nickname)
+                            .font(.Hel20Bold)
+                        TextField("닉네임 입력하기", text: $nickname)
                             .textFieldStyle(.roundedBorder)
+                            .font(.Hel15)
                     }
                     .foregroundStyle(Color.DefaultBlack)
                     .padding()
@@ -254,6 +275,8 @@ struct ProfileEditView: View {
                 Button("로그아웃", action: {
                     logoutAlert = true
                 })
+                .foregroundStyle(Color.DefaultBlack)
+                .font(.Hel15Bold)
                 .alert(isPresented: $logoutAlert) {
                     let leftButton = Alert.Button.default(Text("로그아웃")) {
                         isLogin = false
@@ -272,6 +295,7 @@ struct ProfileEditView: View {
                 } label: {
                     Text("회원 탈퇴")
                         .foregroundStyle(Color.DefaultBlack)
+                        .font(.Hel15Bold)
                 }
             }
             .listRowBackground(Color.AlertBackWhite)
@@ -305,7 +329,9 @@ struct TotalAlarmRow: View {
             Toggle(isOn: $totalToggle, label: {
                 Text("전체 알림")
                     .foregroundStyle(Color.DefaultBlack)
+                    .font(.Hel15Bold)
                 Text("전체 알림을 조절할 수 있습니다.")
+                    .font(.Hel13)
             })
             .tint(Color.SocialChartBrown)
         }
@@ -330,15 +356,19 @@ struct MyAlarmRow: View {
             if totalToggle {
                 Toggle(isOn: $myToggle, label: {
                     Text("나의 알림")
+                        .font(.Hel15Bold)
                         .foregroundStyle(Color.DefaultBlack)
                     Text("나의 일정 알림을 조절할 수 있습니다.")
+                        .font(.Hel13)
                 })
                 .tint(Color.SocialChartBrown)
             } else {
                 Toggle(isOn: $totalToggle, label: {
                     Text("나의 알림")
+                        .font(.Hel15Bold)
                         .foregroundStyle(Color.DefaultBlack)
                     Text("나의 일정 알림을 조절할 수 있습니다.")
+                        .font(.Hel13)
                 })
                 .disabled(true)
                 .tint(Color.SocialChartBrown)
@@ -358,15 +388,19 @@ struct FriendsAlarmRow: View {
             if totalToggle {
                 Toggle(isOn: $friendsToggle, label: {
                     Text("친구 알림")
+                        .font(.Hel13Bold)
                         .foregroundStyle(Color.DefaultBlack)
                     Text("친구들이 보내는 알림을 조절할 수 있습니다.")
+                        .font(.Hel10)
                 })
                 .tint(Color.SocialChartBrown)
             } else {
                 Toggle(isOn: $totalToggle, label: {
                     Text("친구 알림")
+                        .font(.Hel13Bold)
                         .foregroundStyle(Color.DefaultBlack)
                     Text("친구들이 보내는 알림을 조절할 수 있습니다.")
+                        .font(.Hel10)
                 })
                 .disabled(true)
                 .tint(Color.SocialChartBrown)
@@ -384,6 +418,7 @@ struct ThemeView: View {
             VStack {
                 Text("커스텀 테마 기능 지원 예정")
                     .foregroundStyle(Color.TextDefaultGray)
+                    .font(.Hel13Bold)
             }
         }
     }
@@ -396,6 +431,7 @@ struct NoticeView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("공지 사항 뷰")
+                    .font(.Hel13Bold)
             }
         }
     }

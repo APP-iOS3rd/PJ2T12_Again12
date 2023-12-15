@@ -65,18 +65,20 @@ struct TodoriWidgetEntryView : View {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading){
                     Text("하고 싶으면")
+                        .font(.Hel16Bold)
+                        .foregroundStyle(.defaultBlack)
                     VStack(alignment: .leading, spacing: 2) {
                         ForEach(wantTodoList) { wanttodo in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 12)
-                                    .frame(width: 150, height: 30)
+                                    .frame(width: 150, height: 33)
                                 //색깔 바꾸기
                                     .background(wanttodo.status ? Color.wanttoYesButtonBrown : Color.white)
                                     .foregroundColor(.clear)
                                     .cornerRadius(12)
                                 Text(wanttodo.title ?? "" )
-                                //                                .foregroundColor(Color.red)
-                                    .foregroundColor(wanttodo.status ? Color.WanttoYesTextBrown : Color.TodoNoTextBrown)
+                                    .foregroundColor(wanttodo.status ? Color.WanttoYesTextBrown : Color.WanttoNoTextBrown)
+                                    .font(.Hel16Bold)
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.5)
                             }
@@ -85,24 +87,27 @@ struct TodoriWidgetEntryView : View {
                     Spacer()
                 }
                 .frame(width: 150)
-                .padding(.bottom)
                 VStack(alignment: .leading){
                     Text("해야 하면")
+                        .font(.Hel16Bold)
+                        .foregroundStyle(.defaultBlack)
                     VStack(alignment: .leading, spacing: 2) {
                         ForEach(todoList) { todo in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 12)
-                                    .frame(width: 150, height: 30)
+                                    .frame(width: 150, height: 33)
                                     .background(todo.status ? Color.TodoButtonBrown : Color.white)
                                     .foregroundColor(.clear)
                                     .cornerRadius(12)
                                 Text(todo.title ?? "" )
+                                    .font(.Hel16Bold)
                                     .foregroundColor(todo.status ? Color.white : Color.TodoNoTextBrown)
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.5)
                             }
                         }
                     }
+                    
                 }
                 .frame(width: 150)
         }

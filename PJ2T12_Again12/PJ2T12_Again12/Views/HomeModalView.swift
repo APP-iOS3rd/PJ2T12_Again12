@@ -41,7 +41,7 @@ struct HomeModalView: View {
         VStack {
             VStack {
                 Text(homeVM.isTodo ? "해야하는 투두" : "하고싶은 투두")
-                    .font(.system(size: titleFontSize, weight: titleFontWeight))
+                    .font(.Hel20Bold)
                     .padding(.top, 25)
                 
                 // 이모티콘
@@ -74,7 +74,7 @@ struct HomeModalView: View {
                 }
                 HStack {
                     Text(homeVM.isTodo ? "어떤 투두를 해야 하나요?" : "어떤 투두를 하고 싶은가요?")
-                        .font(.system(size: todoGuideFontSize, weight: todoGuideFontWeight))
+                        .font(.Hel15Bold)
                     
                     Spacer()
                 }
@@ -82,6 +82,7 @@ struct HomeModalView: View {
                 .padding(.horizontal)
                 
                 TextField("", text: $homeVM.title)
+                    .font(.Hel15)
                     .background(.white)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
@@ -104,13 +105,7 @@ struct HomeModalView: View {
                     Button {
                         if selectedTodo.isEmpty {   
                             createNewTodo()
-//                            createDummyTodo(month: 11)
-//                            createDummyTodo(month: 10)
-//                            createDummyTodo(month: 9)
-//                            createDummyTodo(month: 8)
-//                            createDummyTodo(month: 7)
-//                            createDummyTodo(month: 6)
-                        } else {    
+                        } else {
                             selectedTodo[0].title = homeVM.title
                             selectedTodo[0].image = homeVM.selectedImage
                         }
