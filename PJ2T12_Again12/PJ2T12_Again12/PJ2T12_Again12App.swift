@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 @main
-struct PJ2T12_Again12App: App {
+ struct PJ2T12_Again12App: App {
+     
+    @UIApplicationDelegateAdaptor var appDelegate : MyAppDelegate
+    @StateObject private var dataController = DataController()
+     
     var body: some Scene {
         WindowGroup {
             TodoriTapView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

@@ -17,28 +17,33 @@ struct TodoriTapView: View {
             HomeView()
                 .tabItem {
                     Image(systemName: "house")
+                    Text("투두리")
                 }
                 .onAppear { selectedTap = .home }
                 .tag(Views.home)
             SocialView()
                 .tabItem {
                     Image(systemName: "person.2")
+                    Text("동네사람들")
                 }
                 .onAppear { selectedTap = .social }
                 .tag(Views.social)
             StatusView()
                 .tabItem {
                     Image(systemName: "chart.bar")
+                    Text("기록")
                 }
                 .onAppear { selectedTap = .status }
                 .tag(Views.status)
             SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape")
+                    Text("설정")
                 }
                 .onAppear { selectedTap = .settings }
                 .tag(Views.settings)
         }
+        .tint(Color.DefaultBlack)
     }
 }
 

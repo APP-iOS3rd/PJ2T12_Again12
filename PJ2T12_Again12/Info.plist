@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>alata-regular.ttf</string>
+		<string>Helvetica.ttf</string>
+		<string>Helvetica Bold.ttf</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+	</dict>
+	<key>KAKAO_NATIVE_APP_KEY</key>
+	<string>${KAKAO_NATIVE_APP_KEY}</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kakao${KAKAO_NATIVE_APP_KEY}</string>
+			</array>
+		</dict>
+		<array>
+			<string>kakaokompassauth</string>
+			<string>kakaolink</string>
+			<string>kakaoplus</string>
+		</array>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array/>
+</dict>
+</plist>
