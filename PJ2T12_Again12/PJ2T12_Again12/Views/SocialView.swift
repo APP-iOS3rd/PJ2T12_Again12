@@ -70,7 +70,7 @@ struct SocialViewIfNotLogin: View {
                         .padding(.bottom, 100)
                     
                     Button {
-                        kakaoAuthVM.handleKakaoLogin()
+//                        kakaoAuthVM.handleKakaoLogin()
                         kakaoAuthVM.isLoggedIn = true
                     } label: {
                         Text("카카오 로그인하기")

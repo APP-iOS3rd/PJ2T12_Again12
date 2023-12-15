@@ -185,11 +185,13 @@ struct SocialDetailView: View {
                                 ForEach(medalsList, id: \.self) { medal in
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .frame(width: 90, height: 100)
-                                            .foregroundStyle(medalBackgroundColor)
+                                            .stroke(todoListGroupBorderColor.opacity(0.32), lineWidth: 1.0)
+                                            .frame(width: 100, height: 100)
+//                                            .foregroundStyle(medalBackgroundColor)
                                         
-                                        Image(systemName: medal.image)
-                                            .font(.system(size: 40))
+                                        Image(medal.image)
+                                            .resizable()
+                                            .frame(width: 75, height: 75)
                                     }
                                 }
                             } //LazyVGrid
@@ -210,5 +212,5 @@ struct SocialDetailView: View {
 }
 
 #Preview {
-    SocialDetailView(socialVM: SocialViewModel(), friend: SocialViewModel().myFriendsList[2])
+    SocialDetailView(socialVM: SocialViewModel(), friend: SocialViewModel().myFriendsList[0])
 }

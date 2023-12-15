@@ -103,6 +103,18 @@ struct SampleMedal {
     var medalTwo = Medal(title: "한 달 달성", image: "star.fill", status: true, count: 0)
     var medalThree = Medal(title: "하고 싶은 투두 10개 달성", image: "moon.stars.fill", status: true, count: 0)
     var medalFour = Medal(title: "해야 하는 투두 10개 달성", image: "moon.stars", status: false, count: 0)
+    var alertMedalT = Medal(title: "이 구역 기강은 내가 잡는다", image: "AlertT", status: true, count: 0)
+    var alertMedalF = Medal(title: "이 구역 기강은 내가 잡는다", image: "AlertF", status: false, count: 0)
+    var fightingMedalT = Medal(title: "따봉 투두리야 고마워", image: "FightingT", status: true, count: 0)
+    var fightingMedalF = Medal(title: "따봉 투두리야 고마워", image: "FightingF", status: false, count: 0)
+    var firstTodoMedalT = Medal(title: "천 리 길도 한 걸음부터", image: "FirstT", status: true, count: 0)
+    var firstTodoMedalF = Medal(title: "천 리 길도 한 걸음부터", image: "FirstF", status: false, count: 0)
+    var threeFriendsMedalT = Medal(title: "너 내 동료가 돼라", image: "FriendT", status: true, count: 0)
+    var threeFriendsMedalF = Medal(title: "너 내 동료가 돼라", image: "FriendF", status: false, count: 0)
+    var tenTodosMedalT = Medal(title: "바쁘다 바빠 현대사회", image: "Todo10T", status: true, count: 0)
+    var tenTodosMedalF = Medal(title: "바쁘다 바빠 현대사회", image: "Todo10F", status: false, count: 0)
+    var tenWantTodosMedalT = Medal(title: "드림 컴스 트루", image: "Wantto10T", status: true, count: 0)
+    var tenWantTodosMedalF = Medal(title: "드림 컴스 트루", image: "Wantto10F", status: false, count: 0)
 }
 
 struct SampleUsers {
@@ -114,7 +126,7 @@ struct SampleUsers {
                                       wantTodoList: [SampleWantTodo().wantTodoOne]
                                      )],
         friendList: nil,
-        medalList: [SampleMedal().medalOne, SampleMedal().medalTwo]
+        medalList: [SampleMedal().firstTodoMedalT, SampleMedal().tenTodosMedalF, SampleMedal().tenWantTodosMedalT, SampleMedal().threeFriendsMedalF, SampleMedal().alertMedalF, SampleMedal().fightingMedalT]
     )
     
     var userTwo: User = User(
@@ -125,7 +137,7 @@ struct SampleUsers {
                                       wantTodoList: [SampleWantTodo().wantTodoOne, SampleWantTodo().wantTodoThree]
                                      )],
         friendList: nil,
-        medalList: [SampleMedal().medalOne, SampleMedal().medalFour]
+        medalList: [SampleMedal().firstTodoMedalT, SampleMedal().tenTodosMedalT, SampleMedal().tenWantTodosMedalF, SampleMedal().threeFriendsMedalT, SampleMedal().alertMedalT, SampleMedal().fightingMedalT]
     )
     
     var userThree: User = User(
@@ -136,7 +148,7 @@ struct SampleUsers {
                                       wantTodoList: [SampleWantTodo().wantTodoThree, SampleWantTodo().wantTodoTow]
                                      )],
         friendList: nil,
-        medalList: [SampleMedal().medalTwo, SampleMedal().medalFour, SampleMedal().medalThree]
+        medalList: [SampleMedal().firstTodoMedalT, SampleMedal().tenTodosMedalF, SampleMedal().tenWantTodosMedalF, SampleMedal().threeFriendsMedalF, SampleMedal().alertMedalF, SampleMedal().fightingMedalF]
     )
     
     var userFour: User = User(
@@ -147,6 +159,6 @@ struct SampleUsers {
                                       wantTodoList: [SampleWantTodo().wantTodoOne]
                                      )],
         friendList: nil,
-        medalList: [SampleMedal().medalOne, SampleMedal().medalTwo]
+        medalList: [SampleMedal().firstTodoMedalT, SampleMedal().tenTodosMedalT, SampleMedal().tenWantTodosMedalT, SampleMedal().threeFriendsMedalT, SampleMedal().alertMedalT, SampleMedal().fightingMedalF]
     )
 }
