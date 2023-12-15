@@ -29,11 +29,11 @@
 - SwiftUI, Charts, CoreData, Alamofire, KakaoOpenSDK, WidgetKit, PopUpView
 
 ## 팀원 소개
-|<img height="120" width="120" src="https://avatars.githubusercontent.com/u/42514601?v=4">|<img width="120" height="120" src="https://avatars.githubusercontent.com/u/102846055?v=4">|<img height="120" width="120" src="https://avatars.githubusercontent.com/u/119300554?v=4">|<img height="120" width="120" src="https://avatars.githubusercontent.com/u/123723493?v=4">|<img height="120" width="120" src="https://avatars.githubusercontent.com/u/106911494?v=4">|
-|:-:|:-:|:-:|:-:|:-:|
-|[권운기](https://github.com/qlrmr111)|[권지원](https://github.com/wonny1012)|[김현진](https://github.com/hjsupernova)|[양주원](https://github.com/lm-loki/Im-loki)|[정은수](https://github.com/Eunice0927)|
-|**피그마, 피그잼 마스터**|**팀장**|**팀원 신뢰**|**탱커**|**노션지킴이**|
-|HistoryView<br/>SettingView<br/>Kakao Login Api<br/>Alamofire|EditView<br/>WidgetKit<br/>HIG 및 서체, 색상 적용 작업|HomeView<br/>CoreData<br/>StatusView|StatusView<br/>Charts|HomeModalView<br/>SocialView<br/>App 색상 기획|
+|구분|<img height="120" width="120" src="https://avatars.githubusercontent.com/u/42514601?v=4">|<img width="120" height="120" src="https://avatars.githubusercontent.com/u/102846055?v=4">|<img height="120" width="120" src="https://avatars.githubusercontent.com/u/119300554?v=4">|<img height="120" width="120" src="https://avatars.githubusercontent.com/u/123723493?v=4">|<img height="120" width="120" src="https://avatars.githubusercontent.com/u/106911494?v=4">|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|이름/GitHub|[권운기](https://github.com/qlrmr111)|[권지원](https://github.com/wonny1012)|[김현진](https://github.com/hjsupernova)|[양주원](https://github.com/lm-loki/Im-loki)|[정은수](https://github.com/Eunice0927)|
+|역할|**피그마, 피그잼 마스터**|**팀장**|**팀원 신뢰**|**탱커**|**노션지킴이**|
+|담당 내용|HistoryView<br/>SettingView<br/>Kakao Login Api<br/>Alamofire|EditView<br/>WidgetKit<br/>HIG 및 서체, 색상 적용 작업|HomeView<br/>CoreData<br/>StatusView|StatusView<br/>Charts|HomeModalView<br/>SocialView<br/>App 색상 기획|
 
 
 
