@@ -18,9 +18,8 @@
 - 알림: 현재 날짜 + 7이 이번달이면 알림이 온다.
 
 ## Tools
-Notion: [notion](https://www.notion.so/d24b5b94fbf640519f1ca43439572182)
-
-Figma: [figma](https://www.figma.com/files/team/1313739731422459548)
+- Notion: [notion](https://www.notion.so/d24b5b94fbf640519f1ca43439572182)
+- Figma: [figma](https://www.figma.com/files/team/1313739731422459548)
 
 
 ## 기술
