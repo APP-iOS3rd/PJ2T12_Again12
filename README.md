@@ -57,7 +57,7 @@ Figma: [figma](https://www.figma.com/files/team/1313739731422459548)
 ### 설정
 |설명|로그인전|로그인후|
 |:-:|:-:|:-:|
-|이미지|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/792c9d79-adbf-4f76-bfa1-ad92d1fdc328.PNG" width="210">|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/db87a72f-dc79-4575-bdee-6f6dec4e24c7.PNG" width="210">|
+|이미지|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/db87a72f-dc79-4575-bdee-6f6dec4e24c7.PNG" width="210">|<img src="https://github.com/APP-iOS3rd/PJ2T12_Again12/assets/102846055/792c9d79-adbf-4f76-bfa1-ad92d1fdc328.PNG" width="210">|
 
 ### 위젯
 |설명|위젯화면|
