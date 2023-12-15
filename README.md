@@ -17,8 +17,11 @@
 - 예전에 작성했던 투두를 모아서 확인하고 검색할 수 있습니다.
 - 알림: 현재 날짜 + 7이 이번달이면 알림이 온다.
 
-## 노션
-https://www.notion.so/d24b5b94fbf640519f1ca43439572182
+## Tools
+Notion: [notion](https://www.notion.so/d24b5b94fbf640519f1ca43439572182)
+
+Figma: [figma](https://www.figma.com/files/team/1313739731422459548)
+
 
 ## 기술
 - Swift 5.9
