@@ -20,7 +20,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var todoList: [Todo] = []
     @Published var wantTodoList: [Todo] = []
-    
+    @Published var selectedTodo: Todo?
     init() {
         getAllTodoList()
     }
@@ -43,6 +43,11 @@ class HomeViewModel: ObservableObject {
     
     func addTodo(title: String, image: String, isTodo: Bool) {
         CoreDataManager.shared.addTodo(title: title, image: image, isTodo: isTodo)
+        getAllTodoList()
+    }
+    
+    func updateTodo() {
+        CoreDataManager.shared.saveContext()
         getAllTodoList()
     }
     

@@ -30,9 +30,9 @@ struct HomeModalView: View {
     private let defaultBlack: Color = .defaultBlack
     private let alertBackWhite: Color = .alertBackWhite
     
-    init(todoId: UUID, homeVM: HomeViewModel) {
+    init(todo: Todo?, homeVM: HomeViewModel) {
         self.homeVM = homeVM
-        selectedTodo = homeVM.getTodoById(todoId)
+        selectedTodo = todo
     }
     
     var body: some View {
@@ -101,16 +101,13 @@ struct HomeModalView: View {
                         .frame(height: 45)
                     
                     Button {
-                        if selectedTodo == nil {
-                            homeVM.addTodo(title: homeVM.title, image: homeVM.selectedImage, isTodo: homeVM.isTodo)
-//                            createNewTodo()
+                        if let selectedTodo = selectedTodo {
+                            selectedTodo.title = homeVM.title
+                            selectedTodo.image = homeVM.selectedImage
+                            homeVM.updateTodo()
                         } else {
-                            selectedTodo?.title = homeVM.title
-                            selectedTodo?.image = homeVM.selectedImage
+                            homeVM.addTodo(title: homeVM.title, image: homeVM.selectedImage, isTodo: homeVM.isTodo)
                         }
-                        
-                        saveChanges()
-                        
                         resetUserInputAndDismiss()
                         
                         WidgetCenter.shared.reloadAllTimelines()

@@ -34,6 +34,7 @@ struct HomeView: View {
                                 ForEach(homeVM.wantTodoList, id: \.self) { todo in
                                     Button() {
                                         homeVM.selectedTodoId = todo.wrappedId
+                                        homeVM.selectedTodo = todo
                                         homeVM.showingAlert = true
                                     } label: {
                                         Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
@@ -65,6 +66,7 @@ struct HomeView: View {
                                 ForEach(homeVM.todoList, id: \.self) { todo in
                                     Button {
                                         homeVM.selectedTodoId = todo.wrappedId
+                                        homeVM.selectedTodo = todo
                                         homeVM.showingAlert = true
                                     } label: {
                                         Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
@@ -87,7 +89,7 @@ struct HomeView: View {
                 }
                 .padding()
                 if homeVM.showingModalAlert {
-                    HomeModalView(todoId: homeVM.selectedTodoId, homeVM: homeVM)
+                    HomeModalView(todo: homeVM.selectedTodo, homeVM: homeVM)
                 }
             }
             .alert("투두를 달성 하셨나요?", isPresented: $homeVM.showingAlert) {
