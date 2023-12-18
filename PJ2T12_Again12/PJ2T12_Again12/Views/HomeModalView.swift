@@ -13,8 +13,7 @@ import UserNotifications
 struct HomeModalView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var homeVM: HomeViewModel
-    @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
-    
+    var selectedTodo: Todo?
     //Sizes
     private let circleSize: CGFloat = 60
     private let imageSize: CGFloat = 30
@@ -32,9 +31,8 @@ struct HomeModalView: View {
     private let alertBackWhite: Color = .alertBackWhite
     
     init(todoId: UUID, homeVM: HomeViewModel) {
-        print("Initalize")
-        _selectedTodo = FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "id == %@", todoId as CVarArg))
         self.homeVM = homeVM
+        selectedTodo = homeVM.getTodoById(todoId)
     }
     
     var body: some View {
@@ -103,11 +101,12 @@ struct HomeModalView: View {
                         .frame(height: 45)
                     
                     Button {
-                        if selectedTodo.isEmpty {   
-                            createNewTodo()
+                        if selectedTodo == nil {
+                            homeVM.addTodo(title: homeVM.title, image: homeVM.selectedImage, isTodo: homeVM.isTodo)
+//                            createNewTodo()
                         } else {
-                            selectedTodo[0].title = homeVM.title
-                            selectedTodo[0].image = homeVM.selectedImage
+                            selectedTodo?.title = homeVM.title
+                            selectedTodo?.image = homeVM.selectedImage
                         }
                         
                         saveChanges()
@@ -129,7 +128,7 @@ struct HomeModalView: View {
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(.ultraThinMaterial)
         .onAppear {
-            if let selectedTodo = selectedTodo.first {
+            if let selectedTodo = selectedTodo {
                 homeVM.title = selectedTodo.wrappedTitle
                 homeVM.selectedImage = selectedTodo.wrappedImage
             }

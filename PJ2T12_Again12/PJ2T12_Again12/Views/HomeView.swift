@@ -12,15 +12,7 @@ struct HomeView: View {
     
     @StateObject private var homeVM = HomeViewModel()
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.date)],
-        predicate: NSPredicate(format: "isTodo == true AND date >= %@ AND date <= %@", Calendar.current.startOfMonth(for: Date.now) as CVarArg, Calendar.current.endOfMonth(for: Date.now) as CVarArg)
-    ) var todoList: FetchedResults<Todo>
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.date)],
-        predicate: NSPredicate(format: "isTodo == false AND date >= %@ AND date <= %@", Calendar.current.startOfMonth(for: Date.now) as CVarArg, Calendar.current.endOfMonth(for: Date.now) as CVarArg)
-    ) var wantTodoList: FetchedResults<Todo>
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -39,7 +31,7 @@ struct HomeView: View {
                                 Spacer()
                             }
                             VStack {
-                                ForEach(wantTodoList, id: \.self) { todo in
+                                ForEach(homeVM.wantTodoList, id: \.self) { todo in
                                     Button() {
                                         homeVM.selectedTodoId = todo.wrappedId
                                         homeVM.showingAlert = true
@@ -50,7 +42,7 @@ struct HomeView: View {
                                     }
                                 }
                                 // 투두 추가 버튼
-                                if wantTodoList.count < 3 {
+                                if homeVM.wantTodoList.count < 3 {
                                     addTodoButton(isTodo: false)
                                 }
                             }
@@ -70,7 +62,7 @@ struct HomeView: View {
                                 Spacer()
                             }
                             VStack {
-                                ForEach(todoList, id: \.self) { todo in
+                                ForEach(homeVM.todoList, id: \.self) { todo in
                                     Button {
                                         homeVM.selectedTodoId = todo.wrappedId
                                         homeVM.showingAlert = true
@@ -81,7 +73,7 @@ struct HomeView: View {
                                     }
                                 }
                                 // 투두 추가 버튼
-                                if todoList.count < 3 {
+                                if homeVM.todoList.count < 3 {
                                     addTodoButton(isTodo: true)
                                 }
                             }

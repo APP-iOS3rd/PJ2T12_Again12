@@ -13,12 +13,13 @@ import KakaoSDKAuth
  struct PJ2T12_Again12App: App {
      
     @UIApplicationDelegateAdaptor var appDelegate : MyAppDelegate
-    @StateObject private var dataController = DataController()
-     
+//    @StateObject private var dataController = DataController()
+     private let viewcontext = CoreDataManager.shared.viewContext
     var body: some Scene {
         WindowGroup {
             TodoriTapView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environment(\.managedObjectContext, viewcontext)
+//                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
