@@ -12,15 +12,12 @@ import SwiftUI
 class HomeViewModel: ObservableObject {
     @Published var showingAlert = false
     @Published var showingModalAlert = false
-    @Published var title = ""
-    @Published var images: [String] = ["paperplane", "book.closed", "moon", "dumbbell"]
-    @Published var selectedImage = "paperplane"
     @Published var isTodo = false
     @Published var selectedTodoId: UUID = UUID()
-    
     @Published var todoList: [Todo] = []
     @Published var wantTodoList: [Todo] = []
     @Published var selectedTodo: Todo?
+    
     init() {
         getAllTodoList()
     }
@@ -55,8 +52,5 @@ class HomeViewModel: ObservableObject {
         CoreDataManager.shared.deleteTodo(todo: todo)
         getAllTodoList()
     }
-    func updateViewModel(with todo: Todo) {
-        title = todo.wrappedTitle
-        selectedImage = todo.wrappedImage
-    }
+
 }

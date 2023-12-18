@@ -7,13 +7,12 @@
 
 import SwiftUI
 import WidgetKit
-import UserNotifications
-
 
 struct HomeModalView: View {
-    @Environment(\.managedObjectContext) var moc
-    @ObservedObject var homeVM: HomeViewModel
+    @ObservedObject var homeModalVM: HomeModalViewModel
+    var dismiss: () -> Void
     var selectedTodo: Todo?
+    var isTodo = false
     //Sizes
     private let circleSize: CGFloat = 60
     private let imageSize: CGFloat = 30
@@ -30,29 +29,32 @@ struct HomeModalView: View {
     private let defaultBlack: Color = .defaultBlack
     private let alertBackWhite: Color = .alertBackWhite
     
-    init(todo: Todo?, homeVM: HomeViewModel) {
-        self.homeVM = homeVM
+    init(todo: Todo?, isTodo: Bool, dismiss: @escaping () -> Void) {
+        self.homeModalVM = HomeModalViewModel(todo: todo)
+        self.dismiss = dismiss
+        self.isTodo = isTodo
+        homeModalVM.updateModalView()
         selectedTodo = todo
     }
     
     var body: some View {
         VStack {
             VStack {
-                Text(homeVM.isTodo ? "해야하는 투두" : "하고싶은 투두")
+                Text(isTodo ? "해야하는 투두" : "하고싶은 투두")
                     .font(.Hel20Bold)
                     .padding(.top, 25)
                 
                 // 이모티콘
                 HStack {
-                    ForEach(homeVM.images, id: \.self) { image in
+                    ForEach(homeModalVM.images, id: \.self) { image in
                         Button {
-                            homeVM.selectedImage = image
+                            homeModalVM.image = image
                         } label: {
                             ZStack {
-                                if homeVM.selectedImage == image {
+                                if homeModalVM.image == image {
                                     Circle()
                                         .frame(width: circleSize, height: circleSize)
-                                        .foregroundStyle(homeVM.isTodo ? selectedTodoImageColor : selectedWantTodoImageColor)
+                                        .foregroundStyle(isTodo ? selectedTodoImageColor : selectedWantTodoImageColor)
                                         .shadow(radius: 8, x: 5, y: 5)
                                 } else {
                                     Circle()
@@ -71,7 +73,7 @@ struct HomeModalView: View {
                     }
                 }
                 HStack {
-                    Text(homeVM.isTodo ? "어떤 투두를 해야 하나요?" : "어떤 투두를 하고 싶은가요?")
+                    Text(isTodo ? "어떤 투두를 해야 하나요?" : "어떤 투두를 하고 싶은가요?")
                         .font(.Hel15Bold)
                     
                     Spacer()
@@ -79,7 +81,7 @@ struct HomeModalView: View {
                 .padding(.top)
                 .padding(.horizontal)
                 
-                TextField("", text: $homeVM.title)
+                TextField("", text: $homeModalVM.title)
                     .font(.Hel15)
                     .background(.white)
                     .textFieldStyle(.roundedBorder)
@@ -89,7 +91,8 @@ struct HomeModalView: View {
                 Divider()
                 HStack {
                     Button {
-                        resetUserInputAndDismiss()
+                        homeModalVM.resetUserInput()
+                        dismiss()
                     } label: {
                         Text("취소")
                             .frame(width: UIScreen.main.bounds.width / 2 - 40)
@@ -102,13 +105,14 @@ struct HomeModalView: View {
                     
                     Button {
                         if let selectedTodo = selectedTodo {
-                            selectedTodo.title = homeVM.title
-                            selectedTodo.image = homeVM.selectedImage
-                            homeVM.updateTodo()
+                            selectedTodo.title = homeModalVM.title
+                            selectedTodo.image = homeModalVM.image
+                            homeModalVM.updateTodo()
                         } else {
-                            homeVM.addTodo(title: homeVM.title, image: homeVM.selectedImage, isTodo: homeVM.isTodo)
+                            homeModalVM.addTodo(title: homeModalVM.title, image: homeModalVM.image, isTodo: isTodo)
                         }
-                        resetUserInputAndDismiss()
+                        homeModalVM.resetUserInput()
+                        dismiss()
                         
                         WidgetCenter.shared.reloadAllTimelines()
                     } label: {
@@ -124,111 +128,6 @@ struct HomeModalView: View {
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(.ultraThinMaterial)
-        .onAppear {
-            if let selectedTodo = selectedTodo {
-                homeVM.title = selectedTodo.wrappedTitle
-                homeVM.selectedImage = selectedTodo.wrappedImage
-            }
-        }
-    }
-}
-
-// MARK: - Functions
-
-extension HomeModalView {
-    func saveChanges() {
-        if moc.hasChanges {
-            do {
-                try moc.save()
-            } catch {
-                print("Failed to save core data")
-            }
-        } else {
-            print("no chagnes")
-        }
-    }
-    func resetUserInputAndDismiss() {
-        homeVM.title = ""
-        homeVM.selectedImage = homeVM.images.first ?? "paperplane"
-        homeVM.showingModalAlert = false
-    }
-    func createNewTodo() {
-        let todo = Todo(context: moc)
-        todo.title = homeVM.title
-        todo.date = Date.now // 제목 수정시 날짜 덮어씌워짐
-        todo.isTodo = homeVM.isTodo
-        todo.review = ""
-        todo.status = false
-        todo.image = homeVM.selectedImage
-        todo.isSaved = false
-        todo.id = UUID()
-        todo.reviewImage = nil
-        
-        addNotification(todo: todo)
-    }
-    func createDummyTodo(month: Int) {
-        for _ in 0...2 {
-            var dateComponents = DateComponents()
-            dateComponents.year = 2023
-            dateComponents.month = month
-            let todo = Todo(context: moc)
-            todo.title = homeVM.title
-            todo.date = Calendar.current.date(from: dateComponents)
-            todo.isTodo = Bool.random()
-            todo.review = ""
-            todo.status = Bool.random()
-            todo.image = homeVM.selectedImage
-            todo.isSaved = false
-            todo.id = UUID()
-            todo.reviewImage = nil
-        }
-
-    }
-    func addNotification(todo: Todo) {
-        let center = UNUserNotificationCenter.current()
-        let addRequest = {
-            let content = UNMutableNotificationContent()
-            content.title = todo.wrappedTitle
-            content.subtitle = "12월이 얼마남지 않았어요!"
-            content.sound = UNNotificationSound.defaultRingtone
-
-            // 현재 날짜 +7일이 이번 달 이내이면 알림 설정.
-//            let currentDate = Date()
-//            let targetDate = Calendar.current.date(byAdding: .day, value: 30, to: currentDate)!
-//            if Calendar.current.isDate(targetDate, equalTo: currentDate, toGranularity: .month) {
-//                var dateComponents = DateComponents()
-//                dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: targetDate)
-//                dateComponents.hour = 9
-//                dateComponents.minute = 0
-//                dateComponents.second = 0
-//                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-//                let request = UNNotificationRequest(identifier: todo.wrappedId.uuidString, content: content, trigger: trigger)
-//                center.add(request)
-//                print("Successfully set notifications")
-//            } else {
-//                print("Failed to set notifications")
-//            }
-//            
-            // 테스트시 아래 코드 사용 ( 5초뒤 알림 )
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-            let request = UNNotificationRequest(identifier: todo.wrappedId.uuidString, content: content, trigger: trigger)
-            center.add(request)
-            
-            
-        }
-        center.getNotificationSettings { settings in
-            if settings.authorizationStatus == .authorized {
-                addRequest()
-            } else {
-                center.requestAuthorization(options: [.alert, .badge, .sound]) { success , error in
-                    if success {
-                        addRequest()
-                    } else {
-                        print("Failed to request authorization: \(error?.localizedDescription ?? "")")
-                    }
-                }
-            }
-        }
     }
 }
 

@@ -39,6 +39,7 @@
 		CE80E1A42B2FD84700BE1563 /* alata-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE80E1A12B2FD84700BE1563 /* alata-regular.ttf */; };
 		CE80E1A52B2FD84700BE1563 /* Helvetica_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE80E1A22B2FD84700BE1563 /* Helvetica_Bold.ttf */; };
 		CE80E1A72B2FD8D200BE1563 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80E1A62B2FD8D200BE1563 /* CoreDataManager.swift */; };
+		CE80E1A92B3019B200BE1563 /* HomeModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80E1A82B3019B200BE1563 /* HomeModalViewModel.swift */; };
 		CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */; };
 		CEB9F5822B219944005A338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5812B219944005A338E /* Assets.xcassets */; };
 		CEB9F5852B219944005A338E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5842B219944005A338E /* Preview Assets.xcassets */; };
@@ -119,6 +120,7 @@
 		CE80E1A12B2FD84700BE1563 /* alata-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "alata-regular.ttf"; sourceTree = "<group>"; };
 		CE80E1A22B2FD84700BE1563 /* Helvetica_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Helvetica_Bold.ttf; sourceTree = "<group>"; };
 		CE80E1A62B2FD8D200BE1563 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CE80E1A82B3019B200BE1563 /* HomeModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalViewModel.swift; sourceTree = "<group>"; };
 		CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJ2T12_Again12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PJ2T12_Again12App.swift; sourceTree = "<group>"; };
 		CEB9F5812B219944005A338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				0E36BAA22B26B696003EA141 /* HomeViewModel.swift */,
+				CE80E1A82B3019B200BE1563 /* HomeModalViewModel.swift */,
 				0E36BAB12B26F64C003EA141 /* EditViewModel.swift */,
 				9E7852B02B28419E003BC698 /* SocialViewModel.swift */,
 			);
@@ -482,6 +485,7 @@
 				CE13BF7B2B299EE000A8B73B /* Calendar.swift in Sources */,
 				CEB9F5912B21A925005A338E /* TodoriTapView.swift in Sources */,
 				9E9A102B2B26CF6600A2A73E /* HomeModalView.swift in Sources */,
+				CE80E1A92B3019B200BE1563 /* HomeModalViewModel.swift in Sources */,
 				CEE941032B26FBEB00AE52CB /* Todo+CoreDataClass.swift in Sources */,
 				CEE941042B26FBEB00AE52CB /* Todo+CoreDataProperties.swift in Sources */,
 			);

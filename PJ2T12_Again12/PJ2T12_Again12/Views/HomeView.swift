@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-// TODO: 이모티콘에 대한 고민 나눠보기
 struct HomeView: View {
     
     @StateObject private var homeVM = HomeViewModel()
-    @Environment(\.managedObjectContext) var moc
 
     var body: some View {
         NavigationStack {
@@ -35,6 +33,7 @@ struct HomeView: View {
                                     Button() {
                                         homeVM.selectedTodoId = todo.wrappedId
                                         homeVM.selectedTodo = todo
+                                        homeVM.isTodo = false
                                         homeVM.showingAlert = true
                                     } label: {
                                         Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
@@ -67,6 +66,7 @@ struct HomeView: View {
                                     Button {
                                         homeVM.selectedTodoId = todo.wrappedId
                                         homeVM.selectedTodo = todo
+                                        homeVM.isTodo = true
                                         homeVM.showingAlert = true
                                     } label: {
                                         Label(todo.wrappedTitle, systemImage: todo.wrappedImage)
@@ -89,7 +89,11 @@ struct HomeView: View {
                 }
                 .padding()
                 if homeVM.showingModalAlert {
-                    HomeModalView(todo: homeVM.selectedTodo, homeVM: homeVM)
+                    HomeModalView(todo: homeVM.selectedTodo, isTodo: homeVM.isTodo) {
+                        homeVM.showingModalAlert = false
+                        homeVM.selectedTodo = nil
+                        homeVM.getAllTodoList()
+                    }
                 }
             }
             .alert("투두를 달성 하셨나요?", isPresented: $homeVM.showingAlert) {
@@ -101,6 +105,9 @@ struct HomeView: View {
                 NavigationLink("투두 완료") {
                     EditView(todoId: homeVM.selectedTodoId, homeVM: homeVM)
                 }
+            }
+            .onAppear {
+                homeVM.getAllTodoList()
             }
         }
     }
