@@ -11,8 +11,9 @@ import UserNotifications
 class HomeModalViewModel: ObservableObject {
     @Published var title = ""
     @Published var image = ""
+    var dismiss: () -> Void = {}
+    var isTodo = false
     var images: [String] = ["paperplane", "book.closed", "moon", "dumbbell"]
-
     var todo: Todo?
     
     init(todo: Todo?) {
