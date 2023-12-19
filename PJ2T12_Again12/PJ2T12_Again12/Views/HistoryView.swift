@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct HistoryView: View {
-    
-    @ObservedObject var homeVM: HomeViewModel
     @ObservedObject var historyVM: HistoryViewModel
     
-    init(homeVM: HomeViewModel) {
+    init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .brown
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.brown], for: .normal)
         
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
-        self.homeVM = homeVM
         self.historyVM = HistoryViewModel()
     }
     

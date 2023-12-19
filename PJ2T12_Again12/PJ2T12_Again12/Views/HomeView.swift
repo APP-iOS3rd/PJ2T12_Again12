@@ -118,7 +118,7 @@ struct HomeView: View {
                 .font(.Alata28)
             Spacer()
             NavigationLink {
-                HistoryView(homeVM: homeVM)
+                HistoryView()
             } label: {
                 Image(systemName: "doc.text")
                     .font(.title)
