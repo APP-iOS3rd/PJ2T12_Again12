@@ -211,7 +211,7 @@ struct ProfileView: View {
 
 struct ProfileEditView: View {
     @Binding var nickname: String
-    @StateObject private var viewModel = EditViewModel()
+    @StateObject private var viewModel = EditViewModel(todo: Todo())
     @State private var checkSave = false
     @Binding var profileImage: UIImage
     @Binding var isLogin: Bool

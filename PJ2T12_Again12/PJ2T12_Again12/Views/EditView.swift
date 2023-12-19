@@ -11,25 +11,14 @@ import Photos
 import WidgetKit
 
 struct EditView: View {
-    @StateObject private var viewModel = EditViewModel()
-    @ObservedObject var homeVM = HomeViewModel()
-
-    @State private var image = UIImage()
-    @State private var userText: String = ""
-    @State private var checkSave = false
-    @State private var showAlert = false
+//    @StateObject private var viewModel = EditViewModel()
+    @ObservedObject var viewModel: EditViewModel
     @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = 0
-    
-    @FetchRequest(sortDescriptors: []) var selectedTodo: FetchedResults<Todo>
     @Environment(\.dismiss) var dismiss
-    @Environment(\.managedObjectContext) var moc
-//    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
-//    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
 
-    init(todoId: UUID, homeVM: HomeViewModel) {
+    init(todo: Todo?) {
         print("Initalize")
-        _selectedTodo = FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "id == %@", todoId as CVarArg))
-        self.homeVM = homeVM
+        viewModel = EditViewModel(todo: todo)
     }
     
     var body: some View {
@@ -40,10 +29,11 @@ struct EditView: View {
                 ScrollView {
                     VStack() {
                         HStack(alignment: .center, spacing: 20) {
-                            Label(selectedTodo.first?.title ?? "Todori", systemImage: selectedTodo.first?.image ??  "airplane")
+                            Label(viewModel.todo?.title ?? "Todori", systemImage: viewModel.todo?.image ??  "airplane")
                                 .font(.system(size: 25))
                                 .bold()
-                                .foregroundColor(homeVM.isTodo ? Color.TodoNoTextBrown : Color.WanttoNoTextBrown)
+                                .foregroundColor(
+                                    (viewModel.todo?.isTodo ?? false) ? Color.TodoNoTextBrown : Color.WanttoNoTextBrown)
                         }
                         .padding(.bottom, 20)
                         
@@ -56,7 +46,7 @@ struct EditView: View {
                                 }
                             }) {
                                 ZStack {
-                                    if !checkSave {
+                                    if !viewModel.checkSave {
                                         RoundedRectangle(cornerRadius: 12)
                                             .strokeBorder(Color.DefaultBlack, lineWidth: 1)
                                             .frame(width: 90, height: 90)
@@ -68,14 +58,14 @@ struct EditView: View {
                                 }
                             }
                             .sheet(isPresented: $viewModel.albumPermissionGranted) {
-                                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$viewModel.image)
                             }
                             .padding()
                             Spacer()
                                 
                         }
-                        if image.size != CGSize.zero {
-                            Image(uiImage: image)
+                        if viewModel.image.size != CGSize.zero {
+                            Image(uiImage: viewModel.image)
                                 .resizable()
                                 .frame(width: 310, height: 310)
                                 .scaledToFit()
@@ -83,8 +73,8 @@ struct EditView: View {
                                 .padding(.bottom, 20)
                         }
                         
-                        if !checkSave {
-                            TextEditor(text: $userText)
+                        if !viewModel.checkSave {
+                            TextEditor(text: $viewModel.userText)
                                 .frame(width: 320, height: 250)
                                 .lineSpacing(8)
                                 .keyboardType(.default)
@@ -95,10 +85,10 @@ struct EditView: View {
                                     Text("할 일을 마치며 느낀점을 적어주세요")
                                         .font(.Hel15Bold)
                                         .foregroundColor(Color.TextDefaultGray)
-                                        .opacity(userText.isEmpty ? 1 : 0)
+                                        .opacity(viewModel.userText.isEmpty ? 1 : 0)
                                 )
                         } else {
-                            Text(userText)
+                            Text(viewModel.userText)
                                 .font(.Hel15Bold)
                                 .frame(maxWidth: 320, minHeight: 250)
                                 .lineSpacing(8)
@@ -109,21 +99,11 @@ struct EditView: View {
                         }
                         
                         Button(action: {
-                            if let selectedTodo = selectedTodo.first {
-                                selectedTodo.review = userText
-                                selectedTodo.isSaved.toggle()
-                                selectedTodo.status.toggle()
-                                if let imageData = image.pngData() {
-                                    selectedTodo.reviewImage = imageData
-                                }
-                            }
-                            try? moc.save()
+                            viewModel.updateTodo()
                             firstWantTodoIt += 1
-                            print(firstWantTodoIt)
-                            checkSave.toggle()
                             WidgetCenter.shared.reloadAllTimelines()
                         }) {
-                            Text(checkSave ? "수정하기" : "작성완료")
+                            Text(viewModel.checkSave ? "수정하기" : "작성완료")
                                 .font(.Hel17Bold)
                                 .foregroundColor(.white)
                                 .padding()
@@ -138,33 +118,21 @@ struct EditView: View {
                 .onTapGesture {
                     hideKeyboard()
                 }
-                .onAppear {
-                    if let selectedTodo = selectedTodo.first {
-                        userText = selectedTodo.wrappedReview
-                        checkSave = selectedTodo.isSaved
-                        if let imageData = selectedTodo.reviewImage {
-                            image = UIImage(data: imageData) ?? UIImage(systemName: "heart")!
-                        }
-                    }
-                }
             }
             .toolbar {
                 Button {
-                    showAlert.toggle()
+                    viewModel.showAlert.toggle()
                 } label: {
                     Image(systemName: "trash")
                 }
             }
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text("삭제하시겠습니까?"),
                       message: nil,
                       primaryButton: .cancel(),
                       secondaryButton: .destructive(Text("삭제")) {
-                    for todo in selectedTodo {
-                        moc.delete(todo)
-                        WidgetCenter.shared.reloadAllTimelines()
-                    }
-                    try? moc.save()
+                    viewModel.deleteTodo()
+                    WidgetCenter.shared.reloadAllTimelines()
                     dismiss()
                 }
                 )

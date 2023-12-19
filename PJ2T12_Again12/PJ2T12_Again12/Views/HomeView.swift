@@ -103,7 +103,7 @@ struct HomeView: View {
                 }
                 .foregroundStyle(.brown)
                 NavigationLink("투두 완료") {
-                    EditView(todoId: homeVM.selectedTodoId, homeVM: homeVM)
+                    EditView(todo: homeVM.selectedTodo)
                 }
             }
             .onAppear {

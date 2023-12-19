@@ -52,7 +52,7 @@ struct HistoryView: View {
                 if historyVM.selectedSegment == 0 {
                     ScrollView {
                         ForEach(historyVM.wantTodoList) { todo in
-                            NavigationLink(destination: EditView(todoId: todo.wrappedId, homeVM: homeVM), label: {
+                            NavigationLink(destination: EditView(todo: todo), label: {
                                 HStack {
                                     VStack {
                                         Label("", systemImage: todo.wrappedImage)
@@ -70,7 +70,7 @@ struct HistoryView: View {
                             })
                         }
                         ForEach(historyVM.todoList) { todo in
-                            NavigationLink(destination: EditView(todoId: todo.wrappedId, homeVM: homeVM), label: {
+                            NavigationLink(destination: EditView(todo: todo), label: {
                                 HStack {
                                     VStack {
                                         Label("", systemImage: todo.wrappedImage)
@@ -93,7 +93,7 @@ struct HistoryView: View {
                 } else if historyVM.selectedSegment == 2 {
                     ScrollView {
                         ForEach(historyVM.todoList) { todo in
-                            NavigationLink(destination: EditView(todoId: todo.wrappedId, homeVM: homeVM), label: {
+                            NavigationLink(destination: EditView(todo: todo), label: {
                                 HStack {
                                     VStack {
                                         Label("", systemImage: todo.wrappedImage)
@@ -116,7 +116,7 @@ struct HistoryView: View {
                     // 하고 싶은 일
                     ScrollView {
                         ForEach(historyVM.wantTodoList) { todo in
-                            NavigationLink(destination: EditView(todoId: todo.wrappedId, homeVM: homeVM), label: {
+                            NavigationLink(destination: EditView(todo: todo), label: {
                                 HStack {
                                     VStack {
                                         Label("", systemImage: todo.wrappedImage)
