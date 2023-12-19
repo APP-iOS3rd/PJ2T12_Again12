@@ -4,31 +4,19 @@
 //
 //  Created by KHJ on 2023/12/07.
 //
+
+import Charts
 import Foundation
 import SwiftUI
-import Charts
-
 
 struct StatusView: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
-    
-    @State private var selectedbadge = ""
+    @ObservedObject var statusVM: StatusViewModel
 
-    
-    @State var Data = [
-
-        
-        DataType(doType: "해야하면", data: TodoOverView.todoMonth),
-        DataType(doType: "하고싶으면", data: TodoOverView.wantTodoMonth)
-    ]
-
-    
     init() {
+        statusVM = StatusViewModel()
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
     }
 
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -45,7 +33,7 @@ struct StatusView: View {
                     ScrollView(.horizontal) {
                         Chart {
                             // element는 Data
-                            ForEach(Data, id: \.doType) { element in
+                            ForEach(statusVM.chartData, id: \.doType) { element in
                                 // $0은 따로 정하지 않아 element.data
                                 ForEach(element.data, id: \.date) {
                                     //todoMonth
@@ -87,33 +75,8 @@ struct StatusView: View {
                 }
             }
             .navigationTitle("나의 투두 기록")
-            .onAppear  {
-//                groupTodoByMonth(todoList: todoList, index: 0)
-//                groupTodoByMonth(todoList: wantTodoList, index: 1)
-            }
         }
     }
-    func groupTodoByMonth(todoList: FetchedResults<Todo>, index: Int) {
-        let groupdByMonth = Dictionary(grouping: todoList) { todo in
-            return Calendar.current.component(.month, from: todo.wrappedDate)
-        }
-        
-        // todoMonth
-        var todoOverViews: [TodoOverView] = []
-        
-        for (month, todos) in groupdByMonth {
-            let doneCount = todos.filter { $0.status == true }.count
-            let undoneCount = todos.filter { $0.status == false }.count
-            let todoOverView = TodoOverView(date: month, done: doneCount, undone: undoneCount)
-            todoOverViews.append(todoOverView)
-        }
-        let type = (index == 0) ? "Todo" : "WantTodo"
-        Data[index].data = todoOverViews.sorted { $0.date < $1.date }
-        for todoOverView in todoOverViews {
-            print("[\(type)] Month: \(todoOverView.date), Done: \(todoOverView.done), Undone: \(todoOverView.undone)")
-        }
-    }
-    
 }
 
 #Preview {

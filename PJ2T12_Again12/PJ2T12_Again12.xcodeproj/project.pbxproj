@@ -52,6 +52,7 @@
 		CEB9F5992B21A9A9005A338E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F5982B21A9A9005A338E /* HistoryView.swift */; };
 		CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F59A2B21A9C5005A338E /* SocialView.swift */; };
 		CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F59C2B21A9CE005A338E /* SettingsView.swift */; };
+		CED568892B315870003F4328 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED568882B315870003F4328 /* StatusViewModel.swift */; };
 		CEE940FA2B26D85700AE52CB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE940F92B26D85700AE52CB /* DataController.swift */; };
 		CEE940FD2B26D99A00AE52CB /* Todori.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEE940FB2B26D99A00AE52CB /* Todori.xcdatamodeld */; };
 		CEE941032B26FBEB00AE52CB /* Todo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */; };
@@ -135,6 +136,7 @@
 		CEB9F5982B21A9A9005A338E /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		CEB9F59A2B21A9C5005A338E /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		CEB9F59C2B21A9CE005A338E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CED568882B315870003F4328 /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		CEE940F92B26D85700AE52CB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		CEE940FC2B26D99A00AE52CB /* Todori.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todori.xcdatamodel; sourceTree = "<group>"; };
 		CEE941012B26FBEB00AE52CB /* Todo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				CE80E1A82B3019B200BE1563 /* HomeModalViewModel.swift */,
 				0E36BAB12B26F64C003EA141 /* EditViewModel.swift */,
 				9E7852B02B28419E003BC698 /* SocialViewModel.swift */,
+				CED568882B315870003F4328 /* StatusViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */,
 				9E7852B32B2860D5003BC698 /* SocialDetailView.swift in Sources */,
 				CEB9F58F2B219A85005A338E /* User.swift in Sources */,
+				CED568892B315870003F4328 /* StatusViewModel.swift in Sources */,
 				E3456BB02B26FD2100EEA7B1 /* String.swift in Sources */,
 				0E36BAA62B26B6BF003EA141 /* Color.swift in Sources */,
 				9E7852B12B28419E003BC698 /* SocialViewModel.swift in Sources */,
