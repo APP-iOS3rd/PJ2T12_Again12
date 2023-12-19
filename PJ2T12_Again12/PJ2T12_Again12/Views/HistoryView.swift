@@ -10,6 +10,7 @@ import SwiftUI
 struct HistoryView: View {
     
     @ObservedObject var homeVM: HomeViewModel
+    @ObservedObject var historyVM: HistoryViewModel
     
     init(homeVM: HomeViewModel) {
         UISegmentedControl.appearance().selectedSegmentTintColor = .brown
@@ -18,20 +19,8 @@ struct HistoryView: View {
         
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
         self.homeVM = homeVM
+        self.historyVM = HistoryViewModel()
     }
-    
-//    init(homeVM: HomeViewModel) {
-//        print("Initalize")
-//        self.homeVM = homeVM
-//    }
-//    
-    @State private var searchTitle = ""
-    @State private var selectedSegment = 0
-    
-    
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == true")) var todoList: FetchedResults<Todo>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)], predicate: NSPredicate(format: "isTodo == false")) var wantTodoList: FetchedResults<Todo>
     
 //    private var filteredtodoList: [Todo] {
 //        guard !searchTitle.isEmpty else {
@@ -48,7 +37,7 @@ struct HistoryView: View {
             Color.BackgroundYellow
                 .ignoresSafeArea()
             VStack {
-                Picker("Select Segment", selection: $selectedSegment) {
+                Picker("Select Segment", selection: $historyVM.selectedSegment) {
                     Text("모두").tag(0)
                         .font(.custom("Helvetica", size: 10))
                     Text("하고 싶으면").tag(1)
@@ -60,9 +49,9 @@ struct HistoryView: View {
                 .padding()
                 
                 // 모두
-                if selectedSegment == 0 {
+                if historyVM.selectedSegment == 0 {
                     ScrollView {
-                        ForEach(wantTodoList) { todo in
+                        ForEach(historyVM.wantTodoList) { todo in
                             NavigationLink(destination: EditView(todoId: todo.wrappedId, homeVM: homeVM), label: {
                                 HStack {
                                     VStack {
@@ -80,7 +69,7 @@ struct HistoryView: View {
                                 .modifier(WantTodoCellModifier(status: todo.status))
                             })
                         }
-                        ForEach(todoList) { todo in
+                        ForEach(historyVM.todoList) { todo in
                             NavigationLink(destination: EditView(todoId: todo.wrappedId, homeVM: homeVM), label: {
                                 HStack {
                                     VStack {
@@ -101,9 +90,9 @@ struct HistoryView: View {
                     }
                     .padding()
                     // 해야하는 일
-                } else if selectedSegment == 2 {
+                } else if historyVM.selectedSegment == 2 {
                     ScrollView {
-                        ForEach(todoList) { todo in
+                        ForEach(historyVM.todoList) { todo in
                             NavigationLink(destination: EditView(todoId: todo.wrappedId, homeVM: homeVM), label: {
                                 HStack {
                                     VStack {
@@ -126,7 +115,7 @@ struct HistoryView: View {
                 } else {
                     // 하고 싶은 일
                     ScrollView {
-                        ForEach(wantTodoList) { todo in
+                        ForEach(historyVM.wantTodoList) { todo in
                             NavigationLink(destination: EditView(todoId: todo.wrappedId, homeVM: homeVM), label: {
                                 HStack {
                                     VStack {
@@ -148,7 +137,7 @@ struct HistoryView: View {
                     .padding()
                 }
             }
-            .searchable(text: $searchTitle)
+            .searchable(text: $historyVM.searchTitle)
             .navigationBarTitle("전체 일정 보기")
         }
     }

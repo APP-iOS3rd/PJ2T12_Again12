@@ -40,6 +40,7 @@
 		CE80E1A52B2FD84700BE1563 /* Helvetica_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE80E1A22B2FD84700BE1563 /* Helvetica_Bold.ttf */; };
 		CE80E1A72B2FD8D200BE1563 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80E1A62B2FD8D200BE1563 /* CoreDataManager.swift */; };
 		CE80E1A92B3019B200BE1563 /* HomeModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80E1A82B3019B200BE1563 /* HomeModalViewModel.swift */; };
+		CEB8B4D32B3125A300788D5B /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB8B4D22B3125A300788D5B /* HistoryViewModel.swift */; };
 		CEB9F57E2B219941005A338E /* PJ2T12_Again12App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */; };
 		CEB9F5822B219944005A338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5812B219944005A338E /* Assets.xcassets */; };
 		CEB9F5852B219944005A338E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB9F5842B219944005A338E /* Preview Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		CE80E1A22B2FD84700BE1563 /* Helvetica_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Helvetica_Bold.ttf; sourceTree = "<group>"; };
 		CE80E1A62B2FD8D200BE1563 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CE80E1A82B3019B200BE1563 /* HomeModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalViewModel.swift; sourceTree = "<group>"; };
+		CEB8B4D22B3125A300788D5B /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		CEB9F57A2B219941005A338E /* PJ2T12_Again12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJ2T12_Again12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB9F57D2B219941005A338E /* PJ2T12_Again12App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PJ2T12_Again12App.swift; sourceTree = "<group>"; };
 		CEB9F5812B219944005A338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 		CEB9F58D2B219A66005A338E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CEB8B4D22B3125A300788D5B /* HistoryViewModel.swift */,
 				0E36BAA22B26B696003EA141 /* HomeViewModel.swift */,
 				CE80E1A82B3019B200BE1563 /* HomeModalViewModel.swift */,
 				0E36BAB12B26F64C003EA141 /* EditViewModel.swift */,
@@ -472,6 +475,7 @@
 				CEB9F59D2B21A9CE005A338E /* SettingsView.swift in Sources */,
 				CEB9F59B2B21A9C5005A338E /* SocialView.swift in Sources */,
 				CEE940FA2B26D85700AE52CB /* DataController.swift in Sources */,
+				CEB8B4D32B3125A300788D5B /* HistoryViewModel.swift in Sources */,
 				E3A9AC892B2990FA002B0AE6 /* KaKaoAuthVM.swift in Sources */,
 				0E36BA7E2B22F41E003EA141 /* EditView.swift in Sources */,
 				CEE940FD2B26D99A00AE52CB /* Todori.xcdatamodeld in Sources */,
