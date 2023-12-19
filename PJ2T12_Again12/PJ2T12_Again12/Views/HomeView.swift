@@ -17,7 +17,6 @@ struct HomeView: View {
                 Color.backgroundYellow
                     .ignoresSafeArea()
                 ScrollView {
-                    // NavBar
                     navigationBar
                     VStack(spacing: 16) {
                         // 하고싶은 투두
@@ -31,7 +30,6 @@ struct HomeView: View {
                             VStack {
                                 ForEach(homeVM.wantTodoList, id: \.self) { todo in
                                     Button() {
-                                        homeVM.selectedTodoId = todo.wrappedId
                                         homeVM.selectedTodo = todo
                                         homeVM.isTodo = false
                                         homeVM.showingAlert = true
@@ -64,7 +62,6 @@ struct HomeView: View {
                             VStack {
                                 ForEach(homeVM.todoList, id: \.self) { todo in
                                     Button {
-                                        homeVM.selectedTodoId = todo.wrappedId
                                         homeVM.selectedTodo = todo
                                         homeVM.isTodo = true
                                         homeVM.showingAlert = true
@@ -90,6 +87,7 @@ struct HomeView: View {
                 .padding()
                 if homeVM.showingModalAlert {
                     HomeModalView(todo: homeVM.selectedTodo, isTodo: homeVM.isTodo) {
+                        // 해당 뷰가 사라질때 호출될 클로저
                         homeVM.showingModalAlert = false
                         homeVM.selectedTodo = nil
                         homeVM.getAllTodoList()
@@ -98,7 +96,6 @@ struct HomeView: View {
             }
             .alert("투두를 달성 하셨나요?", isPresented: $homeVM.showingAlert) {
                 Button("투두 수정") {
-                    // HomeModalView 제목 수정
                     homeVM.showingModalAlert = true
                 }
                 .foregroundStyle(.brown)
@@ -134,7 +131,6 @@ struct HomeView: View {
     func addTodoButton(isTodo: Bool) -> some View {
             Button {
                 homeVM.isTodo = isTodo
-                homeVM.selectedTodoId = UUID()
                 homeVM.showingModalAlert = true
             } label: {
                 Text("새로운 투두를 추가해보세요")

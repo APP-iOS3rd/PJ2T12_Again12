@@ -63,18 +63,6 @@ extension CoreDataManager {
         }
     }
     
-    func getTodoById(_ id: UUID) -> Todo? {
-        let request = NSFetchRequest<Todo>(entityName: "Todo")
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        
-        do {
-            return try viewContext.fetch(request).first
-        } catch {
-            return nil
-        }
-    }
-    
     func addTodo(title: String, image: String, isTodo: Bool) {
         let todo = Todo(context: viewContext)
         todo.title = title

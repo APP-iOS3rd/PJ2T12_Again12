@@ -13,7 +13,6 @@ class HomeViewModel: ObservableObject {
     @Published var showingAlert = false
     @Published var showingModalAlert = false
     @Published var isTodo = false
-    @Published var selectedTodoId: UUID = UUID()
     @Published var todoList: [Todo] = []
     @Published var wantTodoList: [Todo] = []
     @Published var selectedTodo: Todo?
@@ -21,6 +20,7 @@ class HomeViewModel: ObservableObject {
     init() {
         getAllTodoList()
     }
+    
     func getAllTodoList() {
         getTodoList()
         getWantTodoList()
@@ -33,24 +33,4 @@ class HomeViewModel: ObservableObject {
     func getWantTodoList() {
         wantTodoList = CoreDataManager.shared.getWantTodoList()
     }
-    
-    func getTodoById(_ id: UUID) -> Todo? {
-        return CoreDataManager.shared.getTodoById(id)
-    }
-    
-    func addTodo(title: String, image: String, isTodo: Bool) {
-        CoreDataManager.shared.addTodo(title: title, image: image, isTodo: isTodo)
-        getAllTodoList()
-    }
-    
-    func updateTodo() {
-        CoreDataManager.shared.saveContext()
-        getAllTodoList()
-    }
-    
-    func deleteTodo(todo: Todo) {
-        CoreDataManager.shared.deleteTodo(todo: todo)
-        getAllTodoList()
-    }
-
 }
