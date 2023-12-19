@@ -13,7 +13,6 @@ class EditViewModel: ObservableObject {
     //앨범 권한을 물어보는데 기본값은 false
     @Published var albumPermissionGranted = false
     var authorizationCallback: (() -> Void)?
-    
     var todo: Todo?
     @Published var userText = ""
     @Published var checkSave = false

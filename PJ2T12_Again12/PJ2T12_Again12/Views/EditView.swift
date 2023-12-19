@@ -11,13 +11,11 @@ import Photos
 import WidgetKit
 
 struct EditView: View {
-//    @StateObject private var viewModel = EditViewModel()
     @ObservedObject var viewModel: EditViewModel
     @AppStorage("firstWantTodoIt") var firstWantTodoIt: Int = 0
     @Environment(\.dismiss) var dismiss
 
     init(todo: Todo?) {
-        print("Initalize")
         viewModel = EditViewModel(todo: todo)
     }
     
