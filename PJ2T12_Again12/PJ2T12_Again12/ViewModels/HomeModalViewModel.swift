@@ -18,6 +18,7 @@ class HomeModalViewModel: ObservableObject {
     
     init(todo: Todo?) {
         self.todo = todo
+        updateModalView()
     }
     
     func updateModalView() {

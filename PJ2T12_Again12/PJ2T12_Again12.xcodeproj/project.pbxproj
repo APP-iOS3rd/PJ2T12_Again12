@@ -82,14 +82,14 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		0E8E26FB2B29FFA600F1B3B5 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
 				0E8E26FA2B29FFA600F1B3B5 /* TodoriWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -518,7 +518,7 @@
 				CODE_SIGN_ENTITLEMENTS = TodoriWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = C9D4D98Z8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoriWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "투두리위젯";
@@ -529,7 +529,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again12.TodoriWidget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again12.TodoriWidget2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -546,7 +546,7 @@
 				CODE_SIGN_ENTITLEMENTS = TodoriWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = C9D4D98Z8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoriWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "투두리위젯";
@@ -557,7 +557,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again12.TodoriWidget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again12.TodoriWidget2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -697,7 +697,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PJ2T12_Again12/Preview Content\"";
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = C9D4D98Z8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PJ2T12-Again12-Info.plist";
@@ -715,7 +715,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again12";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again122";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -733,7 +733,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PJ2T12_Again12/Preview Content\"";
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = C9D4D98Z8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PJ2T12-Again12-Info.plist";
@@ -751,7 +751,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again12";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kim.hyunjin.PJ2T12-Again122";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
